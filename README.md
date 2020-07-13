@@ -66,9 +66,10 @@ Allows users to contribute to a shared playlist by adding songs to be played and
 * Profile
 
 **Flow Navigation** (Screen to Screen)
-* Log-in -> Playlist
-* Sign-up -> new user creates an account
-* Playlists -> Join Playlist or Create Playlist -> Current Playlist
+* Log-in -> Home (join playlist, create playlist, view profile)
+* Sign-up -> new user creates an account -> Home
+* Join Playlist -> enter invite code -> Current Playlist
+* Create Playlist -> send invite -> Current Playlist
 * Profile -> Image and Text field to be modified. 
 
 ## Schema 
