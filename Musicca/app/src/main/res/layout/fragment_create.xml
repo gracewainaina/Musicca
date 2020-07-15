@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CreateFragment">
+
+    <ImageView
+        android:id="@+id/ivPlaylistIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@drawable/musicalnotes" />
+
+    <Button
+        android:id="@+id/btnSetPlaylistIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffa4ab"
+        android:text="SET ICON" />
+
+    <EditText
+        android:id="@+id/etPlaylistname_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Set name of playlist" />
+
+    <EditText
+        android:id="@+id/etPlaylistcode_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Set 4 digit playlist code" />
+
+    <Button
+        android:id="@+id/btnCreatePlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffa4ab"
+        android:text="CREATE" />
+
+</LinearLayout>

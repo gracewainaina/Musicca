@@ -1,8 +1,10 @@
 package com.example.musicca.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.musicca.R;
+import com.example.musicca.connectors.UserService;
+import com.example.musicca.models.User;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,15 +82,16 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 // Upon logging in properly, navigate to the main activity using intent
-                goMainActivity();
+                goLoginspotifyActivity();
                 Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+    private void goLoginspotifyActivity() {
+        Intent i = new Intent(this, LoginspotifyActivity.class);
         startActivity(i);
         finish();
     }
+
 }
