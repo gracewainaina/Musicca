@@ -2,6 +2,7 @@ package com.example.musicca.models;
 
 import android.app.Application;
 
+import com.example.musicca.fragments.CreateFragment;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -29,7 +30,7 @@ public class ParseApplication extends Application {
 
         // Register your parse models
         //ParseUser.registerSubclass(User.class);
-        //ParseObject.registerSubclass(Comment.class);
+        ParseObject.registerSubclass(Playlist.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.musicca.R;
+import com.example.musicca.activities.LoginspotifyActivity;
+import com.example.musicca.activities.MainActivity;
+import com.example.musicca.activities.PartyActivity;
+import com.example.musicca.models.Playlist;
 import com.parse.ParseFile;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,8 +53,13 @@ public class CreateFragment extends Fragment {
     private File photoFile;
     private String photoFileName = "photo.jpg";
     public final static int PICK_PHOTO_CODE = 1046;
-    public static final String KEY_PROFILEIMAGE = "profilephoto";
+    public static final String KEY_PLAYLISTICON = "playlistIcon";
+    public static final String KEY_PLAYLISTNAME = "name";
+    public static final String KEY_PLAYLISTCODE = "inviteCode";
+
+
     private ParseUser parseUser = ParseUser.getCurrentUser();
+    private Playlist playlist = new Playlist();
 
     public CreateFragment() {
         // Required empty public constructor
@@ -75,9 +88,56 @@ public class CreateFragment extends Fragment {
 
             }
         });
+        btnCreatePlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // upon clicking we want to collect all information and create a post out of it
+                // we will need description, user and image
+                String playlistName = etPlaylistname_create.getText().toString();
+                String playlistCode = etPlaylistcode_create.getText().toString();
 
+                if (playlistName.isEmpty() && playlistCode.isEmpty()) {
+                    Toast.makeText(getContext(), "Name and code cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (ivPlaylistIcon.getDrawable() == null) {
+                    Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
+                goPartyActivity();
+            }
+        });
 
     }
+
+    private void savePlaylist(String playlistName, String playlistCode, ParseUser owner, File photoFile) {
+        playlist.setName(playlistName);
+        playlist.setInvitecode(playlistCode);
+        playlist.setOwner(owner);
+        playlist.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving", e);
+                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                }
+                Log.i(TAG, "Playlist created successfully!");
+                Toast.makeText(getContext(), "Playlist created successfully!", Toast.LENGTH_SHORT).show();
+                // if we saved successfully, clear the text from the description and not save text more than once
+                etPlaylistname_create.setText("");
+                etPlaylistcode_create.setText("");
+                ivPlaylistIcon.setImageResource(0);
+            }
+        });
+    }
+
+    private void goPartyActivity() {
+        Intent newintent = new Intent(getContext(), PartyActivity.class);
+        startActivity(newintent);
+    }
+
 
     private void onPickPhoto() {
         // Create intent for picking a photo from the gallery
@@ -124,8 +184,8 @@ public class CreateFragment extends Fragment {
             byte[] image = stream.toByteArray();
             ParseFile parsefile = new ParseFile(image);
 
-            parseUser.put(KEY_PROFILEIMAGE, parsefile);
-            parseUser.saveInBackground();
+            playlist.put(KEY_PLAYLISTICON, parsefile);
+            playlist.saveInBackground();
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
         }

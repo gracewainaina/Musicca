@@ -1,5 +1,6 @@
 package com.example.musicca.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.musicca.R;
+import com.example.musicca.activities.LoginspotifyActivity;
+import com.example.musicca.activities.MainActivity;
+import com.example.musicca.activities.PartyActivity;
 
 public class JoinFragment extends Fragment {
 
@@ -38,5 +42,12 @@ public class JoinFragment extends Fragment {
         etPlaylistname_join = view.findViewById(R.id.etPlaylistname_join);
         btnJoin = view.findViewById(R.id.btnJoin);
 
+        btnJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), PartyActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

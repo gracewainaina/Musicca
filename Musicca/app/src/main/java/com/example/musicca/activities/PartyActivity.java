@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.musicca.R;
+import com.example.musicca.connectors.SongService;
 import com.example.musicca.models.Song;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class PartyActivity extends AppCompatActivity {
     private Song song;
 
     private SongService songService;
-    private ArrayList<Song> recentlyPlayedTracks
+    private ArrayList<Song> recentlyPlayedTracks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,17 @@ public class PartyActivity extends AppCompatActivity {
         userView.setText(sharedPreferences.getString("userid", "No User"));
 
         getTracks();
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                songService.addSongToLibrary(song);
+                if (recentlyPlayedTracks.size() > 0) {
+                    recentlyPlayedTracks.remove(0);
+                }
+                updateSong();
+            }
+        });
     }
 
     private void getTracks() {
