@@ -23,6 +23,7 @@ public class LoginspotifyActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "22793b7728c54470b8d117506f9574c5";
     private static final String REDIRECT_URI = "com.musicca://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
+
     private static final int REQUEST_CODE = 1337;
     private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private,playlist-read-collaborative,";
     private SharedPreferences.Editor editor;

@@ -9,10 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.musicca.R;
 
 public class JoinFragment extends Fragment {
+
+    private EditText etPlaylistname_join;
+    private EditText etPlaylistcode_join;
+    private Button btnJoin;
 
     public JoinFragment() {
         // Required empty public constructor
@@ -28,7 +34,9 @@ public class JoinFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        etPlaylistcode_join = view.findViewById(R.id.etPlaylistcode_join);
+        etPlaylistname_join = view.findViewById(R.id.etPlaylistname_join);
+        btnJoin = view.findViewById(R.id.btnJoin);
 
     }
 }

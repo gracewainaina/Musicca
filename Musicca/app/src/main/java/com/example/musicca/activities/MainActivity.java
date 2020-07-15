@@ -2,9 +2,9 @@ package com.example.musicca.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -25,10 +25,6 @@ import com.spotify.protocol.types.Track;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CLIENT_ID = "22793b7728c54470b8d117506f9574c5";
-    private static final String REDIRECT_URI = "com.musicca://callback";
-    private SpotifyAppRemote mSpotifyAppRemote;
-
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
@@ -43,19 +39,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment;
+
                 switch (menuItem.getItemId()) {
                     case R.id.action_join:
-                        //fragment = new JoinFragment();
+                        fragment = new JoinFragment();
                         break;
                     case R.id.action_create:
-                        //fragment = new CreateFragment();
+                        fragment = new CreateFragment();
                         break;
                     case R.id.action_profile:
                     default:
-                        //fragment = new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
-                //fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
