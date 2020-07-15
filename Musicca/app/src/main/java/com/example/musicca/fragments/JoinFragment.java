@@ -7,22 +7,35 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.musicca.R;
 import com.example.musicca.activities.LoginspotifyActivity;
 import com.example.musicca.activities.MainActivity;
 import com.example.musicca.activities.PartyActivity;
+import com.example.musicca.models.Playlist;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class JoinFragment extends Fragment {
+
+    public static final String KEY_PLAYLISTNAME = "name";
+    public static final String KEY_PLAYLISTCODE = "inviteCode";
 
     private EditText etPlaylistname_join;
     private EditText etPlaylistcode_join;
     private Button btnJoin;
+
+    public String mObjectId;
 
     public JoinFragment() {
         // Required empty public constructor
@@ -45,9 +58,35 @@ public class JoinFragment extends Fragment {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), PartyActivity.class);
-                startActivity(i);
+                queryPlaylists();
+                goPartyActivity(mObjectId);
             }
         });
+    }
+
+    private void queryPlaylists() {
+        // Define the class we would like to query
+        ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
+        // Define our query conditions
+        query.whereEqualTo(KEY_PLAYLISTCODE, etPlaylistcode_join.getText());
+        // Execute the find asynchronously
+        query.findInBackground(new FindCallback<Playlist>() {
+            public void done(List<Playlist> itemList, ParseException e) {
+                if (e == null) {
+                    // Access the array of results here
+                    mObjectId = itemList.get(0).getObjectId();
+                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("item", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private void goPartyActivity(String objectid) {
+        Intent newintent = new Intent(getContext(), PartyActivity.class);
+        newintent.putExtra("objectid", objectid);
+        startActivity(newintent);
+
     }
 }
