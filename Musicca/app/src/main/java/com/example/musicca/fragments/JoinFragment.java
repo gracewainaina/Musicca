@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.musicca.R;
-import com.example.musicca.activities.LoginspotifyActivity;
-import com.example.musicca.activities.MainActivity;
 import com.example.musicca.activities.PartyActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.FindCallback;

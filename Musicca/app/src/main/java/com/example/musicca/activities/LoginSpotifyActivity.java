@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -19,7 +20,7 @@ import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
-public class LoginspotifyActivity extends AppCompatActivity {
+public class LoginSpotifyActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "22793b7728c54470b8d117506f9574c5";
     private static final String REDIRECT_URI = "com.musicca://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
@@ -86,12 +87,13 @@ public class LoginspotifyActivity extends AppCompatActivity {
             Log.d("STARTING", "GOT USER INFORMATION");
             // We use commit instead of apply because we need the information stored immediately
             editor.commit();
+            Toast.makeText(LoginSpotifyActivity.this, "Spotify login success!", Toast.LENGTH_SHORT).show();
             goMainActivity();
         });
     }
 
     private void goMainActivity() {
-        Intent newintent = new Intent(LoginspotifyActivity.this, MainActivity.class);
+        Intent newintent = new Intent(LoginSpotifyActivity.this, MainActivity.class);
         startActivity(newintent);
     }
 

@@ -19,18 +19,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.musicca.R;
-import com.example.musicca.activities.LoginspotifyActivity;
-import com.example.musicca.activities.MainActivity;
 import com.example.musicca.activities.PartyActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.ParseFile;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
