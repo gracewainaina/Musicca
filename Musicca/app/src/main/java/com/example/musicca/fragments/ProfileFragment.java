@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.musicca.R;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
 
@@ -22,6 +25,11 @@ public class ProfileFragment extends Fragment {
     private ImageView ivProfileImage;
     private Button btnProfileimage;
     private Button btnMusicBio;
+    private Button btnLogout;
+
+    private ParseUser parseUser = ParseUser.getCurrentUser();
+
+    public static final String TAG = "ProfileFragment";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -65,6 +73,19 @@ public class ProfileFragment extends Fragment {
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         btnProfileimage = view.findViewById(R.id.btnProfileimage);
         btnMusicBio = view.findViewById(R.id.btnMusicBio);
+        btnLogout = view.findViewById(R.id.btnLogout);
 
+        tvUsername.setText(parseUser.getUsername());
+        tvMusicBio.setText(parseUser.getString("musicbio"));
+        ParseFile parseFile = parseUser.getParseFile("profileimage");
+        if (parseFile != null) {
+            Glide.with(getContext()).load(parseFile.getUrl()).circleCrop().into(ivProfileImage);
+        }
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+            }
+        });
     }
 }
