@@ -1,5 +1,6 @@
 package com.example.musicca.models;
 
+<<<<<<< HEAD
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -149,57 +150,53 @@ public class Song extends ParseObject {
 
 =======
 
+=======
+>>>>>>> Set playlist activity and modify song model
 import com.parse.ParseClassName;
-import com.parse.ParseCloud;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @ParseClassName("Song")
 public class Song extends ParseObject {
 
-    public static final String KEY_SPOTIFY_ID = "spotifyId";
+    public static final String KEY_SPOTIFY_ID = "spotifyID";
     public static final String KEY_TITLE = "title";
     public static final String KEY_ARTIST = "artist";
-//    public static final String KEY_ALBUM = "album";
+    public static final String KEY_ALBUM = "album";
     public static final String KEY_URL = "artUrl";
 
     public String getSpotifyId(){
-        return getString(KEY_SPOTIFY_ID);
+        return KEY_SPOTIFY_ID;
     }
     public void setSpotifyId(String spotifyid){
         put(KEY_SPOTIFY_ID, spotifyid);
     }
     public String getTitle(){
-        return getString(KEY_TITLE);
+        return KEY_SPOTIFY_ID;
     }
     public void setTitle(String title){
         put(KEY_TITLE, title);
     }
     public String getArtist(){
-        return getString(KEY_ARTIST);
+        return KEY_ARTIST;
     }
     public void setArtist(String artist){
         put(KEY_ARTIST, artist);
     }
-//    public String getAlbum(){
-//        return getString(KEY_ALBUM);
-//    }
-//    public void setAlbum(String album){
-//        put(KEY_ALBUM, album);
-//    }
+    public String getAlbum(){
+        return KEY_ALBUM;
+    }
+    public void setAlbum(String album){
+        put(KEY_ALBUM, album);
+    }
     public String getURL(){
-        return getString(KEY_URL);
+        return KEY_URL;
     }
     public void setURL(String url){
         put(KEY_URL, url);
     }
+<<<<<<< HEAD
 
     // This class represents a executeSearch query that can be sent to the Parse server which will then
     // call the Spotify API and return a list of song results
@@ -283,3 +280,6 @@ public class Song extends ParseObject {
 
 >>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
 }
+=======
+}
+>>>>>>> Set playlist activity and modify song model
