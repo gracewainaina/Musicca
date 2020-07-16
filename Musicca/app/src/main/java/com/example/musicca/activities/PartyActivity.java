@@ -23,6 +23,7 @@ public class PartyActivity extends AppCompatActivity {
 
     private SongService songService;
     private ArrayList<Song> recentlyPlayedTracks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

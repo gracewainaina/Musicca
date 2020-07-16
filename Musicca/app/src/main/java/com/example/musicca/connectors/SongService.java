@@ -38,6 +38,7 @@ public class SongService {
 
     public ArrayList<Song> getRecentlyPlayedTracks(final UserService.VolleyCallBack callBack) {
         String endpoint = "https://api.spotify.com/v1/me/player/recently-played";
+        // String endpoint = "https://api.spotify.com/v1/tracks";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, endpoint, null, response -> {
                     Gson gson = new Gson();
@@ -104,29 +105,5 @@ public class SongService {
         }
         return ids;
     }
-
-
-
-    //testing
-//    String endpoint = "https://api.spotify.com/v1/me/player/recently-played";
-//    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-//            (Request.Method.GET, endpoint, null, response -> {
-//                Gson gson = new Gson();
-//                JSONArray jsonArray = response.optJSONArray("items");
-//                for (int n = 0; n < jsonArray.length(); n++) {
-//                    try {
-//                        JSONObject object = jsonArray.getJSONObject(n);
-//                        object = object.optJSONObject("track");
-//                        Song song = gson.fromJson(object.toString(), Song.class);
-//                        songs.add(song);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                callBack.onSuccess();
-//            }, error -> {
-//                // TODO: Handle error
-//
-//            }) {
 }
 

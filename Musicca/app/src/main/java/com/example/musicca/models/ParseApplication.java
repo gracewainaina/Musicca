@@ -29,7 +29,7 @@ public class ParseApplication extends Application {
         builder.networkInterceptors().add(httpLoggingInterceptor);
 
         // Register your parse models
-        //ParseUser.registerSubclass(User.class);
+        ParseUser.registerSubclass(Song.class);
         ParseObject.registerSubclass(Playlist.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
