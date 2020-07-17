@@ -130,6 +130,9 @@ public class CreateFragment extends Fragment {
 
     private void goPartyActivity() {
         Intent newintent = new Intent(getContext(), PartyActivity.class);
+        newintent.putExtra("playlistname", playlist.getName());
+        newintent.putExtra("playlistcode", playlist.getInvitecode());
+        newintent.putExtra("playlistObjectId", playlist.getObjectId());
         startActivity(newintent);
     }
 
