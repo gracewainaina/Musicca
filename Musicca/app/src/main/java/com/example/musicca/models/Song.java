@@ -1,6 +1,7 @@
 package com.example.musicca.models;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -152,10 +153,23 @@ public class Song extends ParseObject {
 
 =======
 >>>>>>> Set playlist activity and modify song model
+=======
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+>>>>>>> Building search adapter and queue adapter
 import com.parse.ParseClassName;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @ParseClassName("Song")
 public class Song extends ParseObject {
@@ -197,6 +211,9 @@ public class Song extends ParseObject {
         put(KEY_URL, url);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Building search adapter and queue adapter
 
     // This class represents a executeSearch query that can be sent to the Parse server which will then
     // call the Spotify API and return a list of song results
@@ -278,8 +295,11 @@ public class Song extends ParseObject {
 
     }
 
+<<<<<<< HEAD
 >>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
 }
 =======
+=======
+>>>>>>> Building search adapter and queue adapter
 }
 >>>>>>> Set playlist activity and modify song model
