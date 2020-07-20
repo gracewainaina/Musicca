@@ -18,7 +18,11 @@
         tools:srcCompat="@drawable/user" />
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/btnTakePhoto"
+=======
+        android:id="@+id/btnChangeImage"
+>>>>>>> Edit Profile Activity
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivProfileImage"
@@ -27,6 +31,7 @@
         android:layout_marginTop="20dp"
         android:background="#ffa4ab"
         android:padding="5dp"
+<<<<<<< HEAD
         android:text="TAKE PHOTO" />
 
     <Button
@@ -40,18 +45,30 @@
         android:background="#ffa4ab"
         android:padding="5dp"
         android:text="CHOOSE PHOTO" />
+=======
+        android:text="UPDATE PROFILE IMAGE" />
+>>>>>>> Edit Profile Activity
 
     <EditText
         android:id="@+id/tvEditMusicBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@+id/btnChoosePhoto"
+=======
+        android:layout_below="@+id/btnChangeImage"
+>>>>>>> Edit Profile Activity
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:foregroundGravity="center"
+<<<<<<< HEAD
         android:hint="Edit Music Bio"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+=======
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="Edit Music Bio" />
+>>>>>>> Edit Profile Activity
 
     <Button
         android:id="@+id/btnChangeMusicBio"

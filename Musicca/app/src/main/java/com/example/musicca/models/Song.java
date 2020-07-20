@@ -25,39 +25,59 @@ public class Song extends ParseObject {
     public static final String KEY_ALBUM = "album";
     public static final String KEY_URL = "artUrl";
 
+<<<<<<< HEAD
     public String getSpotifyId() {
+=======
+    public String getSpotifyId(){
+>>>>>>> Edit Profile Activity
         return getString(KEY_SPOTIFY_ID);
     }
 
     public void setSpotifyId(String spotifyid) {
         put(KEY_SPOTIFY_ID, spotifyid);
     }
+<<<<<<< HEAD
 
     public String getTitle() {
+=======
+    public String getTitle(){
+>>>>>>> Edit Profile Activity
         return getString(KEY_TITLE);
     }
 
     public void setTitle(String title) {
         put(KEY_TITLE, title);
     }
+<<<<<<< HEAD
 
     public String getArtist() {
+=======
+    public String getArtist(){
+>>>>>>> Edit Profile Activity
         return getString(KEY_ARTIST);
     }
 
     public void setArtist(String artist) {
         put(KEY_ARTIST, artist);
     }
+<<<<<<< HEAD
 
     public String getAlbum() {
+=======
+    public String getAlbum(){
+>>>>>>> Edit Profile Activity
         return getString(KEY_ALBUM);
     }
 
     public void setAlbum(String album) {
         put(KEY_ALBUM, album);
     }
+<<<<<<< HEAD
 
     public String getURL() {
+=======
+    public String getURL(){
+>>>>>>> Edit Profile Activity
         return getString(KEY_URL);
     }
 

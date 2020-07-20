@@ -1,5 +1,10 @@
 package com.example.musicca.activities;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
+>>>>>>> Edit Profile Activity
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,11 +15,19 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+=======
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+>>>>>>> Edit Profile Activity
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> Edit Profile Activity
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +38,7 @@ import com.example.musicca.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+<<<<<<< HEAD
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -42,22 +56,37 @@ public class EditProfileActivity extends AppCompatActivity {
     private ImageView ivProfileImage;
     private Button btnTakePhoto;
     private Button btnChoosePhoto;
+=======
+public class EditProfileActivity extends AppCompatActivity {
+
+    private ParseUser parseUser = ParseUser.getCurrentUser();
+
+    private ImageView ivProfileImage;
+    private Button btnChangeImage;
+>>>>>>> Edit Profile Activity
     private EditText tvEditMusicBio;
     private Button btnChangeMusicBio;
     private String profileImageURL;
 
+<<<<<<< HEAD
     // Camera
     private File photoFile;
     private String photoFileName = "photo.jpg";
 
+=======
+>>>>>>> Edit Profile Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
         ivProfileImage = findViewById(R.id.ivProfileImage);
+<<<<<<< HEAD
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         btnChoosePhoto = findViewById(R.id.btnChoosePhoto);
+=======
+        btnChangeImage = findViewById(R.id.btnChangeImage);
+>>>>>>> Edit Profile Activity
         tvEditMusicBio = findViewById(R.id.tvEditMusicBio);
         btnChangeMusicBio = findViewById(R.id.btnChangeMusicBio);
 
@@ -67,6 +96,7 @@ public class EditProfileActivity extends AppCompatActivity {
             Glide.with(this).load(profileImageURL).circleCrop().into(ivProfileImage);
         }
 
+<<<<<<< HEAD
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,17 +108,28 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onPickPhoto();
+=======
+        btnChangeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+>>>>>>> Edit Profile Activity
             }
         });
 
         btnChangeMusicBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 updateMusicBio();
+=======
+                
+>>>>>>> Edit Profile Activity
             }
         });
 
     }
+<<<<<<< HEAD
 
     private void updateMusicBio() {
         parseUser.put(KEY_MUSICBIO, tvEditMusicBio.getText().toString());
@@ -211,4 +252,6 @@ public class EditProfileActivity extends AppCompatActivity {
         parseUser.saveInBackground();
         Toast.makeText(EditProfileActivity.this, "Profile picture updated successfully!", Toast.LENGTH_SHORT).show();
     }
+=======
+>>>>>>> Edit Profile Activity
 }
