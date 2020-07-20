@@ -5,6 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+    android:orientation="vertical">
+=======
+>>>>>>> Edit Profile Activity
     android:padding="5dp">
 
     <ImageView
@@ -12,6 +18,10 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:srcCompat="@drawable/albumicon"/>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> Edit Profile Activity
 
     <TextView
         android:id="@+id/tvTitle"
