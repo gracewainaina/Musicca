@@ -120,8 +120,14 @@ public class CreateFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
+<<<<<<< HEAD
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
+=======
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
+                gotoPlaylist();
+>>>>>>> Attempt 2: Edit Profile Activity
             }
         });
 
@@ -189,9 +195,15 @@ public class CreateFragment extends Fragment {
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
+<<<<<<< HEAD
         newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
         newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
         newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+=======
+        newintent.putExtra("playlistname", playlistPublic.getName());
+        newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
+        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+>>>>>>> Attempt 2: Edit Profile Activity
         startActivity(newintent);
     }
 
@@ -240,6 +252,11 @@ public class CreateFragment extends Fragment {
             selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
 
+<<<<<<< HEAD
+=======
+            playlistPublic.put(KEY_PLAYLISTICON, parsefile);
+            playlistPublic.saveInBackground();
+>>>>>>> Attempt 2: Edit Profile Activity
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
 

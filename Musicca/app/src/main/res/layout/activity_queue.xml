@@ -5,7 +5,11 @@
     android:layout_height="match_parent">
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/btnGoToPlaylist"
+=======
+        android:id="@+id/btngotoPlaylist"
+>>>>>>> Attempt 2: Edit Profile Activity
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_alignParentStart="false"

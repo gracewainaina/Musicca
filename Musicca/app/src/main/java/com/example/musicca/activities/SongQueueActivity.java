@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+=======
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+>>>>>>> Attempt 2: Edit Profile Activity
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,15 +26,20 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+<<<<<<< HEAD
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
+=======
+
+>>>>>>> Attempt 2: Edit Profile Activity
 import java.util.List;
 
 public class SongQueueActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
     private static final String EXTRA_ALBUMICONURL = "albumiconurl";
@@ -37,13 +48,21 @@ public class SongQueueActivity extends AppCompatActivity {
 
     private static final String TAG = "Queue";
     private List<String> currentPlaylistSongs = new ArrayList<>();
+=======
+    Playlist currentPlaylist;
+    Song currentSong;
+>>>>>>> Attempt 2: Edit Profile Activity
 
     private ImageView ivSongAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
     private Button btnAddSong;
     private Button btnBack;
+<<<<<<< HEAD
     private Button btnGoToPlaylist;
+=======
+    private Button btngotoPlaylist;
+>>>>>>> Attempt 2: Edit Profile Activity
     private String albumUrl;
     private String playlistObjectId;
     private String songObjectId;
@@ -52,13 +71,17 @@ public class SongQueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_queue);
+<<<<<<< HEAD
         Log.d(TAG, "song activity set up");
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
 
         ivSongAlbum = findViewById(R.id.ivSongAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnAddSong = findViewById(R.id.btnAddSong);
         btnBack = findViewById(R.id.btnBack);
+<<<<<<< HEAD
         btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
@@ -69,14 +92,35 @@ public class SongQueueActivity extends AppCompatActivity {
         Glide.with(this).load(albumUrl).into(ivSongAlbum);
         tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
+=======
+        btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
+
+        songObjectId = getIntent().getStringExtra("songObjectid");
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+
+        albumUrl = getIntent().getStringExtra("albumiconurl");
+        Glide.with(this).load(albumUrl).into(ivSongAlbum);
+        tvTitle.setText(getIntent().getStringExtra("songtitle"));
+        tvArtist.setText(getIntent().getStringExtra("songartist"));
+
+        currentPlaylist = getCurrentPlaylist(playlistObjectId);
+        currentSong = getCurrentSong(songObjectId);
+>>>>>>> Attempt 2: Edit Profile Activity
 
         btnAddSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 getCurrentPlaylistSongs(playlistObjectId);
             }
         });
         btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
+=======
+                addSong(currentSong);
+            }
+        });
+        btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
+>>>>>>> Attempt 2: Edit Profile Activity
             @Override
             public void onClick(View view) {
                 gotoPlaylist();
@@ -92,12 +136,17 @@ public class SongQueueActivity extends AppCompatActivity {
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
+<<<<<<< HEAD
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+=======
+        i.putExtra("playlistobjectid", playlistObjectId);
+>>>>>>> Attempt 2: Edit Profile Activity
         startActivity(i);
     }
 
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
+<<<<<<< HEAD
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
@@ -135,5 +184,49 @@ public class SongQueueActivity extends AppCompatActivity {
                 }
             }
         });
+=======
+        startActivity(i);
+    }
+
+    private Playlist getCurrentPlaylist(String playlistobjectid) {
+        final Playlist[] currentplaylist = new Playlist[1];
+        ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
+        // First try to find from the cache and only then go to network
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // Execute the query to find the object with ID
+        query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
+            @Override
+            public void done(Playlist playlist, com.parse.ParseException e) {
+                currentplaylist[0] = playlist;
+            }
+        });
+        return currentplaylist[0];
+    }
+    private Song getCurrentSong(String songobjectid) {
+        final Song[] currentsong = new Song[1];
+        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        // First try to find from the cache and only then go to network
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // Execute the query to find the object with ID
+        query.getInBackground(songobjectid, new GetCallback<Song>() {
+            @Override
+            public void done(Song song, ParseException e) {
+                currentsong[0] = song;
+            }
+        });
+        return currentsong[0];
+    }
+
+    private void addSong(Song currentsong) {
+        List<Song> availableSongs = currentPlaylist.getSongs();
+        for (Song song : availableSongs){
+            if(songObjectId == song.getObjectId()){
+                Toast.makeText(SongQueueActivity.this, "Song already exists in " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        currentPlaylist.setSong(currentsong);
+        Toast.makeText(SongQueueActivity.this, "Song has been added to " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
+>>>>>>> Attempt 2: Edit Profile Activity
     }
 }

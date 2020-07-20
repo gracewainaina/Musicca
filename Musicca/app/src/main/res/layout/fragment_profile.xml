@@ -51,6 +51,7 @@
         android:padding="5dp"
         android:text="EDIT PROFILE" />
 
+<<<<<<< HEAD
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
@@ -63,4 +64,6 @@
         android:padding="5dp"
         android:text="LOG OUT" />
 
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
 </RelativeLayout>

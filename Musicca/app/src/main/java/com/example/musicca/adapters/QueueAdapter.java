@@ -2,6 +2,7 @@ package com.example.musicca.adapters;
 
 import android.content.Context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.content.Intent;
 =======
 <<<<<<< Updated upstream
@@ -9,6 +10,9 @@ import android.content.Intent;
 import android.content.Intent;
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
+=======
+import android.content.Intent;
+>>>>>>> Attempt 2: Edit Profile Activity
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
 
@@ -62,6 +67,8 @@ import butterknife.OnClick;
         mSongs = new ArrayList<>(songs);
         mPlaylist = playlist;
 =======
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
     private static final String TAG = "QueueAdapter";
     private Context context;
@@ -80,10 +87,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
 <<<<<<< HEAD
+<<<<<<< HEAD
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
 =======
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
     }
 
     @NonNull
@@ -106,6 +116,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
     }
 
     @Override
+<<<<<<< HEAD
 <<<<<<< HEAD
     public Filter getFilter() {
         return new Filter() {
@@ -162,6 +173,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 mDataset.remove(index);
                 notifyItemRemoved(index);
 =======
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
     public Filter getFilter() {
         return new Filter() {
             // run background thread
@@ -208,18 +221,16 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                     Log.d(TAG, "filtered song: " + song.getTitle());
                 }
                 notifyDataSetChanged();
->>>>>>> Stashed changes
             }
+        };
+    }
 
-<<<<<<< Updated upstream
-            final SaveCallback callback = e -> {
-                isRemoving = false;
-=======
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ivAlbum;
         TextView tvTitle;
         TextView tvArtist;
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 
                 if(e != null) {
@@ -261,6 +272,17 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             itemView.setOnClickListener(this);
         }
 
+=======
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ivAlbum = itemView.findViewById(R.id.ivAlbum);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvArtist = itemView.findViewById(R.id.tvArtist);
+            itemView.setOnClickListener(this);
+        }
+
+>>>>>>> Attempt 2: Edit Profile Activity
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
@@ -278,6 +300,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongQueueActivity.class);
                 // serialize the post using parceler, use its short name as a key
+<<<<<<< HEAD
                 intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
                 intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
                 intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
@@ -285,6 +308,14 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                 // show the activity
                 Log.d(TAG, "ssong selected");
+=======
+                intent.putExtra("albumiconurl", song.getURL());
+                intent.putExtra("songtitle", song.getTitle());
+                intent.putExtra("songartist", song.getArtist());
+                intent.putExtra("songObjectid", song.getObjectId());
+                intent.putExtra("playlistobjectid", playlistObjectId);
+                // show the activity
+>>>>>>> Attempt 2: Edit Profile Activity
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
