@@ -194,6 +194,7 @@ public class CreateFragment extends Fragment {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
@@ -204,13 +205,18 @@ public class CreateFragment extends Fragment {
     private void goPartyActivity() {
         Intent newintent = new Intent(getContext(), PartyActivity.class);
 =======
+=======
+>>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
         newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 >>>>>>> Searchbar onquery listener text
+=======
+>>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
         startActivity(newintent);
     }
 
