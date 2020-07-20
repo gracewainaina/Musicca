@@ -16,7 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.musicca.R;
-import com.example.musicca.activities.PartyActivity;
+import com.example.musicca.activities.CurrentPlaylistActivity;
+import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -33,7 +34,7 @@ public class JoinFragment extends Fragment {
     private EditText etPlaylistcode_join;
     private Button btnJoin;
 
-    public String mObjectId;
+    public String playlistObjectId;
 
     public JoinFragment() {
         // Required empty public constructor
@@ -57,7 +58,7 @@ public class JoinFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 queryPlaylists();
-                goPartyActivity(mObjectId);
+                gotoPlaylist();
             }
         });
     }
@@ -72,7 +73,7 @@ public class JoinFragment extends Fragment {
             public void done(List<Playlist> itemList, ParseException e) {
                 if (e == null) {
                     // Access the array of results here
-                    mObjectId = itemList.get(0).getObjectId();
+                    playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
@@ -81,9 +82,9 @@ public class JoinFragment extends Fragment {
         });
     }
 
-    private void goPartyActivity(String objectid) {
-        Intent newintent = new Intent(getContext(), PartyActivity.class);
-        newintent.putExtra("objectid", objectid);
+    private void gotoPlaylist() {
+        Intent newintent = new Intent(getContext(), CurrentPlaylistActivity.class);
+        newintent.putExtra("playlistobjectid", playlistObjectId);
         startActivity(newintent);
 
     }

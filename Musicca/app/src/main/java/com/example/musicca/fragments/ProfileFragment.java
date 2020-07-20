@@ -16,10 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
-<<<<<<< Updated upstream
-=======
 import com.example.musicca.activities.EditProfileActivity;
->>>>>>> Stashed changes
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -28,20 +25,10 @@ public class ProfileFragment extends Fragment {
     private TextView tvUsername;
     private TextView tvMusicBio;
     private ImageView ivProfileImage;
-<<<<<<< Updated upstream
-    private Button btnProfileimage;
-    private Button btnMusicBio;
-    private Button btnLogout;
-
-    private ParseUser parseUser = ParseUser.getCurrentUser();
-
-    public static final String TAG = "ProfileFragment";
-=======
     private Button btnEditProfile;
     private String profileImageURL;
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
->>>>>>> Stashed changes
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -60,22 +47,6 @@ public class ProfileFragment extends Fragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
-<<<<<<< Updated upstream
-        btnProfileimage = view.findViewById(R.id.btnProfileimage);
-        btnMusicBio = view.findViewById(R.id.btnMusicBio);
-        btnLogout = view.findViewById(R.id.btnLogout);
-
-        tvUsername.setText(parseUser.getUsername());
-        tvMusicBio.setText(parseUser.getString("musicbio"));
-        ParseFile parseFile = parseUser.getParseFile("profileimage");
-        if (parseFile != null) {
-            Glide.with(getContext()).load(parseFile.getUrl()).circleCrop().into(ivProfileImage);
-        }
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-=======
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
 
         tvUsername.setText(parseUser.getUsername());
@@ -90,7 +61,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 goEditProfile();
->>>>>>> Stashed changes
             }
         });
     }

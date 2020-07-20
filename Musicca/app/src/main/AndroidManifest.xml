@@ -13,17 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< Updated upstream
-        <activity android:name=".activities.LoginSpotifyActivity"></activity>
-        <activity android:name=".activities.PartyActivity" />
-=======
         <activity android:name=".activities.EditProfileActivity"></activity>
         <activity android:name=".activities.CurrentPlaylistActivity" />
         <activity android:name=".activities.SongPlaylistActivity" />
         <activity android:name=".activities.SongQueueActivity" />
         <activity android:name=".activities.LoginSpotifyActivity" />
         <activity android:name=".activities.QueueActivity" />
->>>>>>> Stashed changes
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.LoginActivity">

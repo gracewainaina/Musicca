@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CurrentPlaylistActivity">
+
+    <TextView
+        android:id="@+id/tvPlaylistTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivSongAlbum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="24sp"
+        tools:text="PLAYLIST TITLE" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlaylistSongs"
+        android:layout_width="match_parent"
+        android:layout_height="623dp"
+        android:layout_below="@+id/tvPlaylistTitle"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp" />
+
+
+    <Button
+        android:id="@+id/btnAddMoreSongs"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_below="@+id/rvPlaylistSongs"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ffa4ab"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="ADD MORE SONGS"
+        android:textSize="16sp" />
+
+</RelativeLayout>
