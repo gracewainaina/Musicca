@@ -120,8 +120,14 @@ public class CreateFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
+<<<<<<< HEAD
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
+=======
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
+                gotoPlaylist();
+>>>>>>> Searchbar onquery listener text
             }
         });
 
@@ -187,11 +193,24 @@ public class CreateFragment extends Fragment {
         gotoPlaylist();
     }
 
+<<<<<<< HEAD
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
         newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
         newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+=======
+<<<<<<< Updated upstream
+    private void goPartyActivity() {
+        Intent newintent = new Intent(getContext(), PartyActivity.class);
+=======
+    private void gotoPlaylist() {
+        Intent newintent = new Intent(getContext(), QueueActivity.class);
+        newintent.putExtra("playlistname", playlistPublic.getName());
+        newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
+        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+>>>>>>> Stashed changes
+>>>>>>> Searchbar onquery listener text
         startActivity(newintent);
     }
 
@@ -240,6 +259,11 @@ public class CreateFragment extends Fragment {
             selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
 
+<<<<<<< HEAD
+=======
+            playlistPublic.put(KEY_PLAYLISTICON, parsefile);
+            playlistPublic.saveInBackground();
+>>>>>>> Searchbar onquery listener text
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
 

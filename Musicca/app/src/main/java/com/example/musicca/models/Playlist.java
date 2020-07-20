@@ -1,11 +1,28 @@
 package com.example.musicca.models;
 
+<<<<<<< HEAD
 import android.util.Log;
 
+=======
+<<<<<<< Updated upstream
+=======
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import com.parse.FunctionCallback;
+>>>>>>> Stashed changes
+>>>>>>> Searchbar onquery listener text
 import com.parse.ParseClassName;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.parse.livequery.ParseLiveQueryClient;
+import com.parse.livequery.SubscriptionHandling;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,8 +30,18 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Date;
 import java.util.List;
+=======
+<<<<<<< Updated upstream
+=======
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+>>>>>>> Stashed changes
+>>>>>>> Searchbar onquery listener text
 
 @ParseClassName("Playlist")
 public class Playlist extends ParseObject {

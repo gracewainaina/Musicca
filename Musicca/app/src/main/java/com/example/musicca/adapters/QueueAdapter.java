@@ -1,8 +1,13 @@
 package com.example.musicca.adapters;
+<<<<<<< HEAD
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+=======
+import android.content.Context;
+import android.content.Intent;
+>>>>>>> Searchbar onquery listener text
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +30,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+<<<<<<< HEAD
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
@@ -34,6 +40,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
     private static final String TAG = "QueueAdapter";
 
+=======
+>>>>>>> Searchbar onquery listener text
     private Context context;
     private List<Song> songs;
     private List<Song> songsAll;
@@ -45,10 +53,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         this.songs = songs;
         this.songsAll = new ArrayList<>(songs);
         this.playlistObjectId = playlistObjectId;
+<<<<<<< HEAD
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
+=======
+>>>>>>> Searchbar onquery listener text
     }
 
     @NonNull
@@ -78,6 +89,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             protected FilterResults performFiltering(CharSequence charSequence) {
                 List<Song> filteredList = new ArrayList<>();
                 // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
+<<<<<<< HEAD
                 if (charSequence == null || charSequence.length() == 0) {
                     Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
@@ -88,32 +100,66 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                     for (Song song : songsAll) {
                         if (song.getTitle().toLowerCase().contains(filterPattern)) {
                             Log.d(TAG, "song found");
+=======
+                if (charSequence.toString().isEmpty()) {
+                    filteredList.addAll(songsAll);
+                } else {
+                    for (Song song : songsAll) {
+                        if (song.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+>>>>>>> Searchbar onquery listener text
                             filteredList.add(song);
                         }
                     }
                 }
+<<<<<<< HEAD
                 Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
                 for (Song song : filteredList) {
                     Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
                 }
+=======
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+>>>>>>> Searchbar onquery listener text
                 return filterResults;
             }
 
             // run on UI thread
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+<<<<<<< HEAD
                 //songs.clear();
                 //songs.addAll((Collection<? extends Song>) filterResults.values);
                 songs = (List<Song>) filterResults.values;
+=======
+                songs.clear();
+                songs.addAll((Collection<? extends Song>) filterResults.values);
+>>>>>>> Searchbar onquery listener text
                 notifyDataSetChanged();
             }
         };
     }
 
+<<<<<<< HEAD
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+=======
+//    // Clean all elements of the recycler
+//    public void clear() {
+//        songs.clear();
+//        notifyDataSetChanged();
+//    }
+//
+//    // Add a list of items -- change to type used
+//    public void addAll(List<Song> list) {
+//        songs.addAll(list);
+//        notifyDataSetChanged();
+//    }
+
+    // Internal ViewHolder model for each item.
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+>>>>>>> Searchbar onquery listener text
         ImageView ivAlbum;
         TextView tvTitle;
         TextView tvArtist;
@@ -143,6 +189,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongQueueActivity.class);
                 // serialize the post using parceler, use its short name as a key
+<<<<<<< HEAD
                 intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
                 intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
                 intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
@@ -150,6 +197,14 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                 // show the activity
                 Log.d(TAG, "ssong selected");
+=======
+                intent.putExtra("albumiconurl", song.getURL());
+                intent.putExtra("songtitle", song.getTitle());
+                intent.putExtra("songartist", song.getArtist());
+                intent.putExtra("songObjectid", song.getObjectId());
+                intent.putExtra("playlistobjectid", playlistObjectId);
+                // show the activity
+>>>>>>> Searchbar onquery listener text
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

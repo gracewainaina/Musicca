@@ -67,6 +67,8 @@ public class QueueActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvLatestSongs.setLayoutManager(linearLayoutManager);
+
+        queryAllSongs(0);
     }
 
     @Override
@@ -78,14 +80,10 @@ public class QueueActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d(TAG, "on query text submit");
-                queueAdapter.getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d(TAG, "on query text change");
                 queueAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -105,13 +103,26 @@ public class QueueActivity extends AppCompatActivity {
             }
             allSongs.addAll(songs);
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
+    private void queryAllSongs(int page) {
+        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        query.setLimit(5);
+        query.setSkip(5 * page);
+        query.findInBackground((songs, e) -> {
+            if (e != null) {
+                Log.e(TAG, "Issue retrieving songs", e);
+                return;
+            }
+            for (Song song : songs) {
+                Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
+            }
+            allSongs.addAll(songs);
             queueAdapter.notifyDataSetChanged();
         });
     }
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
-        i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+        i.putExtra("playlistobjectid", playlistObjectId);
         startActivity(i);
     }
 }

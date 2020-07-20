@@ -35,6 +35,11 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "Play Song";
 
+public class SongPlaylistActivity extends AppCompatActivity {
+
+    Playlist currentPlaylist;
+    Song currentSong;
+
     private ImageView ivSongAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
@@ -84,6 +89,19 @@ public class SongPlaylistActivity extends AppCompatActivity {
                 ivPlayPause.setImageResource(R.drawable.pauseicon);
             }
         });
+        btnReturnPlaylist = findViewById(R.id.btngotoPlaylist);
+
+        songObjectId = getIntent().getStringExtra("songObjectid");
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+
+        albumUrl = getIntent().getStringExtra("albumiconurl");
+        Glide.with(this).load(albumUrl).into(ivSongAlbum);
+
+        tvTitle.setText(getIntent().getStringExtra("songtitle"));
+        tvArtist.setText(getIntent().getStringExtra("songartist"));
+
+        currentPlaylist = getCurrentPlaylist(playlistObjectId);
+        currentSong = getCurrentSong(songObjectId);
 
         btnReturnPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,5 +159,38 @@ public class SongPlaylistActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         SpotifyAppRemote.disconnect(mSpotifyAppRemote);
+    private Playlist getCurrentPlaylist(String playlistobjectid) {
+        final Playlist[] currentplaylist = new Playlist[1];
+        ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
+        // First try to find from the cache and only then go to network
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // Execute the query to find the object with ID
+        query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
+            @Override
+            public void done(Playlist playlist, com.parse.ParseException e) {
+                currentplaylist[0] = playlist;
+            }
+        });
+        return currentplaylist[0];
+    }
+    private Song getCurrentSong(String songobjectid) {
+        final Song[] currentsong = new Song[1];
+        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        // First try to find from the cache and only then go to network
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // Execute the query to find the object with ID
+        query.getInBackground(songobjectid, new GetCallback<Song>() {
+            @Override
+            public void done(Song song, ParseException e) {
+                currentsong[0] = song;
+            }
+        });
+        return currentsong[0];
+    }
+    private void gotoPlaylist() {
+        Intent i = new Intent(this, CurrentPlaylistActivity.class);
+        i.putExtra("playlistobjectid", playlistObjectId);
+        startActivity(i);
+>>>>>>> Searchbar onquery listener text
     }
 }

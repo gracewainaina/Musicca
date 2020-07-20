@@ -1,6 +1,16 @@
 <resources>
+<<<<<<< Updated upstream
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+<<<<<<< HEAD
+=======
+        <!-- Customize your theme here. -->
+=======
+
+    !-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+>>>>>>> Stashed changes
+>>>>>>> Searchbar onquery listener text
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

@@ -11,7 +11,11 @@
         android:id="@+id/ivAlbum"
         android:layout_width="70dp"
         android:layout_height="70dp"
+<<<<<<< HEAD
         app:srcCompat="@drawable/albumicon"/>
+=======
+        app:srcCompat="@drawable/albumicon" />
+>>>>>>> Searchbar onquery listener text
 
     <TextView
         android:id="@+id/tvTitle"

@@ -59,6 +59,10 @@ public class JoinFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 queryPlaylists();
+<<<<<<< HEAD
+=======
+                gotoPlaylist();
+>>>>>>> Searchbar onquery listener text
             }
         });
     }
@@ -73,6 +77,10 @@ public class JoinFragment extends Fragment {
             public void done(List<Playlist> itemList, ParseException e) {
                 if (e == null) {
                     // Access the array of results here
+<<<<<<< HEAD
+=======
+                    playlistObjectId = itemList.get(0).getObjectId();
+>>>>>>> Searchbar onquery listener text
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
                     playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
@@ -86,7 +94,11 @@ public class JoinFragment extends Fragment {
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), CurrentPlaylistActivity.class);
+<<<<<<< HEAD
         newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+=======
+        newintent.putExtra("playlistobjectid", playlistObjectId);
+>>>>>>> Searchbar onquery listener text
         startActivity(newintent);
 
     }

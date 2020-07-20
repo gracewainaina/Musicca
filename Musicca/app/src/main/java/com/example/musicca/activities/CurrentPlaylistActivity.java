@@ -23,6 +23,8 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
+import com.parse.ParseQuery;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -39,6 +41,10 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private String playlistObjectId;
     private CurrentPlaylistAdapter currentPlaylistAdapter;
     private List<String> currentPlaylistSongs;
+    protected List<Song> songsInPlaylist;
+    private Playlist currentPlaylist;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +58,23 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
         getCurrentPlaylistSongs(playlistObjectId);
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+
         btnAddMoreSongs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gotoQueueActivity();
             }
         });
+
+        currentPlaylist = getCurrentPlaylist(playlistObjectId);
+        songsInPlaylist = currentPlaylist.getSongs();
+        if (songsInPlaylist != null){
+            currentPlaylistAdapter = new CurrentPlaylistAdapter(this, songsInPlaylist, playlistObjectId);
+            rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+        }
     }
 
     private void gotoQueueActivity() {
@@ -70,6 +87,15 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
         // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        i.putExtra("playlistobjectid", playlistObjectId);
+        startActivity(i);
+    }
+
+    private Playlist getCurrentPlaylist(String playlistobjectid) {
+        final Playlist[] currentplaylist = new Playlist[1];
+        ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
+        // First try to find from the cache and only then go to network
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
@@ -92,5 +118,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             }
         });
 
+        return currentplaylist[0];
     }
 }
