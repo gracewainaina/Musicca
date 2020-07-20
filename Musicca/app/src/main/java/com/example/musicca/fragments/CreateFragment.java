@@ -128,16 +128,11 @@ public class CreateFragment extends Fragment {
         });
     }
 
-<<<<<<< Updated upstream
-    private void goPartyActivity() {
-        Intent newintent = new Intent(getContext(), PartyActivity.class);
-=======
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
         newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
->>>>>>> Stashed changes
         startActivity(newintent);
     }
 

@@ -1,32 +1,18 @@
 package com.example.musicca.models;
 
-<<<<<<< Updated upstream
-=======
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
-import com.parse.FunctionCallback;
->>>>>>> Stashed changes
 import com.parse.ParseClassName;
-import com.parse.ParseCloud;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-import com.parse.livequery.ParseLiveQueryClient;
-import com.parse.livequery.SubscriptionHandling;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
-<<<<<<< Updated upstream
-=======
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
->>>>>>> Stashed changes
 
 @ParseClassName("Playlist")
 public class Playlist extends ParseObject {
@@ -70,7 +56,21 @@ public class Playlist extends ParseObject {
         return (ArrayList<Song>) get(KEY_SONGS);
     }
 
-    public void setSongs(ArrayList<Song> comments) {
-        put(KEY_SONGS, comments);
+    public void setSongs(ArrayList<Song> songs) {
+        put(KEY_SONGS, songs);
     }
+    public void setSong(Song song) {
+        add(KEY_SONGS, song);
+    }
+
+    public boolean contains(Song song){
+        ArrayList<Song> songs = getSongs();
+        for(Song eachsong : songs){
+            if (song.equals(song)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
