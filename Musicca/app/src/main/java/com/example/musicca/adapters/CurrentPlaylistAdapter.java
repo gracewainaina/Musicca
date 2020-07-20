@@ -2,7 +2,10 @@ package com.example.musicca.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +19,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
+<<<<<<< HEAD
+=======
+import com.example.musicca.activities.SongQueueActivity;
+<<<<<<< HEAD
+import com.example.musicca.models.Playlist;
+>>>>>>> Attempt 2: Edit Profile Activity
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseQuery;
+<<<<<<< HEAD
+=======
+import com.parse.SaveCallback;
+=======
+import com.example.musicca.models.Song;
+>>>>>>> Attempt 2: Edit Profile Activity
+>>>>>>> Attempt 2: Edit Profile Activity
 
 import java.util.List;
 
+<<<<<<< HEAD
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder> {
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
@@ -39,6 +56,17 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     public CurrentPlaylistAdapter(Context context, List<String> songObjectIds, String playlistObjectId) {
         this.context = context;
         this.songObjectIds = songObjectIds;
+=======
+public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder>{
+
+    private Context context;
+    private List<Song> songs;
+    private String playlistObjectId;
+
+    public CurrentPlaylistAdapter(Context context, List<Song> songs, String playlistObjectId) {
+        this.context = context;
+        this.songs = songs;
+>>>>>>> Attempt 2: Edit Profile Activity
         this.playlistObjectId = playlistObjectId;
     }
 
@@ -51,17 +79,28 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     @Override
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
+<<<<<<< HEAD
         String songObjectId = songObjectIds.get(position);
         //Song song = songs.get(position);
         holder.bind(songObjectId);
+=======
+        Song song = songs.get(position);
+        holder.bind(song);
+>>>>>>> Attempt 2: Edit Profile Activity
     }
 
     @Override
     public int getItemCount() {
+<<<<<<< HEAD
         return songObjectIds.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+=======
+        return songs.size();
+    }
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+>>>>>>> Attempt 2: Edit Profile Activity
         ImageView ivAlbum;
         TextView tvTitle;
         TextView tvArtist;
@@ -80,6 +119,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             int position = getAdapterPosition();
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
+<<<<<<< HEAD
                 String songObjectId = songObjectIds.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
@@ -122,6 +162,28 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                     }
                 }
             });
+=======
+                // get the post at the position, this won't work if the class is static
+                Song song = songs.get(position);
+                // create intent for the new activity
+                Intent intent = new Intent(context, SongPlaylistActivity.class);
+                // serialize the post using parceler, use its short name as a key
+                intent.putExtra("albumiconurl", song.getURL());
+                intent.putExtra("songtitle", song.getTitle());
+                intent.putExtra("songartist", song.getArtist());
+                intent.putExtra("songObjectid", song.getObjectId());
+                intent.putExtra("playlistobjectid", playlistObjectId);
+                // show the activity
+                context.startActivity(intent);
+                Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void bind(Song song) {
+            tvTitle.setText(song.getTitle());
+            tvArtist.setText(song.getArtist());
+            Glide.with(context).load(song.getURL()).into(ivAlbum);
+>>>>>>> Attempt 2: Edit Profile Activity
         }
     }
 }

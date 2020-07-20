@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.example.musicca.activities.EditProfileActivity;
 import com.example.musicca.activities.LoginActivity;
 =======
@@ -25,6 +26,9 @@ import com.example.musicca.activities.LoginActivity;
 import com.example.musicca.activities.EditProfileActivity;
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
+=======
+import com.example.musicca.activities.EditProfileActivity;
+>>>>>>> Attempt 2: Edit Profile Activity
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -36,6 +40,7 @@ public class ProfileFragment extends Fragment {
     private TextView tvUsername;
     private TextView tvMusicBio;
     private ImageView ivProfileImage;
+<<<<<<< HEAD
 <<<<<<< HEAD
     private Button btnEditProfile;
 =======
@@ -52,11 +57,12 @@ public class ProfileFragment extends Fragment {
 =======
     public static final String TAG = "ProfileFragment";
 =======
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
     private Button btnEditProfile;
     private String profileImageURL;
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
->>>>>>> Stashed changes
 
 >>>>>>> Edit Profile Activity
     public ProfileFragment() {
@@ -76,6 +82,7 @@ public class ProfileFragment extends Fragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
+<<<<<<< HEAD
 <<<<<<< HEAD
         btnEditProfile = (Button) view.findViewById(R.id.btnEditProfile);
         btnLogout = (Button) view.findViewById(R.id.btnLogout);
@@ -110,6 +117,8 @@ public class ProfileFragment extends Fragment {
                 }
 =======
 =======
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
 
         tvUsername.setText(parseUser.getUsername());
@@ -124,8 +133,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 goEditProfile();
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
             }
         });
     }

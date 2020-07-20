@@ -50,8 +50,16 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
+<<<<<<< HEAD
         android:src="@drawable/previcon" />
+<<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/previcon" />-->
+=======
+<!--        tools:srcCompat="@drawable/previcon" />-->
+=======
+        tools:srcCompat="@drawable/previcon" />
+>>>>>>> Attempt 2: Edit Profile Activity
+>>>>>>> Attempt 2: Edit Profile Activity
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -62,8 +70,16 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
+<<<<<<< HEAD
         android:src="@drawable/playicon" />
+<<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/playicon" />-->
+=======
+<!--        tools:srcCompat="@drawable/playicon" />-->
+=======
+        tools:srcCompat="@drawable/playicon" />
+>>>>>>> Attempt 2: Edit Profile Activity
+>>>>>>> Attempt 2: Edit Profile Activity
 
     <ImageView
         android:id="@+id/ivNext"
@@ -73,8 +89,16 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
+<<<<<<< HEAD
         android:src="@drawable/nexticon"/>
+<<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/nexticon" />-->
+=======
+<!--        tools:srcCompat="@drawable/nexticon" />-->
+=======
+        tools:srcCompat="@drawable/nexticon" />
+>>>>>>> Attempt 2: Edit Profile Activity
+>>>>>>> Attempt 2: Edit Profile Activity
 
     <Button
         android:id="@+id/btnReturnPlaylist"

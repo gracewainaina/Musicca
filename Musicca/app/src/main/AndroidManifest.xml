@@ -19,11 +19,14 @@
         android:usesCleartextTraffic="true">
 =======
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         <activity android:name=".activities.LoginSpotifyActivity"></activity>
         <activity android:name=".activities.PartyActivity" />
 =======
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
         <activity android:name=".activities.EditProfileActivity"></activity>
         <activity android:name=".activities.CurrentPlaylistActivity" />
         <activity android:name=".activities.SongPlaylistActivity" />
@@ -31,9 +34,12 @@
         <activity android:name=".activities.LoginSpotifyActivity" />
         <activity android:name=".activities.QueueActivity" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> Attempt 2: Edit Profile Activity
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.LoginActivity">

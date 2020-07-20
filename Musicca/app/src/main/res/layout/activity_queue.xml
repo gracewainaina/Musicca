@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
         <Button
             android:id="@+id/btnGoToPlaylist"
             android:layout_width="wrap_content"
@@ -17,6 +18,25 @@
             android:text="GO TO PLAYLIST"
             android:textSize="14sp"
             android:padding="5dp"/>
+=======
+    <Button
+<<<<<<< HEAD
+        android:id="@+id/btnGoToPlaylist"
+=======
+        android:id="@+id/btngotoPlaylist"
+>>>>>>> Attempt 2: Edit Profile Activity
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffa4ab"
+        android:gravity="center"
+        android:text="GO TO PLAYLIST"
+        android:textSize="14sp"
+        android:padding="5dp"/>
+>>>>>>> Attempt 2: Edit Profile Activity
 
         <TextView
             android:id="@+id/tvSection"
