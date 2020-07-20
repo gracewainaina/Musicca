@@ -42,28 +42,16 @@
         tools:srcCompat="@drawable/user" />
 
     <Button
-        android:id="@+id/btnProfileimage"
+        android:id="@+id/btnEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMusicBio"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="180dp"
         android:background="#ffa4ab"
-        android:text="CHANGE PROFILE PHOTO" />
-
-    <Button
-        android:id="@+id/btnMusicBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnProfileimage"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="10dp"
-        android:background="#ffa4ab"
-        android:text="CHANGE MUSIC BIO" />
+        android:padding="5dp"
+        android:text="EDIT PROFILE" />
 
     <Button
         android:id="@+id/btnLogout"

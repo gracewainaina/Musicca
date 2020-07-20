@@ -1,5 +1,9 @@
 package com.example.musicca.adapters;
 import android.content.Context;
+<<<<<<< Updated upstream
+=======
+import android.content.Intent;
+>>>>>>> Stashed changes
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +27,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< Updated upstream
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,6 +44,24 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         mPartyActivity = partyActivity;
         mSongs = new ArrayList<>(songs);
         mPlaylist = playlist;
+=======
+public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+    private static final String TAG = "QueueAdapter";
+    private Context context;
+    private List<Song> songs;
+    private List<Song> songsAll;
+    private String playlistObjectId;
+
+    // Creates the adapter for holding playlist
+    public QueueAdapter(Context context, List<Song> songs, String playlistObjectId) {
+        this.context = context;
+        this.songs = songs;
+        this.songsAll = new ArrayList<>(songs);
+        this.playlistObjectId = playlistObjectId;
+        Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
+        Log.d(TAG, "length of this.songs " + this.songs.size());
+        Log.d(TAG, "length of songs " + songs.size());
+>>>>>>> Stashed changes
     }
 
     @NonNull
@@ -83,6 +106,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
     }
 
     @Override
+<<<<<<< Updated upstream
     public long getItemId(int position) {
         return mDataset.get(position).getObjectId().hashCode();
     }
@@ -124,10 +148,63 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             if (index >= 0) {
                 mDataset.remove(index);
                 notifyItemRemoved(index);
+=======
+    public Filter getFilter() {
+        return new Filter() {
+            // run background thread
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                List<Song> filteredList = new ArrayList<>();
+                // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
+                if (charSequence == null || charSequence.length() == 0) {
+                    Log.d(TAG, "nothing typed yet");
+                    filteredList.addAll(songsAll);
+                }
+                else {
+                    Log.d(TAG, "check if song found");
+                    String filterPattern = charSequence.toString().toLowerCase().trim();
+                    Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
+                    for (Song song : songsAll) {
+                        if (song.getTitle().toLowerCase().contains(filterPattern)) {
+                            Log.d(TAG, "song found");
+                            filteredList.add(song);
+                        }
+                    }
+                }
+                Log.d(TAG, "search results");
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                for (Song song: filteredList){
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                }
+                return filterResults;
             }
 
+            // run on UI thread
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                //songs.clear();
+                //songs.addAll((Collection<? extends Song>) filterResults.values);
+                songs = (List<Song>) filterResults.values;
+                for (Song song: songs){
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                }
+                notifyDataSetChanged();
+>>>>>>> Stashed changes
+            }
+
+<<<<<<< Updated upstream
             final SaveCallback callback = e -> {
                 isRemoving = false;
+=======
+    // Internal ViewHolder model for each item.
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        ImageView ivAlbum;
+        TextView tvTitle;
+        TextView tvArtist;
+>>>>>>> Stashed changes
 
                 if(e != null) {
                     notifyPlaylistUpdated();

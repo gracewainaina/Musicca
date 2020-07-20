@@ -2,7 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+<<<<<<< Updated upstream
     android:orientation="vertical">
+=======
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/ivAlbum"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/albumicon"/>
+>>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/tvSection"
