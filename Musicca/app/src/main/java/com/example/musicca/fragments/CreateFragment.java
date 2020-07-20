@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.musicca.R;
-import com.example.musicca.activities.PartyActivity;
+import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.ParseFile;
 import com.parse.ParseException;
@@ -54,7 +54,7 @@ public class CreateFragment extends Fragment {
 
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
-    private Playlist playlist = new Playlist();
+    public Playlist playlistPublic = new Playlist();
 
     public CreateFragment() {
         // Required empty public constructor
@@ -101,17 +101,17 @@ public class CreateFragment extends Fragment {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePlaylist(playlistName, playlistCode, currentUser, photoFile);
-                goPartyActivity();
+                gotoPlaylist();
             }
         });
 
     }
 
     private void savePlaylist(String playlistName, String playlistCode, ParseUser owner, File photoFile) {
-        playlist.setName(playlistName);
-        playlist.setInvitecode(playlistCode);
-        playlist.setOwner(owner);
-        playlist.saveInBackground(new SaveCallback() {
+        playlistPublic.setName(playlistName);
+        playlistPublic.setInvitecode(playlistCode);
+        playlistPublic.setOwner(owner);
+        playlistPublic.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
@@ -128,8 +128,16 @@ public class CreateFragment extends Fragment {
         });
     }
 
+<<<<<<< Updated upstream
     private void goPartyActivity() {
         Intent newintent = new Intent(getContext(), PartyActivity.class);
+=======
+    private void gotoPlaylist() {
+        Intent newintent = new Intent(getContext(), QueueActivity.class);
+        newintent.putExtra("playlistname", playlistPublic.getName());
+        newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
+        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+>>>>>>> Stashed changes
         startActivity(newintent);
     }
 
@@ -179,8 +187,8 @@ public class CreateFragment extends Fragment {
             byte[] image = stream.toByteArray();
             ParseFile parsefile = new ParseFile(image);
 
-            playlist.put(KEY_PLAYLISTICON, parsefile);
-            playlist.saveInBackground();
+            playlistPublic.put(KEY_PLAYLISTICON, parsefile);
+            playlistPublic.saveInBackground();
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
         }

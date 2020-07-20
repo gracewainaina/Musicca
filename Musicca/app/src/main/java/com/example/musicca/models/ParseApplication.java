@@ -40,4 +40,5 @@ public class ParseApplication extends Application {
                 .clientKey("grace-musiccaMasterKeyParse")  // set explicitly unless clientKey is explicitly configured on Parse server
                 .server("https://grace-musicca.herokuapp.com/parse").build());
     }
+
 }
