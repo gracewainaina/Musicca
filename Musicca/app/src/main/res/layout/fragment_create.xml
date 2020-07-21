@@ -19,6 +19,7 @@
 
     <TextView
         android:id="@+id/tvSetPlaylistIcon"
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 <<<<<<< HEAD
@@ -30,6 +31,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+=======
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Set Playlist Icon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+>>>>>>> Set up playlist icon
         android:orientation="horizontal"
         android:layout_marginTop="5dp">
 
@@ -52,10 +65,13 @@
 
     </LinearLayout>
 
+<<<<<<< HEAD
 =======
         android:background="#ffa4ab"
         android:text="SET PLAYLIST ICON" />
 >>>>>>> Set up Profile Photo and update music bio
+=======
+>>>>>>> Set up playlist icon
 
     <EditText
         android:id="@+id/etPlaylistname_create"

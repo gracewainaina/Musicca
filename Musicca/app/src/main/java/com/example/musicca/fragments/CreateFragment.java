@@ -253,10 +253,13 @@ public class CreateFragment extends Fragment {
             byte[] image = stream.toByteArray();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             playlistPublic.put(KEY_PLAYLISTICON, parsefile);
             playlistPublic.saveInBackground();
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+>>>>>>> Set up playlist icon
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
 
