@@ -88,12 +88,16 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         Log.d(TAG, "length of songs " + songs.size());
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
 =======
 >>>>>>> Stashed changes
 >>>>>>> Edit Profile Activity
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
+>>>>>>> Populate newly created playlist
     }
 
     @NonNull
@@ -313,9 +317,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songtitle", song.getTitle());
                 intent.putExtra("songartist", song.getArtist());
                 intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
+                intent.putExtra("playlistobjectid2", playlistObjectId);
                 // show the activity
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+                Log.d(TAG, "ssong selected");
+>>>>>>> Populate newly created playlist
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

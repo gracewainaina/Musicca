@@ -57,6 +57,7 @@ public class Playlist extends ParseObject {
         put(KEY_PLAYLISTICON, parseFile);
     }
 
+<<<<<<< HEAD
     public List<String> getSongList() {
         List<String> songobjectIDs = getList(KEY_SONGS);
         if (songobjectIDs != null) {
@@ -70,10 +71,40 @@ public class Playlist extends ParseObject {
     public void setSongList(List<String> objectIDs) {
         JSONArray jsonArray = new JSONArray(objectIDs);
         put(KEY_SONGS, jsonArray);
+=======
+    public ArrayList<Song> getSongList(){
+        return (ArrayList<Song>) get(KEY_SONGS);
     }
+    public void setSongList(List<Song> songs) {
+        put(KEY_SONGS, songs);
+    }
+    public void setSong(Song song) {
+        put(KEY_SONGS, song);
+>>>>>>> Populate newly created playlist
+    }
+//    public ArrayList<Song> getSongs() {
+//        return (ArrayList<Song>) get(KEY_SONGS);
+//    }
 
+<<<<<<< HEAD
     public void setSong(Song song) {
         put(KEY_SONGS, song);
     }
+=======
+
+//    public void setSong(Song song) {
+//        addUnique(KEY_SONGS, song);
+//    }
+
+//    public boolean contains(Song song){
+//        List<Song> songs = getSongs();
+//        for(Song eachsong : songs){
+//            if (song.equals(song)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+>>>>>>> Populate newly created playlist
 
 }
