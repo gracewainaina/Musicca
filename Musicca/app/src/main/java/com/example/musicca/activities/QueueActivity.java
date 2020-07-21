@@ -43,7 +43,8 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
+        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);

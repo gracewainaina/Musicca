@@ -39,6 +39,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
+        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
     }
 
     @NonNull
@@ -143,8 +144,9 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songtitle", song.getTitle());
                 intent.putExtra("songartist", song.getArtist());
                 intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
+                intent.putExtra("playlistobjectid2", playlistObjectId);
                 // show the activity
+                Log.d(TAG, "ssong selected");
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
