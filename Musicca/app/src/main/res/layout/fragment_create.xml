@@ -21,6 +21,7 @@
         android:id="@+id/tvSetPlaylistIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:text="Set Playlist Icon"
@@ -51,6 +52,10 @@
 
     </LinearLayout>
 
+=======
+        android:background="#ffa4ab"
+        android:text="SET PLAYLIST ICON" />
+>>>>>>> Set up Profile Photo and update music bio
 
     <EditText
         android:id="@+id/etPlaylistname_create"
