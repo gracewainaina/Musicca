@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffa4ab"
-        android:text="SET ICON" />
+        android:text="SET PLAYLIST ICON" />
 
     <EditText
         android:id="@+id/etPlaylistname_create"

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.EditProfileActivity;
+import com.example.musicca.activities.LoginActivity;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -26,6 +27,7 @@ public class ProfileFragment extends Fragment {
     private TextView tvMusicBio;
     private ImageView ivProfileImage;
     private Button btnEditProfile;
+    private Button btnLogout;
     private String profileImageURL;
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
@@ -47,7 +49,8 @@ public class ProfileFragment extends Fragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
-        btnEditProfile = view.findViewById(R.id.btnEditProfile);
+        btnEditProfile = (Button) view.findViewById(R.id.btnEditProfile);
+        btnLogout = (Button) view.findViewById(R.id.btnLogout);
 
         tvUsername.setText(parseUser.getUsername());
         tvMusicBio.setText(parseUser.getString("musicbio"));
@@ -63,12 +66,27 @@ public class ProfileFragment extends Fragment {
                 goEditProfile();
             }
         });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                if (ParseUser.getCurrentUser() == null) {
+                    goLoginActivity();
+                }
+            }
+        });
     }
 
     private void goEditProfile() {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
         i.putExtra("musicbio", tvMusicBio.getText().toString());
         i.putExtra("profileimageurl", profileImageURL);
+        startActivity(i);
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(getContext(), LoginActivity.class);
+        startActivity(i);
     }
 
 
