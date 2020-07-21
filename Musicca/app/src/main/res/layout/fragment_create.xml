@@ -17,12 +17,40 @@
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/musicalnotes" />
 
-    <Button
-        android:id="@+id/btnSetPlaylistIcon"
+    <TextView
+        android:id="@+id/tvSetPlaylistIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffa4ab"
-        android:text="SET PLAYLIST ICON" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Set Playlist Icon"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:background="#ffa4ab"
+            android:layout_marginStart="40dp"
+            android:text="TAKE PHOTO" />
+
+        <Button
+            android:id="@+id/btnChoosePhoto"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:background="#ffa4ab"
+            android:layout_marginStart="80dp"
+            android:text="CHOOSE PHOTO" />
+
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/etPlaylistname_create"
