@@ -52,6 +52,9 @@
         android:text="EDIT PROFILE" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Set up Profile Photo and update music bio
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
@@ -64,6 +67,9 @@
         android:padding="5dp"
         android:text="LOG OUT" />
 
+<<<<<<< HEAD
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+>>>>>>> Set up Profile Photo and update music bio
 </RelativeLayout>
