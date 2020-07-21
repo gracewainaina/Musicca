@@ -276,9 +276,13 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 <<<<<<< HEAD
+<<<<<<< HEAD
         // camera
 =======
 >>>>>>> Set up Profile Photo and update music bio
+=======
+        // camera
+>>>>>>> Set up playlist icon
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // by this point we have the camera photo on disk
@@ -291,10 +295,14 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         // gallery
 =======
 
 >>>>>>> Set up Profile Photo and update music bio
+=======
+        // gallery
+>>>>>>> Set up playlist icon
         if ((data != null) && requestCode == PICK_PHOTO_CODE) {
             Uri photoUri = data.getData();
 
