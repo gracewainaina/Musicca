@@ -51,6 +51,7 @@ public class QueueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
@@ -60,6 +61,10 @@ public class QueueActivity extends AppCompatActivity {
         btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
 =======
         playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+=======
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
+        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
+>>>>>>> Populate newly created playlist
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
