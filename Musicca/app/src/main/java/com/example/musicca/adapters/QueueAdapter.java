@@ -7,7 +7,11 @@ import android.util.Log;
 =======
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 >>>>>>> Searchbar onquery listener text
+=======
+import android.util.Log;
+>>>>>>> Search view functionality completed
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +35,7 @@ import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
@@ -42,6 +47,9 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
 =======
 >>>>>>> Searchbar onquery listener text
+=======
+    private static final String TAG = "QueueAdapter";
+>>>>>>> Search view functionality completed
     private Context context;
     private List<Song> songs;
     private List<Song> songsAll;
@@ -54,12 +62,18 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         this.songsAll = new ArrayList<>(songs);
         this.playlistObjectId = playlistObjectId;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Search view functionality completed
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
+<<<<<<< HEAD
 =======
 >>>>>>> Searchbar onquery listener text
+=======
+>>>>>>> Search view functionality completed
     }
 
     @NonNull
@@ -90,6 +104,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 List<Song> filteredList = new ArrayList<>();
                 // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (charSequence == null || charSequence.length() == 0) {
                     Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
@@ -102,15 +117,29 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                             Log.d(TAG, "song found");
 =======
                 if (charSequence.toString().isEmpty()) {
+=======
+                if (charSequence == null || charSequence.length() == 0) {
+                    Log.d(TAG, "nothing typed yet");
+>>>>>>> Search view functionality completed
                     filteredList.addAll(songsAll);
-                } else {
+                }
+                else {
+                    Log.d(TAG, "check if song found");
+                    String filterPattern = charSequence.toString().toLowerCase().trim();
+                    Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
                     for (Song song : songsAll) {
+<<<<<<< HEAD
                         if (song.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())) {
 >>>>>>> Searchbar onquery listener text
+=======
+                        if (song.getTitle().toLowerCase().contains(filterPattern)) {
+                            Log.d(TAG, "song found");
+>>>>>>> Search view functionality completed
                             filteredList.add(song);
                         }
                     }
                 }
+<<<<<<< HEAD
 <<<<<<< HEAD
                 Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
@@ -122,12 +151,22 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
 >>>>>>> Searchbar onquery listener text
+=======
+                Log.d(TAG, "search results");
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                for (Song song: filteredList){
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                }
+>>>>>>> Search view functionality completed
                 return filterResults;
             }
 
             // run on UI thread
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 //songs.clear();
                 //songs.addAll((Collection<? extends Song>) filterResults.values);
@@ -136,11 +175,21 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 songs.clear();
                 songs.addAll((Collection<? extends Song>) filterResults.values);
 >>>>>>> Searchbar onquery listener text
+=======
+                //songs.clear();
+                //songs.addAll((Collection<? extends Song>) filterResults.values);
+                songs = (List<Song>) filterResults.values;
+                for (Song song: songs){
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                }
+>>>>>>> Search view functionality completed
                 notifyDataSetChanged();
             }
         };
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -157,6 +206,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 //        notifyDataSetChanged();
 //    }
 
+=======
+>>>>>>> Search view functionality completed
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 >>>>>>> Searchbar onquery listener text
@@ -202,9 +253,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songtitle", song.getTitle());
                 intent.putExtra("songartist", song.getArtist());
                 intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
+                intent.putExtra("playlistobjectid2", playlistObjectId);
                 // show the activity
+<<<<<<< HEAD
 >>>>>>> Searchbar onquery listener text
+=======
+                Log.d(TAG, "song selected");
+>>>>>>> Search view functionality completed
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

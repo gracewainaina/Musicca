@@ -30,7 +30,10 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+=======
+>>>>>>> Search view functionality completed
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -45,7 +48,11 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
+<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+=======
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
+>>>>>>> Search view functionality completed
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
@@ -59,16 +66,19 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
+<<<<<<< HEAD
 
         queryAllSongs();
 
         queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
         rvLatestSongs.setAdapter(queueAdapter);
+=======
+        Log.d(TAG, "length of songsAll1 " + allSongs.size());
+>>>>>>> Search view functionality completed
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rvLatestSongs.setLayoutManager(linearLayoutManager);
+        queryAllSongs();
 
-        queryAllSongs(0);
+        Log.d(TAG, "length of songsAll2 " + allSongs.size());
     }
 
     @Override
@@ -80,10 +90,14 @@ public class QueueActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                Log.d(TAG, "on query text submit");
+                queueAdapter.getFilter().filter(query);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
+                Log.d(TAG, "on query text change");
                 queueAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -92,6 +106,7 @@ public class QueueActivity extends AppCompatActivity {
     }
 
     private void queryAllSongs() {
+<<<<<<< HEAD
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 
         query.findInBackground((songs, e) -> {
@@ -104,9 +119,12 @@ public class QueueActivity extends AppCompatActivity {
             allSongs.addAll(songs);
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
     private void queryAllSongs(int page) {
+=======
+>>>>>>> Search view functionality completed
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        query.setLimit(5);
-        query.setSkip(5 * page);
+//        query.setLimit(5);
+//        query.setSkip(5 * page);
+
         query.findInBackground((songs, e) -> {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
@@ -116,8 +134,25 @@ public class QueueActivity extends AppCompatActivity {
                 Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
             }
             allSongs.addAll(songs);
+            Log.d(TAG, "length of songsAll3 " + allSongs.size());
+
+            queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
+            rvLatestSongs.setAdapter(queueAdapter);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rvLatestSongs.setLayoutManager(linearLayoutManager);
             queueAdapter.notifyDataSetChanged();
         });
+
+//        try {
+//            allSongs.addAll(query.find());
+//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
+//            queueAdapter.notifyDataSetChanged();
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     private void gotoPlaylist() {

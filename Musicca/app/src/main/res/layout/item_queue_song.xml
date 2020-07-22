@@ -12,10 +12,14 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
 <<<<<<< HEAD
+<<<<<<< HEAD
         app:srcCompat="@drawable/albumicon"/>
 =======
         app:srcCompat="@drawable/albumicon" />
 >>>>>>> Searchbar onquery listener text
+=======
+        app:srcCompat="@drawable/albumicon"/>
+>>>>>>> Search view functionality completed
 
     <TextView
         android:id="@+id/tvTitle"

@@ -19,11 +19,15 @@ import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+<<<<<<< HEAD
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
+=======
+>>>>>>> Search view functionality completed
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import org.w3c.dom.Text;
 
@@ -40,11 +44,15 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private Button btnAddMoreSongs;
     private String playlistObjectId;
     private CurrentPlaylistAdapter currentPlaylistAdapter;
+<<<<<<< HEAD
     private List<String> currentPlaylistSongs;
     protected List<Song> songsInPlaylist;
     private Playlist currentPlaylist;
 
 
+=======
+    ArrayList<Song> currentPlaylistSongs = new ArrayList<>();
+>>>>>>> Search view functionality completed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,22 +67,15 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 
         getCurrentPlaylistSongs(playlistObjectId);
         playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
+        getCurrentPlaylistSongs(playlistObjectId);
         btnAddMoreSongs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gotoQueueActivity();
             }
         });
-
-        currentPlaylist = getCurrentPlaylist(playlistObjectId);
-        songsInPlaylist = currentPlaylist.getSongs();
-        if (songsInPlaylist != null){
-            currentPlaylistAdapter = new CurrentPlaylistAdapter(this, songsInPlaylist, playlistObjectId);
-            rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            rvPlaylistSongs.setLayoutManager(linearLayoutManager);
-        }
     }
 
     private void gotoQueueActivity() {
@@ -91,8 +92,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private Playlist getCurrentPlaylist(String playlistobjectid) {
-        final Playlist[] currentplaylist = new Playlist[1];
+    private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
@@ -101,23 +101,39 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
+<<<<<<< HEAD
                     Log.d(TAG, "playlist found " + playlist.getName());
+=======
+                    Log.d(TAG, "playlist found" + playlist.getName());
+>>>>>>> Search view functionality completed
                     tvPlaylistTitle.setText(playlist.getName());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                         Log.d("playlist CURRENT size1", "SIZE OF" + currentPlaylistSongs.size());
                     }
+<<<<<<< HEAD
                     currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
                     rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
                     rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+=======
+>>>>>>> Search view functionality completed
                 } else {
                     Log.d(TAG, "playlist not found!");
                 }
             }
         });
+<<<<<<< HEAD
 
         return currentplaylist[0];
+=======
+        Log.d("PLAYLIST CURRENT size2", "SIZE OF" + currentPlaylistSongs.size());
+        currentPlaylistAdapter = new CurrentPlaylistAdapter(this, currentPlaylistSongs, playlistObjectId);
+        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+>>>>>>> Search view functionality completed
     }
 }

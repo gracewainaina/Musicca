@@ -79,6 +79,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+<<<<<<< HEAD
 
     private void goEditProfile() {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
@@ -92,5 +93,20 @@ public class ProfileFragment extends Fragment {
         startActivity(i);
     }
 
+=======
+
+    private void goEditProfile() {
+        Intent i = new Intent(getContext(), EditProfileActivity.class);
+        i.putExtra("musicbio", tvMusicBio.getText().toString());
+        i.putExtra("profileimageurl", profileImageURL);
+        startActivity(i);
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(getContext(), LoginActivity.class);
+        startActivity(i);
+    }
+
+>>>>>>> Search view functionality completed
 
 }

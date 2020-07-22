@@ -121,6 +121,7 @@ public class CreateFragment extends Fragment {
                     return;
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
 =======
@@ -128,6 +129,10 @@ public class CreateFragment extends Fragment {
                 savePlaylist(playlistName, playlistCode, currentUser, photoFile);
                 gotoPlaylist();
 >>>>>>> Searchbar onquery listener text
+=======
+
+                savePlaylist(playlistName, playlistCode, parseUser, photoFile);
+>>>>>>> Search view functionality completed
             }
         });
 
@@ -186,11 +191,21 @@ public class CreateFragment extends Fragment {
                 etPlaylistcode_create.setText("");
                 ivPlaylistIcon.setImageResource(0);
 
+<<<<<<< HEAD
             }
         });
         playlistObjectId = playlistPublic.getObjectId();
         Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
         gotoPlaylist();
+=======
+                playlistObjectId = playlistPublic.getObjectId();
+                Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
+                gotoPlaylist();
+
+            }
+        });
+
+>>>>>>> Search view functionality completed
     }
 
 <<<<<<< HEAD
@@ -211,12 +226,16 @@ public class CreateFragment extends Fragment {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
+<<<<<<< HEAD
         newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
 <<<<<<< HEAD
 >>>>>>> Stashed changes
 >>>>>>> Searchbar onquery listener text
 =======
 >>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
+=======
+        newintent.putExtra("playlistobjectid1", playlistObjectId);
+>>>>>>> Search view functionality completed
         startActivity(newintent);
     }
 
@@ -266,10 +285,13 @@ public class CreateFragment extends Fragment {
             byte[] image = stream.toByteArray();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             playlistPublic.put(KEY_PLAYLISTICON, parsefile);
             playlistPublic.saveInBackground();
 >>>>>>> Searchbar onquery listener text
+=======
+>>>>>>> Search view functionality completed
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
 

@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+<<<<<<< HEAD
         android:usesCleartextTraffic="true">
+=======
+        android:usesCleartextTraffic="true">>
+>>>>>>> Search view functionality completed
         <activity android:name=".activities.EditProfileActivity"></activity>
         <activity android:name=".activities.CurrentPlaylistActivity" />
         <activity android:name=".activities.SongPlaylistActivity" />

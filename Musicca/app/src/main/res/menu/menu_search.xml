@@ -10,7 +10,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 </menu>
 =======
 </menu>
 >>>>>>> Searchbar onquery listener text
+=======
+</menu>
+>>>>>>> Search view functionality completed
