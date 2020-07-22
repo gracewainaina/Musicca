@@ -1,6 +1,7 @@
 package com.example.musicca.adapters;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+    private static final String TAG = "QueueAdapter";
     private Context context;
     private List<Song> songs;
     private List<Song> songsAll;
@@ -34,6 +36,10 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         this.songs = songs;
         this.songsAll = new ArrayList<>(songs);
         this.playlistObjectId = playlistObjectId;
+        Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
+        Log.d(TAG, "length of this.songs " + this.songs.size());
+        Log.d(TAG, "length of songs " + songs.size());
+        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
     }
 
     @NonNull
@@ -63,41 +69,45 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             protected FilterResults performFiltering(CharSequence charSequence) {
                 List<Song> filteredList = new ArrayList<>();
                 // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
-                if (charSequence.toString().isEmpty()) {
+                if (charSequence == null || charSequence.length() == 0) {
+                    Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
-                } else {
+                }
+                else {
+                    Log.d(TAG, "check if song found");
+                    String filterPattern = charSequence.toString().toLowerCase().trim();
+                    Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
                     for (Song song : songsAll) {
-                        if (song.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (song.getTitle().toLowerCase().contains(filterPattern)) {
+                            Log.d(TAG, "song found");
                             filteredList.add(song);
                         }
                     }
                 }
+                Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
+                for (Song song: filteredList){
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                }
                 return filterResults;
             }
 
             // run on UI thread
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                songs.clear();
-                songs.addAll((Collection<? extends Song>) filterResults.values);
+                //songs.clear();
+                //songs.addAll((Collection<? extends Song>) filterResults.values);
+                songs = (List<Song>) filterResults.values;
+                for (Song song: songs){
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                    Log.d(TAG, "filtered song: " + song.getTitle());
+                }
                 notifyDataSetChanged();
             }
         };
     }
-
-//    // Clean all elements of the recycler
-//    public void clear() {
-//        songs.clear();
-//        notifyDataSetChanged();
-//    }
-//
-//    // Add a list of items -- change to type used
-//    public void addAll(List<Song> list) {
-//        songs.addAll(list);
-//        notifyDataSetChanged();
-//    }
 
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -134,8 +144,9 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songtitle", song.getTitle());
                 intent.putExtra("songartist", song.getArtist());
                 intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
+                intent.putExtra("playlistobjectid2", playlistObjectId);
                 // show the activity
+                Log.d(TAG, "song selected");
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

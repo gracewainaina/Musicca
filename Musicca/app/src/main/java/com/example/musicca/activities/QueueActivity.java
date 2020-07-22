@@ -29,7 +29,7 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
-    private static final String TAG = "QueueActivity";
+    private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
     private RecyclerView rvLatestSongs;
@@ -43,7 +43,8 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
+        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
@@ -56,13 +57,11 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
-        queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
-        rvLatestSongs.setAdapter(queueAdapter);
+        Log.d(TAG, "length of songsAll1 " + allSongs.size());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rvLatestSongs.setLayoutManager(linearLayoutManager);
+        queryAllSongs();
 
-        queryAllSongs(0);
+        Log.d(TAG, "length of songsAll2 " + allSongs.size());
     }
 
     @Override
@@ -74,10 +73,14 @@ public class QueueActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                Log.d(TAG, "on query text submit");
+                queueAdapter.getFilter().filter(query);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
+                Log.d(TAG, "on query text change");
                 queueAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -85,10 +88,11 @@ public class QueueActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void queryAllSongs(int page) {
+    private void queryAllSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        query.setLimit(5);
-        query.setSkip(5 * page);
+//        query.setLimit(5);
+//        query.setSkip(5 * page);
+
         query.findInBackground((songs, e) -> {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
@@ -98,8 +102,25 @@ public class QueueActivity extends AppCompatActivity {
                 Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
             }
             allSongs.addAll(songs);
+            Log.d(TAG, "length of songsAll3 " + allSongs.size());
+
+            queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
+            rvLatestSongs.setAdapter(queueAdapter);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rvLatestSongs.setLayoutManager(linearLayoutManager);
             queueAdapter.notifyDataSetChanged();
         });
+
+//        try {
+//            allSongs.addAll(query.find());
+//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
+//            queueAdapter.notifyDataSetChanged();
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     private void gotoPlaylist() {

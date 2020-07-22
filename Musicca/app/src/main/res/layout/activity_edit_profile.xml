@@ -1,34 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProfileFragment">
-
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileImage"
-        android:layout_alignParentStart="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="grace" />
-
-    <TextView
-        android:id="@+id/tvMusicBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUsername"
-        android:layout_alignParentStart="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Music Bio" />
+    tools:context=".activities.EditProfileActivity">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -36,31 +13,56 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:foregroundGravity="center"
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/user" />
 
     <Button
-        android:id="@+id/btnEditProfile"
+        android:id="@+id/btnTakePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvMusicBio"
-        android:layout_alignParentStart="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:background="#ffa4ab"
-        android:padding="5dp"
-        android:text="EDIT PROFILE" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnEditProfile"
+        android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="#ffa4ab"
         android:padding="5dp"
-        android:text="LOG OUT" />
+        android:text="TAKE PHOTO" />
+
+    <Button
+        android:id="@+id/btnChoosePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTakePhoto"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#ffa4ab"
+        android:padding="5dp"
+        android:text="CHOOSE PHOTO" />
+
+    <EditText
+        android:id="@+id/tvEditMusicBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnChoosePhoto"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:foregroundGravity="center"
+        android:hint="Edit Music Bio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/btnChangeMusicBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEditMusicBio"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#ffa4ab"
+        android:padding="5dp"
+        android:text="UPDATE MUSIC BIO" />
 
 </RelativeLayout>
