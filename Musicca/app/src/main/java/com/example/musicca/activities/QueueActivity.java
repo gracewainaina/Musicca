@@ -34,9 +34,13 @@ import java.util.List;
 public class QueueActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 =======
 >>>>>>> Edit Profile Activity
+=======
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+>>>>>>> Play song, login error handling, contant string extras for intents
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -57,6 +61,7 @@ public class QueueActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
@@ -68,6 +73,9 @@ public class QueueActivity extends AppCompatActivity {
         playlistObjectId = getIntent().getStringExtra("playlistobjectid");
 =======
         playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
+=======
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+>>>>>>> Play song, login error handling, contant string extras for intents
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
 >>>>>>> Populate newly created playlist
         tvSection = findViewById(R.id.tvSection);
@@ -157,6 +165,7 @@ public class QueueActivity extends AppCompatActivity {
 
             queueAdapter.notifyDataSetChanged();
         });
+<<<<<<< HEAD
 
 //        try {
 //            allSongs.addAll(query.find());
@@ -168,6 +177,8 @@ public class QueueActivity extends AppCompatActivity {
 //        }
 
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
     }
 
     private void gotoPlaylist() {

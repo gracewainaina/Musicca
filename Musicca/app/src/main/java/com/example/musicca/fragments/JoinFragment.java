@@ -60,9 +60,12 @@ public class JoinFragment extends Fragment {
             public void onClick(View view) {
                 queryPlaylists();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 gotoPlaylist();
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
             }
         });
     }
@@ -78,12 +81,19 @@ public class JoinFragment extends Fragment {
                 if (e == null) {
                     // Access the array of results here
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+>>>>>>> Play song, login error handling, contant string extras for intents
                     playlistObjectId = itemList.get(0).getObjectId();
 >>>>>>> Attempt 2: Edit Profile Activity
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
                     playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
                     gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());

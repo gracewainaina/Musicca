@@ -34,10 +34,13 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
+<<<<<<< HEAD
 =======
 import com.parse.ParseQuery;
 
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -47,15 +50,20 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "CurrentPlaylistActivity";
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     private TextView tvPlaylistTitle;
     private RecyclerView rvPlaylistSongs;
     private Button btnAddMoreSongs;
     private String playlistObjectId;
     private CurrentPlaylistAdapter currentPlaylistAdapter;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     private List<String> currentPlaylistSongs;
@@ -68,6 +76,9 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 =======
     ArrayList<Song> currentPlaylistSongs = new ArrayList<>();
 >>>>>>> Populate newly created playlist
+=======
+    private List<String> currentPlaylistSongs;
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +89,16 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
 <<<<<<< HEAD
+<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
         getCurrentPlaylistSongs(playlistObjectId);
 =======
         playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+=======
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+>>>>>>> Play song, login error handling, contant string extras for intents
         Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
 <<<<<<< HEAD
@@ -133,8 +148,12 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
+<<<<<<< HEAD
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+>>>>>>> Play song, login error handling, contant string extras for intents
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
@@ -145,19 +164,27 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                     Log.d(TAG, "playlist found " + playlist.getName());
 =======
                 if (e == null) {
+<<<<<<< HEAD
                     Log.d(TAG, "playlist found" + playlist.getName());
 >>>>>>> Populate newly created playlist
+=======
+                    Log.d(TAG, "playlist found " + playlist.getName());
+>>>>>>> Play song, login error handling, contant string extras for intents
                     tvPlaylistTitle.setText(playlist.getName());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                         Log.d("playlist CURRENT size1", "SIZE OF" + currentPlaylistSongs.size());
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
                     currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
                     rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
                     rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+<<<<<<< HEAD
                 } else {
                     Log.d(TAG, "playlist not found!");
                 }
@@ -171,17 +198,19 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         return currentplaylist[0];
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
                 } else {
                     Log.d(TAG, "playlist not found!");
                 }
             }
         });
-        Log.d("PLAYLIST CURRENT size2", "SIZE OF" + currentPlaylistSongs.size());
-        currentPlaylistAdapter = new CurrentPlaylistAdapter(this, currentPlaylistSongs, playlistObjectId);
-        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
+<<<<<<< HEAD
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvPlaylistSongs.setLayoutManager(linearLayoutManager);
 >>>>>>> Populate newly created playlist
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
     }
 }

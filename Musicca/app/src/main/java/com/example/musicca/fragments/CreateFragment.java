@@ -208,11 +208,15 @@ public class CreateFragment extends Fragment {
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
 <<<<<<< HEAD
+<<<<<<< HEAD
         newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
         newintent.putExtra("playlistobjectid1", playlistObjectId);
 >>>>>>> Populate newly created playlist
+=======
+        newintent.putExtra("playlistobjectid", playlistObjectId);
+>>>>>>> Play song, login error handling, contant string extras for intents
         startActivity(newintent);
     }
 

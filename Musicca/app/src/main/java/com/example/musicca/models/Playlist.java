@@ -58,6 +58,7 @@ public class Playlist extends ParseObject {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public List<String> getSongList() {
         List<String> songobjectIDs = getList(KEY_SONGS);
         if (songobjectIDs != null) {
@@ -74,15 +75,42 @@ public class Playlist extends ParseObject {
 =======
     public ArrayList<Song> getSongList(){
         return (ArrayList<Song>) get(KEY_SONGS);
+=======
+    public List<String> getSongList() {
+        List<String> songobjectIDs = getList(KEY_SONGS);
+        if (songobjectIDs != null)
+        {
+            Log.d("listof songs","size" + songobjectIDs.size());
+            return songobjectIDs;
+        }
+        else {
+            return null;
+        }
+
+
+//        JSONArray jsonArray = getJSONArray(KEY_SONGS);
+////        JSONArray jsonArray = (JSONArray) get(KEY_SONGS);
+//        if (get(KEY_SONGS) != null) {
+//            Log.d("json array", jsonArray.toString());
+//            for (int i = 0; i < jsonArray.length(); i++) {
+//                songobjectIDs.add(jsonArray.get(i).toString());
+//            }
+//        }
+
+>>>>>>> Play song, login error handling, contant string extras for intents
     }
-    public void setSongList(List<Song> songs) {
-        put(KEY_SONGS, songs);
+    public void setSongList(List<String> objectIDs) {
+        JSONArray jsonArray = new JSONArray(objectIDs);
+        put(KEY_SONGS, jsonArray);
     }
+
     public void setSong(Song song) {
         put(KEY_SONGS, song);
 >>>>>>> Populate newly created playlist
     }
-//    public ArrayList<Song> getSongs() {
+
+
+    //    public ArrayList<Song> getSongs() {
 //        return (ArrayList<Song>) get(KEY_SONGS);
 //    }
 
