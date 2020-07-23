@@ -51,6 +51,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:src="@drawable/previcon" />
 <<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/previcon" />-->
@@ -59,7 +60,14 @@
 =======
         tools:srcCompat="@drawable/previcon" />
 >>>>>>> Attempt 2: Edit Profile Activity
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+=======
+        android:src="@drawable/previcon" />
+<!--        tools:srcCompat="@drawable/previcon" />-->
+>>>>>>> Play song, login error handling, contant string extras for intents
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -71,6 +79,7 @@
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:src="@drawable/playicon" />
 <<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/playicon" />-->
@@ -79,7 +88,14 @@
 =======
         tools:srcCompat="@drawable/playicon" />
 >>>>>>> Attempt 2: Edit Profile Activity
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+=======
+        android:src="@drawable/playicon" />
+<!--        tools:srcCompat="@drawable/playicon" />-->
+>>>>>>> Play song, login error handling, contant string extras for intents
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     <ImageView
         android:id="@+id/ivNext"
@@ -90,6 +106,7 @@
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:src="@drawable/nexticon"/>
 <<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/nexticon" />-->
@@ -98,7 +115,14 @@
 =======
         tools:srcCompat="@drawable/nexticon" />
 >>>>>>> Attempt 2: Edit Profile Activity
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+=======
+        android:src="@drawable/nexticon"/>
+<!--        tools:srcCompat="@drawable/nexticon" />-->
+>>>>>>> Play song, login error handling, contant string extras for intents
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     <Button
         android:id="@+id/btnReturnPlaylist"

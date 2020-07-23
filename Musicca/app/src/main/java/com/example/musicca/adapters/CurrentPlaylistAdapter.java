@@ -3,9 +3,13 @@ package com.example.musicca.adapters;
 import android.content.Context;
 import android.content.Intent;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.util.Log;
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+import android.util.Log;
+>>>>>>> Play song, login error handling, contant string extras for intents
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,9 @@ import com.example.musicca.activities.SongPlaylistActivity;
 =======
 import com.example.musicca.activities.SongQueueActivity;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
 import com.example.musicca.models.Playlist;
 >>>>>>> Attempt 2: Edit Profile Activity
 import com.example.musicca.models.Song;
@@ -31,10 +38,16 @@ import com.parse.ParseQuery;
 <<<<<<< HEAD
 =======
 import com.parse.SaveCallback;
+<<<<<<< HEAD
 =======
 import com.example.musicca.models.Song;
 >>>>>>> Attempt 2: Edit Profile Activity
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
+>>>>>>> Play song, login error handling, contant string extras for intents
 
 import java.util.List;
 
@@ -59,14 +72,20 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 =======
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder>{
 
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+    private static final String TAG = "Queue";
     private Context context;
-    private List<Song> songs;
+    private List<String> songObjectIds;
     private String playlistObjectId;
 
-    public CurrentPlaylistAdapter(Context context, List<Song> songs, String playlistObjectId) {
+    public CurrentPlaylistAdapter(Context context, List<String> songObjectIds, String playlistObjectId) {
         this.context = context;
+<<<<<<< HEAD
         this.songs = songs;
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+        this.songObjectIds = songObjectIds;
+>>>>>>> Play song, login error handling, contant string extras for intents
         this.playlistObjectId = playlistObjectId;
     }
 
@@ -80,6 +99,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     @Override
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         String songObjectId = songObjectIds.get(position);
         //Song song = songs.get(position);
         holder.bind(songObjectId);
@@ -87,10 +107,16 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         Song song = songs.get(position);
         holder.bind(song);
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+        String songObjectId = songObjectIds.get(position);
+        //Song song = songs.get(position);
+        holder.bind(songObjectId);
+>>>>>>> Play song, login error handling, contant string extras for intents
     }
 
     @Override
     public int getItemCount() {
+<<<<<<< HEAD
 <<<<<<< HEAD
         return songObjectIds.size();
     }
@@ -98,6 +124,9 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 =======
         return songs.size();
+=======
+        return songObjectIds.size();
+>>>>>>> Play song, login error handling, contant string extras for intents
     }
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 >>>>>>> Attempt 2: Edit Profile Activity
@@ -119,6 +148,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             int position = getAdapterPosition();
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 String songObjectId = songObjectIds.get(position);
                 // create intent for the new activity
@@ -165,25 +195,62 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 =======
                 // get the post at the position, this won't work if the class is static
                 Song song = songs.get(position);
+=======
+                String songObjectId = songObjectIds.get(position);
+>>>>>>> Play song, login error handling, contant string extras for intents
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                // serialize the post using parceler, use its short name as a key
-                intent.putExtra("albumiconurl", song.getURL());
-                intent.putExtra("songtitle", song.getTitle());
-                intent.putExtra("songartist", song.getArtist());
-                intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
-                // show the activity
-                context.startActivity(intent);
-                Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
+                ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+                // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+                query.getInBackground(songObjectId, new GetCallback<Song>() {
+                    @Override
+                    public void done(Song song, com.parse.ParseException e) {
+                        if (e == null) {
+                            Log.d(TAG, "song found22" + song.getTitle());
+                            intent.putExtra("albumiconurl", song.getURL());
+                            intent.putExtra("songtitle", song.getTitle());
+                            intent.putExtra("songartist", song.getArtist());
+                            intent.putExtra("songObjectid", song.getObjectId());
+                            intent.putExtra("playlistobjectid", playlistObjectId);
+                            // show the activity
+                            context.startActivity(intent);
+                            Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Log.d(TAG, "song not found22!");
+                        }
+                    }
+                });
             }
         }
 
+<<<<<<< HEAD
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getURL()).into(ivAlbum);
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+        public void bind(String songObjectId) {
+            ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+            // First try to find from the cache and only then go to network
+            // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+            // Execute the query to find the object with ID
+            query.getInBackground(songObjectId, new GetCallback<Song>() {
+                @Override
+                public void done(Song song, com.parse.ParseException e) {
+                    if (e == null) {
+                        Log.d(TAG, "song found11" + song.getTitle());
+                        tvTitle.setText(song.getTitle());
+                        tvArtist.setText(song.getArtist());
+                        Glide.with(context).load(song.getURL()).into(ivAlbum);
+                    }
+                    else{
+                        Log.d(TAG, "song not found11!");
+                    }
+                }
+            });
+>>>>>>> Play song, login error handling, contant string extras for intents
         }
     }
 }

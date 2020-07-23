@@ -47,6 +47,8 @@ import java.util.ArrayList;
 =======
 import com.parse.SaveCallback;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 >>>>>>> Populate newly created playlist
 import java.util.List;
@@ -55,12 +57,16 @@ public class SongQueueActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
     private static final String EXTRA_ALBUMICONURL = "albumiconurl";
     private static final String EXTRA_SONGTITLE = "songtitle";
     private static final String EXTRA_SONGARTIST = "songartist";
 
+<<<<<<< HEAD
     private static final String TAG = "Queue";
     private List<String> currentPlaylistSongs = new ArrayList<>();
 =======
@@ -72,6 +78,11 @@ public class SongQueueActivity extends AppCompatActivity {
 >>>>>>> Populate newly created playlist
     Song currentSong;
 >>>>>>> Attempt 2: Edit Profile Activity
+=======
+
+    private static final String TAG = "Queue";
+    private List<String> currentPlaylistSongs = new ArrayList<>();
+>>>>>>> Play song, login error handling, contant string extras for intents
 
     private ImageView ivSongAlbum;
     private TextView tvTitle;
@@ -119,12 +130,13 @@ public class SongQueueActivity extends AppCompatActivity {
 =======
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
 
-        songObjectId = getIntent().getStringExtra("songObjectid");
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid2");
+        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST SONGQUEUE", playlistObjectId != null ? playlistObjectId : null);
 
-        albumUrl = getIntent().getStringExtra("albumiconurl");
+        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivSongAlbum);
+<<<<<<< HEAD
         tvTitle.setText(getIntent().getStringExtra("songtitle"));
         tvArtist.setText(getIntent().getStringExtra("songartist"));
 <<<<<<< HEAD
@@ -133,6 +145,10 @@ public class SongQueueActivity extends AppCompatActivity {
         currentSong = getCurrentSong(songObjectId);
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
+=======
+        tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
+        tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
+>>>>>>> Play song, login error handling, contant string extras for intents
         //currentSong = getCurrentSong(songObjectId);
 //        Log.d("CURRENT PLAYLIST", currentPlaylist.getName());
 >>>>>>> Populate newly created playlist
@@ -181,6 +197,7 @@ public class SongQueueActivity extends AppCompatActivity {
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
 <<<<<<< HEAD
+<<<<<<< HEAD
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
@@ -219,28 +236,30 @@ public class SongQueueActivity extends AppCompatActivity {
             }
         });
 =======
+=======
+        i.putExtra("playlistobjectid", playlistObjectId);
+>>>>>>> Play song, login error handling, contant string extras for intents
         startActivity(i);
     }
 
     private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        query.include("songs");
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
-//                    Log.d(TAG, "playlist found" + playlist.getName());
+                    Log.d(TAG, "playlist found " + playlist.getName());
+                    Log.d(TAG, "playlist found123 " + playlist.getSongList());
                     if (playlist.getSongList() != null){
                         currentPlaylistSongs = playlist.getSongList();
                     }
-//                    Log.d(TAG, "playlist found!" + currentPlaylistSongs.size());
-//                    playlist.setSong(getCurrentSong(songObjectId));
-                    currentPlaylistSongs.add(getCurrentSong(songObjectId));
+                    currentPlaylistSongs.add(songObjectId);
                     playlist.setSongList(currentPlaylistSongs);
-                    Log.d(TAG, "playlist found!" + currentPlaylistSongs.size());
-//                    Toast.makeText(SongQueueActivity.this, "Song has been added", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "playlist found2" + currentPlaylistSongs.size());
                     playlist.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -252,6 +271,7 @@ public class SongQueueActivity extends AppCompatActivity {
                             Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
                         }
                     });
+
                 }
                 else{
                     Log.d(TAG, "playlist not found!");
@@ -259,6 +279,7 @@ public class SongQueueActivity extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
     private Song getCurrentSong(String songobjectid) {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
         query.whereEqualTo("objectId", songobjectid);
@@ -317,4 +338,6 @@ public class SongQueueActivity extends AppCompatActivity {
 //        });
 //
 //    }
+=======
+>>>>>>> Play song, login error handling, contant string extras for intents
 }
