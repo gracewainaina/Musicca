@@ -24,6 +24,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
     private Context context;
     private List<Song> songs;
@@ -144,7 +146,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songtitle", song.getTitle());
                 intent.putExtra("songartist", song.getArtist());
                 intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid2", playlistObjectId);
+                intent.putExtra("playlistobjectid", playlistObjectId);
                 // show the activity
                 Log.d(TAG, "ssong selected");
                 context.startActivity(intent);

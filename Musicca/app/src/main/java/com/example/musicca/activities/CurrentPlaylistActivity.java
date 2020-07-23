@@ -22,6 +22,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -30,13 +31,14 @@ import java.util.List;
 public class CurrentPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "CurrentPlaylistActivity";
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 
     private TextView tvPlaylistTitle;
     private RecyclerView rvPlaylistSongs;
     private Button btnAddMoreSongs;
     private String playlistObjectId;
     private CurrentPlaylistAdapter currentPlaylistAdapter;
-    ArrayList<Song> currentPlaylistSongs = new ArrayList<>();
+    private List<String> currentPlaylistSongs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         tvPlaylistTitle = findViewById(R.id.tvPlaylistTitle);
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
         getCurrentPlaylistSongs(playlistObjectId);
@@ -67,28 +69,28 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "playlist found" + playlist.getName());
+                    Log.d(TAG, "playlist found " + playlist.getName());
                     tvPlaylistTitle.setText(playlist.getName());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                         Log.d("playlist CURRENT size1", "SIZE OF" + currentPlaylistSongs.size());
                     }
+                    currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
+                    rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
+                    rvPlaylistSongs.setLayoutManager(linearLayoutManager);
                 } else {
                     Log.d(TAG, "playlist not found!");
                 }
             }
         });
-        Log.d("PLAYLIST CURRENT size2", "SIZE OF" + currentPlaylistSongs.size());
-        currentPlaylistAdapter = new CurrentPlaylistAdapter(this, currentPlaylistSongs, playlistObjectId);
-        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rvPlaylistSongs.setLayoutManager(linearLayoutManager);
     }
 }

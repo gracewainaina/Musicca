@@ -187,7 +187,7 @@ public class CreateFragment extends Fragment {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
-        newintent.putExtra("playlistobjectid1", playlistObjectId);
+        newintent.putExtra("playlistobjectid", playlistObjectId);
         startActivity(newintent);
     }
 
