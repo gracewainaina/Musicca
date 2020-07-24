@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         // check if user is already logged in after opening the app again
         // if so, go to main activity
 //        if (ParseUser.getCurrentUser() != null) {
-//            goLoginspotifyActivity();
+//            goMainActivity();
 //        }
 
         etPassword = findViewById(R.id.etPassword);

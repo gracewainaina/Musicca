@@ -50,8 +50,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/previcon" />
-<!--        tools:srcCompat="@drawable/previcon" />-->
+        tools:srcCompat="@drawable/previcon" />
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -62,8 +61,7 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
-        android:src="@drawable/playicon" />
-<!--        tools:srcCompat="@drawable/playicon" />-->
+        tools:srcCompat="@drawable/playicon" />
 
     <ImageView
         android:id="@+id/ivNext"
@@ -73,8 +71,7 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
-        android:src="@drawable/nexticon"/>
-<!--        tools:srcCompat="@drawable/nexticon" />-->
+        tools:srcCompat="@drawable/nexticon" />
 
     <Button
         android:id="@+id/btnReturnPlaylist"

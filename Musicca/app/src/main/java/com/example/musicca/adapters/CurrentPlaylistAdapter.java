@@ -2,7 +2,6 @@ package com.example.musicca.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,27 +16,20 @@ import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
 import com.example.musicca.activities.SongQueueActivity;
-import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder>{
 
-    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
-    private static final String TAG = "Queue";
     private Context context;
-    private List<String> songObjectIds;
+    private List<Song> songs;
     private String playlistObjectId;
 
-    public CurrentPlaylistAdapter(Context context, List<String> songObjectIds, String playlistObjectId) {
+    public CurrentPlaylistAdapter(Context context, List<Song> songs, String playlistObjectId) {
         this.context = context;
-        this.songObjectIds = songObjectIds;
+        this.songs = songs;
         this.playlistObjectId = playlistObjectId;
     }
 
@@ -50,14 +42,13 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     @Override
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
-        String songObjectId = songObjectIds.get(position);
-        //Song song = songs.get(position);
-        holder.bind(songObjectId);
+        Song song = songs.get(position);
+        holder.bind(song);
     }
 
     @Override
     public int getItemCount() {
-        return songObjectIds.size();
+        return songs.size();
     }
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ivAlbum;
@@ -78,52 +69,26 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             int position = getAdapterPosition();
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
-                String songObjectId = songObjectIds.get(position);
+                // get the post at the position, this won't work if the class is static
+                Song song = songs.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-                // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-                query.getInBackground(songObjectId, new GetCallback<Song>() {
-                    @Override
-                    public void done(Song song, com.parse.ParseException e) {
-                        if (e == null) {
-                            Log.d(TAG, "song found22" + song.getTitle());
-                            intent.putExtra("albumiconurl", song.getURL());
-                            intent.putExtra("songtitle", song.getTitle());
-                            intent.putExtra("songartist", song.getArtist());
-                            intent.putExtra("songObjectid", song.getObjectId());
-                            intent.putExtra("playlistobjectid", playlistObjectId);
-                            // show the activity
-                            context.startActivity(intent);
-                            Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Log.d(TAG, "song not found22!");
-                        }
-                    }
-                });
+                // serialize the post using parceler, use its short name as a key
+                intent.putExtra("albumiconurl", song.getURL());
+                intent.putExtra("songtitle", song.getTitle());
+                intent.putExtra("songartist", song.getArtist());
+                intent.putExtra("songObjectid", song.getObjectId());
+                intent.putExtra("playlistobjectid", playlistObjectId);
+                // show the activity
+                context.startActivity(intent);
+                Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
         }
 
-        public void bind(String songObjectId) {
-            ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-            // First try to find from the cache and only then go to network
-            // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-            // Execute the query to find the object with ID
-            query.getInBackground(songObjectId, new GetCallback<Song>() {
-                @Override
-                public void done(Song song, com.parse.ParseException e) {
-                    if (e == null) {
-                        Log.d(TAG, "song found11" + song.getTitle());
-                        tvTitle.setText(song.getTitle());
-                        tvArtist.setText(song.getArtist());
-                        Glide.with(context).load(song.getURL()).into(ivAlbum);
-                    }
-                    else{
-                        Log.d(TAG, "song not found11!");
-                    }
-                }
-            });
+        public void bind(Song song) {
+            tvTitle.setText(song.getTitle());
+            tvArtist.setText(song.getArtist());
+            Glide.with(context).load(song.getURL()).into(ivAlbum);
         }
     }
 }

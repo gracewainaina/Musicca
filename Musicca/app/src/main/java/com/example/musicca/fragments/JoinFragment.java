@@ -58,6 +58,7 @@ public class JoinFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 queryPlaylists();
+                gotoPlaylist();
             }
         });
     }
@@ -66,16 +67,14 @@ public class JoinFragment extends Fragment {
         // Define the class we would like to query
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // Define our query conditions
-        query.whereEqualTo(KEY_PLAYLISTCODE, etPlaylistcode_join.getText().toString());
+        query.whereEqualTo(KEY_PLAYLISTCODE, etPlaylistcode_join.getText());
         // Execute the find asynchronously
         query.findInBackground(new FindCallback<Playlist>() {
             public void done(List<Playlist> itemList, ParseException e) {
                 if (e == null) {
                     // Access the array of results here
-                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
                     playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
-                    gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
                 }

@@ -29,7 +29,6 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
-    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -44,8 +43,7 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
+        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
@@ -113,6 +111,16 @@ public class QueueActivity extends AppCompatActivity {
 
             queueAdapter.notifyDataSetChanged();
         });
+
+//        try {
+//            allSongs.addAll(query.find());
+//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
+//            queueAdapter.notifyDataSetChanged();
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     private void gotoPlaylist() {
