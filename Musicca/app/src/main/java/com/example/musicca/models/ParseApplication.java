@@ -29,9 +29,8 @@ public class ParseApplication extends Application {
         builder.networkInterceptors().add(httpLoggingInterceptor);
 
         // Register your parse models
-        ParseUser.registerSubclass(Song.class);
         ParseObject.registerSubclass(Playlist.class);
-        ParseObject.registerSubclass(Party.class);
+        ParseObject.registerSubclass(Song.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured
@@ -41,4 +40,5 @@ public class ParseApplication extends Application {
                 .clientKey("grace-musiccaMasterKeyParse")  // set explicitly unless clientKey is explicitly configured on Parse server
                 .server("https://grace-musicca.herokuapp.com/parse").build());
     }
+
 }

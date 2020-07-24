@@ -23,6 +23,7 @@ import java.util.List;
 public class Song extends ParseObject {
 
     public static final String KEY_SPOTIFY_ID = "spotifyId";
+<<<<<<< HEAD
     public static final String KEY_TITLE = "title";
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_ALBUM = "album";
@@ -175,37 +176,39 @@ import java.util.List;
 public class Song extends ParseObject {
 
     public static final String KEY_SPOTIFY_ID = "spotifyID";
+=======
+>>>>>>> attempt to resolve conflict with master branch
     public static final String KEY_TITLE = "title";
     public static final String KEY_ARTIST = "artist";
-    public static final String KEY_ALBUM = "album";
+//    public static final String KEY_ALBUM = "album";
     public static final String KEY_URL = "artUrl";
 
     public String getSpotifyId(){
-        return KEY_SPOTIFY_ID;
+        return getString(KEY_SPOTIFY_ID);
     }
     public void setSpotifyId(String spotifyid){
         put(KEY_SPOTIFY_ID, spotifyid);
     }
     public String getTitle(){
-        return KEY_SPOTIFY_ID;
+        return getString(KEY_TITLE);
     }
     public void setTitle(String title){
         put(KEY_TITLE, title);
     }
     public String getArtist(){
-        return KEY_ARTIST;
+        return getString(KEY_ARTIST);
     }
     public void setArtist(String artist){
         put(KEY_ARTIST, artist);
     }
-    public String getAlbum(){
-        return KEY_ALBUM;
-    }
-    public void setAlbum(String album){
-        put(KEY_ALBUM, album);
-    }
+//    public String getAlbum(){
+//        return getString(KEY_ALBUM);
+//    }
+//    public void setAlbum(String album){
+//        put(KEY_ALBUM, album);
+//    }
     public String getURL(){
-        return KEY_URL;
+        return getString(KEY_URL);
     }
     public void setURL(String url){
         put(KEY_URL, url);
@@ -296,6 +299,7 @@ public class Song extends ParseObject {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
 }
 =======
@@ -303,3 +307,6 @@ public class Song extends ParseObject {
 >>>>>>> Building search adapter and queue adapter
 }
 >>>>>>> Set playlist activity and modify song model
+=======
+}
+>>>>>>> attempt to resolve conflict with master branch
