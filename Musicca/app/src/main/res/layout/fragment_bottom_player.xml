@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clCurrPlaying"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:animateLayoutChanges="true"
+    android:elevation="10dp">
+    <!-- Current Track -->
+
+    <ImageView
+        android:id="@+id/ivAlbum"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/albumicon" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:alpha="0.8"
+        android:ellipsize="marquee"
+        android:text="Sauti Sol"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:ellipsize="marquee"
+        android:text="Feel My Love"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/ivAlbum"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Playback controls -->
+
+    <SeekBar
+        android:id="@+id/seek_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:progress="50"
+        android:thumbTint="@android:color/white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ivAlbum"
+        app:layout_constraintTop_toBottomOf="@id/tvArtist" />
+
+    <ImageView
+        android:id="@+id/ivPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/actionBarItemBackground"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayPause"
+        app:layout_constraintStart_toEndOf="@+id/ivAlbum"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayPause"
+        app:srcCompat="@drawable/previcon" />
+
+    <ImageView
+        android:id="@+id/ivPlayPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/seek_to"
+        app:layout_constraintStart_toEndOf="@+id/ivAlbum"
+        app:layout_constraintTop_toBottomOf="@id/seek_to"
+        app:layout_constraintVertical_bias=".35"
+        app:srcCompat="@drawable/playicon" />
+
+    <ImageView
+        android:id="@+id/ivNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/actionBarItemBackground"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayPause"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayPause"
+        app:srcCompat="@drawable/nexticon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
