@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnGoToPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="5dp"
+        android:background="#ffa4ab"
+        android:gravity="center"
+        android:text="GO TO PLAYLIST"
+        android:textSize="14sp"
+        android:padding="5dp"/>
+
+    <TextView
+        android:id="@+id/tvSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Latest Hits"
+        android:textSize="16sp"
+        android:layout_below="@+id/btngotoPlaylist" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLatestSongs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvSection"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:padding="8dp" />
+
+</RelativeLayout>

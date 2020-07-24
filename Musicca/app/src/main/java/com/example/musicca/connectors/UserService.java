@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 public class UserService {
 
     private static final String ENDPOINT = "https://api.spotify.com/v1/me";
@@ -39,7 +38,8 @@ public class UserService {
             Gson gson = new Gson();
             user = gson.fromJson(response.toString(), User.class);
             callBack.onSuccess();
-        }, error -> get(() -> { })) {
+        }, error -> get(() -> {
+        })) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
