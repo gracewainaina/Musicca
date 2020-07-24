@@ -60,9 +60,12 @@ public class JoinFragment extends Fragment {
             public void onClick(View view) {
                 queryPlaylists();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 gotoPlaylist();
 >>>>>>> Searchbar onquery listener text
+=======
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
             }
         });
     }
@@ -78,12 +81,19 @@ public class JoinFragment extends Fragment {
                 if (e == null) {
                     // Access the array of results here
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
                     playlistObjectId = itemList.get(0).getObjectId();
 >>>>>>> Searchbar onquery listener text
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
                     playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+=======
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
                     gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
@@ -95,10 +105,14 @@ public class JoinFragment extends Fragment {
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), CurrentPlaylistActivity.class);
 <<<<<<< HEAD
+<<<<<<< HEAD
         newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
 =======
         newintent.putExtra("playlistobjectid", playlistObjectId);
 >>>>>>> Searchbar onquery listener text
+=======
+        newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
         startActivity(newintent);
 
     }

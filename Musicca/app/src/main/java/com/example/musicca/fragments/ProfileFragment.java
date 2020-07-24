@@ -101,8 +101,8 @@ public class ProfileFragment extends Fragment {
 
     private void goEditProfile() {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
-        i.putExtra("musicbio", tvMusicBio.getText().toString());
-        i.putExtra("profileimageurl", profileImageURL);
+        i.putExtra(EXTRA_MUSICBIO, tvMusicBio.getText().toString());
+        i.putExtra(EXTRA_PROFILEIMAGEURL, profileImageURL);
         startActivity(i);
     }
 

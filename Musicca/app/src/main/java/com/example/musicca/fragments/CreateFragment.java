@@ -192,6 +192,7 @@ public class CreateFragment extends Fragment {
                 ivPlaylistIcon.setImageResource(0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             }
         });
         playlistObjectId = playlistPublic.getObjectId();
@@ -206,6 +207,13 @@ public class CreateFragment extends Fragment {
         });
 
 >>>>>>> Search view functionality completed
+=======
+            }
+        });
+        playlistObjectId = playlistPublic.getObjectId();
+        Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
+        gotoPlaylist();
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
     }
 
 <<<<<<< HEAD
@@ -224,6 +232,7 @@ public class CreateFragment extends Fragment {
 >>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
+<<<<<<< HEAD
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
 <<<<<<< HEAD
@@ -236,6 +245,11 @@ public class CreateFragment extends Fragment {
 =======
         newintent.putExtra("playlistobjectid1", playlistObjectId);
 >>>>>>> Search view functionality completed
+=======
+        newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
+        newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
+        newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
         startActivity(newintent);
     }
 

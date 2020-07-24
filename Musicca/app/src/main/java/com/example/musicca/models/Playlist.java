@@ -25,6 +25,7 @@ import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 <<<<<<< HEAD
 import org.json.JSONArray;
@@ -95,6 +96,9 @@ public class Playlist extends ParseObject {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
     public List<String> getSongList() {
         List<String> songobjectIDs = getList(KEY_SONGS);
         if (songobjectIDs != null) {
@@ -103,6 +107,7 @@ public class Playlist extends ParseObject {
         } else {
             return null;
         }
+<<<<<<< HEAD
     }
 
     public void setSongList(List<String> objectIDs) {
@@ -122,10 +127,19 @@ public class Playlist extends ParseObject {
     public void setSongList(List<Song> songs) {
 >>>>>>> Search view functionality completed
         put(KEY_SONGS, songs);
+=======
     }
+
+    public void setSongList(List<String> objectIDs) {
+        JSONArray jsonArray = new JSONArray(objectIDs);
+        put(KEY_SONGS, jsonArray);
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
+    }
+
     public void setSong(Song song) {
         put(KEY_SONGS, song);
     }
+<<<<<<< HEAD
 //    public ArrayList<Song> getSongs() {
 //        return (ArrayList<Song>) get(KEY_SONGS);
 //    }
@@ -157,5 +171,7 @@ public class Playlist extends ParseObject {
 //        return false;
 //    }
 >>>>>>> Search view functionality completed
+=======
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
 
 }

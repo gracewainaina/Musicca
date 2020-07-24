@@ -31,9 +31,13 @@ import java.util.List;
 public class QueueActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 =======
 >>>>>>> Search view functionality completed
+=======
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -49,10 +53,14 @@ public class QueueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
 =======
         playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
 >>>>>>> Search view functionality completed
+=======
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+>>>>>>> Resolving git comments on camel case, logs, constant, unused code
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
@@ -79,6 +87,12 @@ public class QueueActivity extends AppCompatActivity {
         queryAllSongs();
 
         Log.d(TAG, "length of songsAll2 " + allSongs.size());
+
+        queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
+        rvLatestSongs.setAdapter(queueAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvLatestSongs.setLayoutManager(linearLayoutManager);
     }
 
     @Override
@@ -136,28 +150,13 @@ public class QueueActivity extends AppCompatActivity {
             allSongs.addAll(songs);
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
 
-            queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
-            rvLatestSongs.setAdapter(queueAdapter);
-
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            rvLatestSongs.setLayoutManager(linearLayoutManager);
             queueAdapter.notifyDataSetChanged();
         });
-
-//        try {
-//            allSongs.addAll(query.find());
-//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
-//            queueAdapter.notifyDataSetChanged();
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
-        i.putExtra("playlistobjectid", playlistObjectId);
+        i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
 }
