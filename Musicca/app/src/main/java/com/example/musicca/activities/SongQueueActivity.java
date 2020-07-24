@@ -87,10 +87,14 @@ public class SongQueueActivity extends AppCompatActivity {
     private Button btnAddSong;
     private Button btnBack;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Button btnGoToPlaylist;
 =======
     private Button btngotoPlaylist;
 >>>>>>> Searchbar onquery listener text
+=======
+    private Button btnGoToPlaylist;
+>>>>>>> Camel case
     private String albumUrl;
     private String playlistObjectId;
     private String songObjectId;
@@ -114,6 +118,7 @@ public class SongQueueActivity extends AppCompatActivity {
         btnAddSong = findViewById(R.id.btnAddSong);
         btnBack = findViewById(R.id.btnBack);
 <<<<<<< HEAD
+<<<<<<< HEAD
         btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
@@ -126,6 +131,9 @@ public class SongQueueActivity extends AppCompatActivity {
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
 =======
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
+=======
+        btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
+>>>>>>> Camel case
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -145,10 +153,13 @@ public class SongQueueActivity extends AppCompatActivity {
 =======
         tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
+<<<<<<< HEAD
 >>>>>>> Resolving git comments on camel case, logs, constant, unused code
         //currentSong = getCurrentSong(songObjectId);
 //        Log.d("CURRENT PLAYLIST", currentPlaylist.getName());
 >>>>>>> Search view functionality completed
+=======
+>>>>>>> Camel case
 
         btnAddSong.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,8 +177,12 @@ public class SongQueueActivity extends AppCompatActivity {
 >>>>>>> Search view functionality completed
             }
         });
+<<<<<<< HEAD
         btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
 >>>>>>> Searchbar onquery listener text
+=======
+        btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
+>>>>>>> Camel case
             @Override
             public void onClick(View view) {
                 gotoPlaylist();
@@ -204,6 +219,7 @@ public class SongQueueActivity extends AppCompatActivity {
     }
 
     private void getCurrentPlaylistSongs(String playlistObjectId) {
+<<<<<<< HEAD
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         query.include("songs");
         // Execute the query to find the object with ID
@@ -244,12 +260,12 @@ public class SongQueueActivity extends AppCompatActivity {
     }
 
     private void getCurrentPlaylistSongs(String playlistobjectid) {
+=======
+>>>>>>> Camel case
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
-        // First try to find from the cache and only then go to network
-        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
         query.include("songs");
         // Execute the query to find the object with ID
-        query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
+        query.getInBackground(playlistObjectId, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {

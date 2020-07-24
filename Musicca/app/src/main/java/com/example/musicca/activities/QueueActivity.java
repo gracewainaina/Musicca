@@ -75,6 +75,7 @@ public class QueueActivity extends AppCompatActivity {
 
         allSongs = new ArrayList<>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         queryAllSongs();
 
@@ -83,10 +84,10 @@ public class QueueActivity extends AppCompatActivity {
 =======
         Log.d(TAG, "length of songsAll1 " + allSongs.size());
 >>>>>>> Search view functionality completed
+=======
+>>>>>>> Camel case
 
         queryAllSongs();
-
-        Log.d(TAG, "length of songsAll2 " + allSongs.size());
 
         queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
         rvLatestSongs.setAdapter(queueAdapter);
@@ -136,20 +137,16 @@ public class QueueActivity extends AppCompatActivity {
 =======
 >>>>>>> Search view functionality completed
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-//        query.setLimit(5);
-//        query.setSkip(5 * page);
 
         query.findInBackground((songs, e) -> {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
+                Toast.makeText(QueueActivity.this, "Error retrieving songs!", Toast.LENGTH_SHORT).show();
+
                 return;
-            }
-            for (Song song : songs) {
-                Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
             }
             allSongs.addAll(songs);
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
-
             queueAdapter.notifyDataSetChanged();
         });
     }
