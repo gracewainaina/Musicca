@@ -54,6 +54,7 @@ public class CreateFragment extends Fragment {
     private Button btnCreatePlaylist;
     private TextView tvSetPlaylistIcon;
 
+    private String playlistObjectId;
     private File photoFile;
     private String photoFileName = "photo.jpg";
     public final static int PICK_PHOTO_CODE = 1046;
@@ -115,9 +116,8 @@ public class CreateFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
-                gotoPlaylist();
+
+                savePlaylist(playlistName, playlistCode, parseUser, photoFile);
             }
         });
 
@@ -175,15 +175,19 @@ public class CreateFragment extends Fragment {
                 etPlaylistname_create.setText("");
                 etPlaylistcode_create.setText("");
                 ivPlaylistIcon.setImageResource(0);
+
             }
         });
+        playlistObjectId = playlistPublic.getObjectId();
+        Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
+        gotoPlaylist();
     }
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra("playlistname", playlistPublic.getName());
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
-        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+        newintent.putExtra("playlistobjectid", playlistObjectId);
         startActivity(newintent);
     }
 

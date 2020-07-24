@@ -24,6 +24,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
     private Context context;
     private List<Song> songs;
@@ -39,6 +41,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
+        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
     }
 
     @NonNull
@@ -145,6 +148,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("songObjectid", song.getObjectId());
                 intent.putExtra("playlistobjectid", playlistObjectId);
                 // show the activity
+                Log.d(TAG, "ssong selected");
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
