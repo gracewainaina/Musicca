@@ -58,7 +58,6 @@ public class CreateFragment extends Fragment {
     private Button btnCreatePlaylist;
     private TextView tvSetPlaylistIcon;
 
-    private String playlistObjectId;
     private File photoFile;
     private String photoFileName = "photo.jpg";
     public final static int PICK_PHOTO_CODE = 1046;
@@ -122,6 +121,7 @@ public class CreateFragment extends Fragment {
                 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
 =======
@@ -133,6 +133,11 @@ public class CreateFragment extends Fragment {
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
 >>>>>>> Populate newly created playlist
+=======
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
+                gotoPlaylist();
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
             }
         });
 
@@ -190,12 +195,8 @@ public class CreateFragment extends Fragment {
                 etPlaylistname_create.setText("");
                 etPlaylistcode_create.setText("");
                 ivPlaylistIcon.setImageResource(0);
-
             }
         });
-        playlistObjectId = playlistPublic.getObjectId();
-        Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
-        gotoPlaylist();
     }
 
     private void gotoPlaylist() {
@@ -209,6 +210,7 @@ public class CreateFragment extends Fragment {
         newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
@@ -217,6 +219,9 @@ public class CreateFragment extends Fragment {
 =======
         newintent.putExtra("playlistobjectid", playlistObjectId);
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         startActivity(newintent);
     }
 

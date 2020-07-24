@@ -21,8 +21,6 @@ import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 public class LoginSpotifyActivity extends AppCompatActivity {
-
-    public static final String TAG = "LoginSpotifyActivity";
     private static final String CLIENT_ID = "22793b7728c54470b8d117506f9574c5";
     private static final String REDIRECT_URI = "com.musicca://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
@@ -72,13 +70,11 @@ public class LoginSpotifyActivity extends AppCompatActivity {
                 // Auth flow returned an error
                 case ERROR:
                     // Handle error response
-                    Log.e(TAG, "issue with login");
                     break;
 
                 // Most likely auth flow was cancelled
                 default:
                     // Handle other cases
-                    Log.d(TAG, "Please try login again");
             }
         }
     }

@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.util.Log;
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 import android.util.Log;
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ import com.example.musicca.activities.SongPlaylistActivity;
 import com.example.musicca.activities.SongQueueActivity;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
 import com.example.musicca.models.Playlist;
@@ -40,6 +44,9 @@ import com.example.musicca.models.Song;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+import com.example.musicca.models.Song;
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,20 +72,22 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 =======
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder>{
 
-    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
-    private static final String TAG = "Queue";
     private Context context;
-    private List<String> songObjectIds;
+    private List<Song> songs;
     private String playlistObjectId;
 
-    public CurrentPlaylistAdapter(Context context, List<String> songObjectIds, String playlistObjectId) {
+    public CurrentPlaylistAdapter(Context context, List<Song> songs, String playlistObjectId) {
         this.context = context;
+<<<<<<< HEAD
 <<<<<<< HEAD
         this.songs = songs;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
         this.songObjectIds = songObjectIds;
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+        this.songs = songs;
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         this.playlistObjectId = playlistObjectId;
     }
 
@@ -93,6 +102,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         String songObjectId = songObjectIds.get(position);
         //Song song = songs.get(position);
         holder.bind(songObjectId);
@@ -105,13 +115,21 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         //Song song = songs.get(position);
         holder.bind(songObjectId);
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+        Song song = songs.get(position);
+        holder.bind(song);
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
     @Override
     public int getItemCount() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return songObjectIds.size();
+=======
+        return songs.size();
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -141,6 +159,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             int position = getAdapterPosition();
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 String songObjectId = songObjectIds.get(position);
@@ -191,37 +210,33 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 =======
                 String songObjectId = songObjectIds.get(position);
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+                // get the post at the position, this won't work if the class is static
+                Song song = songs.get(position);
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
-                ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-                // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-                query.getInBackground(songObjectId, new GetCallback<Song>() {
-                    @Override
-                    public void done(Song song, com.parse.ParseException e) {
-                        if (e == null) {
-                            Log.d(TAG, "song found22" + song.getTitle());
-                            intent.putExtra("albumiconurl", song.getURL());
-                            intent.putExtra("songtitle", song.getTitle());
-                            intent.putExtra("songartist", song.getArtist());
-                            intent.putExtra("songObjectid", song.getObjectId());
-                            intent.putExtra("playlistobjectid", playlistObjectId);
-                            // show the activity
-                            context.startActivity(intent);
-                            Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Log.d(TAG, "song not found22!");
-                        }
-                    }
-                });
+                // serialize the post using parceler, use its short name as a key
+                intent.putExtra("albumiconurl", song.getURL());
+                intent.putExtra("songtitle", song.getTitle());
+                intent.putExtra("songartist", song.getArtist());
+                intent.putExtra("songObjectid", song.getObjectId());
+                intent.putExtra("playlistobjectid", playlistObjectId);
+                // show the activity
+                context.startActivity(intent);
+                Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getURL()).into(ivAlbum);
+<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
         public void bind(String songObjectId) {
@@ -244,6 +259,8 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 }
             });
 >>>>>>> Play song, login error handling, contant string extras for intents
+=======
+>>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         }
     }
 }
