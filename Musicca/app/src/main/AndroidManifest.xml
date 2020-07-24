@@ -16,10 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:usesCleartextTraffic="true">
 =======
         android:usesCleartextTraffic="true">>
 >>>>>>> Search view functionality completed
+=======
+        android:usesCleartextTraffic="true">
+>>>>>>> Merge conflict with master branch
         <activity android:name=".activities.EditProfileActivity"></activity>
         <activity android:name=".activities.CurrentPlaylistActivity" />
         <activity android:name=".activities.SongPlaylistActivity" />
