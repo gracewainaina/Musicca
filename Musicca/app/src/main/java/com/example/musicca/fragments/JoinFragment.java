@@ -2,11 +2,6 @@ package com.example.musicca.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.musicca.R;
 import com.example.musicca.activities.CurrentPlaylistActivity;
-import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,7 +26,6 @@ import java.util.List;
 public class JoinFragment extends Fragment {
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
-    public static final String KEY_PLAYLISTNAME = "name";
     public static final String KEY_PLAYLISTCODE = "inviteCode";
 
     private EditText etPlaylistname_join;

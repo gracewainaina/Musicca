@@ -21,7 +21,6 @@ import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
