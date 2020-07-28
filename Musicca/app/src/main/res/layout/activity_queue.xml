@@ -20,11 +20,7 @@
             android:padding="5dp"/>
 =======
     <Button
-<<<<<<< HEAD
         android:id="@+id/btnGoToPlaylist"
-=======
-        android:id="@+id/btngotoPlaylist"
->>>>>>> Attempt 2: Edit Profile Activity
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_alignParentStart="false"
@@ -38,6 +34,7 @@
         android:padding="5dp"/>
 >>>>>>> Attempt 2: Edit Profile Activity
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/tvSection"
             android:layout_width="match_parent"
@@ -46,6 +43,16 @@
             android:text="Latest Hits"
             android:textSize="16sp"
             android:layout_below="@+id/btnGoToPlaylist" />
+=======
+    <TextView
+        android:id="@+id/tvSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Latest Hits"
+        android:textSize="16sp"
+        android:layout_below="@+id/btnGoToPlaylist" />
+>>>>>>> resolved conflict in modify-playlist branch
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvLatestSongs"

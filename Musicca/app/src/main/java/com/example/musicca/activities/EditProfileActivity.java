@@ -1,6 +1,7 @@
 package com.example.musicca.activities;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 >>>>>>> Edit Profile Activity
+=======
+>>>>>>> resolved conflict in modify-playlist branch
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,26 +25,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-<<<<<<< HEAD
-=======
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Set up Profile Photo and update music bio
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
->>>>>>> Edit Profile Activity
-=======
-import android.widget.Toast;
->>>>>>> Set up Profile Photo and update music bio
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,84 +44,59 @@ import com.example.musicca.R;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Set up Profile Photo and update music bio
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
 <<<<<<< HEAD
-public class EditProfileActivity extends AppCompatActivity {
-
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
-    public final static int PICK_PHOTO_CODE = 1046;
-    public static final String KEY_PROFILEIMAGE = "profileimage";
-    public static final String KEY_MUSICBIO = "musicbio";
-
-    private static final String TAG = "EditProfileActivity";
-    private ParseUser parseUser = ParseUser.getCurrentUser();
-
-    private ImageView ivProfileImage;
-    private Button btnTakePhoto;
-    private Button btnChoosePhoto;
-=======
-=======
->>>>>>> Set up Profile Photo and update music bio
-public class EditProfileActivity extends AppCompatActivity {
-
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
-    public final static int PICK_PHOTO_CODE = 1046;
-    public static final int WIDTH = 300;
-    public static final String KEY_PROFILEIMAGE = "profileimage";
-    public static final String KEY_MUSICBIO = "musicbio";
-
-    private static final String TAG = "EditProfileActivity";
-    private ParseUser parseUser = ParseUser.getCurrentUser();
-
-    private ImageView ivProfileImage;
 <<<<<<< HEAD
-    private Button btnChangeImage;
->>>>>>> Edit Profile Activity
-=======
+public class EditProfileActivity extends AppCompatActivity {
+
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public final static int PICK_PHOTO_CODE = 1046;
+    public static final String KEY_PROFILEIMAGE = "profileimage";
+    public static final String KEY_MUSICBIO = "musicbio";
+
+    private static final String TAG = "EditProfileActivity";
+    private ParseUser parseUser = ParseUser.getCurrentUser();
+
+    private ImageView ivProfileImage;
     private Button btnTakePhoto;
     private Button btnChoosePhoto;
+=======
+=======
 >>>>>>> Set up Profile Photo and update music bio
+=======
+>>>>>>> resolved conflict in modify-playlist branch
+public class EditProfileActivity extends AppCompatActivity {
+
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public final static int PICK_PHOTO_CODE = 1046;
+    public static final String KEY_PROFILEIMAGE = "profileimage";
+    public static final String KEY_MUSICBIO = "musicbio";
+
+    private static final String TAG = "EditProfileActivity";
+    private ParseUser parseUser = ParseUser.getCurrentUser();
+
+    private ImageView ivProfileImage;
+    private Button btnTakePhoto;
+    private Button btnChoosePhoto;
     private EditText tvEditMusicBio;
     private Button btnChangeMusicBio;
     private String profileImageURL;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Set up Profile Photo and update music bio
     // Camera
     private File photoFile;
     private String photoFileName = "photo.jpg";
 
-<<<<<<< HEAD
-=======
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Set up Profile Photo and update music bio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
         ivProfileImage = findViewById(R.id.ivProfileImage);
-<<<<<<< HEAD
-<<<<<<< HEAD
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         btnChoosePhoto = findViewById(R.id.btnChoosePhoto);
-=======
-        btnChangeImage = findViewById(R.id.btnChangeImage);
->>>>>>> Edit Profile Activity
-=======
-        btnTakePhoto = findViewById(R.id.btnTakePhoto);
-        btnChoosePhoto = findViewById(R.id.btnChoosePhoto);
->>>>>>> Set up Profile Photo and update music bio
         tvEditMusicBio = findViewById(R.id.tvEditMusicBio);
         btnChangeMusicBio = findViewById(R.id.btnChangeMusicBio);
 
@@ -139,8 +106,6 @@ public class EditProfileActivity extends AppCompatActivity {
             Glide.with(this).load(profileImageURL).circleCrop().into(ivProfileImage);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,48 +117,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onPickPhoto();
-=======
-        btnChangeImage.setOnClickListener(new View.OnClickListener() {
-=======
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
->>>>>>> Set up Profile Photo and update music bio
-            @Override
-            public void onClick(View view) {
-                launchCamera();
-            }
-        });
-
-<<<<<<< HEAD
->>>>>>> Edit Profile Activity
-=======
-        btnChoosePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onPickPhoto();
->>>>>>> Set up Profile Photo and update music bio
             }
         });
 
         btnChangeMusicBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 updateMusicBio();
-=======
-                
->>>>>>> Edit Profile Activity
-=======
-                updateMusicBio();
->>>>>>> Set up Profile Photo and update music bio
             }
         });
 
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Set up Profile Photo and update music bio
 
     private void updateMusicBio() {
         parseUser.put(KEY_MUSICBIO, tvEditMusicBio.getText().toString());
@@ -275,14 +209,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-<<<<<<< HEAD
-<<<<<<< HEAD
         // camera
-=======
->>>>>>> Set up Profile Photo and update music bio
-=======
-        // camera
->>>>>>> Set up playlist icon
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // by this point we have the camera photo on disk
@@ -294,15 +221,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         // gallery
-=======
-
->>>>>>> Set up Profile Photo and update music bio
-=======
-        // gallery
->>>>>>> Set up playlist icon
         if ((data != null) && requestCode == PICK_PHOTO_CODE) {
             Uri photoUri = data.getData();
 
@@ -332,6 +251,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Toast.makeText(EditProfileActivity.this, "Profile picture updated successfully!", Toast.LENGTH_SHORT).show();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Edit Profile Activity
 <<<<<<< HEAD
@@ -341,3 +261,6 @@ public class EditProfileActivity extends AppCompatActivity {
 >>>>>>> Set up Profile Photo and update music bio
 }
 >>>>>>> Set up Profile Photo and update music bio
+=======
+}
+>>>>>>> resolved conflict in modify-playlist branch

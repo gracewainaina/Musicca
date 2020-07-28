@@ -8,10 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
->>>>>>> Edit Profile Activity
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -28,14 +25,7 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
-=======
->>>>>>> Edit Profile Activity
-=======
-    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
->>>>>>> Play song, login error handling, contant string extras for intents
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -43,20 +33,13 @@ public class QueueActivity extends AppCompatActivity {
     private QueueAdapter queueAdapter;
     protected List<Song> allSongs;
     private TextView tvSection;
-<<<<<<< HEAD
     private Button btnGoToPlaylist;
-=======
-    private Button btngotoPlaylist;
->>>>>>> Edit Profile Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
@@ -64,21 +47,6 @@ public class QueueActivity extends AppCompatActivity {
         btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
 
         btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
-=======
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
-=======
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
-=======
-        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
->>>>>>> Play song, login error handling, contant string extras for intents
-        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
->>>>>>> Populate newly created playlist
-        tvSection = findViewById(R.id.tvSection);
-        rvLatestSongs = findViewById(R.id.rvLatestSongs);
-        btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
-
-        btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
->>>>>>> Edit Profile Activity
             @Override
             public void onClick(View view) {
                 gotoPlaylist();
@@ -86,6 +54,7 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
+<<<<<<< HEAD
 <<<<<<< HEAD
         queryAllSongs();
 
@@ -96,12 +65,11 @@ public class QueueActivity extends AppCompatActivity {
 
 =======
         Log.d(TAG, "length of songsAll1 " + allSongs.size());
+=======
+>>>>>>> resolved conflict in modify-playlist branch
 
         queryAllSongs();
 
-        Log.d(TAG, "length of songsAll2 " + allSongs.size());
-
->>>>>>> Edit Profile Activity
         queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
         rvLatestSongs.setAdapter(queueAdapter);
 
@@ -136,16 +104,10 @@ public class QueueActivity extends AppCompatActivity {
 
     private void queryAllSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-<<<<<<< HEAD
-=======
-//        query.setLimit(5);
-//        query.setSkip(5 * page);
->>>>>>> Edit Profile Activity
 
         query.findInBackground((songs, e) -> {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
-<<<<<<< HEAD
                 Toast.makeText(QueueActivity.this, "Error retrieving songs!", Toast.LENGTH_SHORT).show();
 
                 return;
@@ -161,40 +123,11 @@ public class QueueActivity extends AppCompatActivity {
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
             queueAdapter.notifyDataSetChanged();
         });
-=======
-                return;
-            }
-            for (Song song : songs) {
-                Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
-            }
-            allSongs.addAll(songs);
-            Log.d(TAG, "length of songsAll3 " + allSongs.size());
-
-            queueAdapter.notifyDataSetChanged();
-        });
-<<<<<<< HEAD
-
-//        try {
-//            allSongs.addAll(query.find());
-//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
-//            queueAdapter.notifyDataSetChanged();
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
     }
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
-<<<<<<< HEAD
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-=======
-        i.putExtra("playlistobjectid", playlistObjectId);
->>>>>>> Edit Profile Activity
         startActivity(i);
     }
 }

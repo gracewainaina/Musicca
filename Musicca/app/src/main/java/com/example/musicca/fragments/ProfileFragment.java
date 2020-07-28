@@ -16,22 +16,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.example.musicca.activities.EditProfileActivity;
 import com.example.musicca.activities.LoginActivity;
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
-import com.example.musicca.activities.EditProfileActivity;
->>>>>>> Stashed changes
->>>>>>> Edit Profile Activity
-=======
-import com.example.musicca.activities.EditProfileActivity;
->>>>>>> Attempt 2: Edit Profile Activity
-=======
->>>>>>> Set up Profile Photo and update music bio
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -43,32 +29,12 @@ public class ProfileFragment extends Fragment {
     private TextView tvUsername;
     private TextView tvMusicBio;
     private ImageView ivProfileImage;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private Button btnEditProfile;
-=======
-<<<<<<< Updated upstream
-    private Button btnProfileimage;
-    private Button btnMusicBio;
->>>>>>> Edit Profile Activity
-    private Button btnLogout;
-    private String profileImageURL;
-
-    private ParseUser parseUser = ParseUser.getCurrentUser();
-
-<<<<<<< HEAD
-=======
-    public static final String TAG = "ProfileFragment";
-=======
-=======
->>>>>>> Attempt 2: Edit Profile Activity
     private Button btnEditProfile;
     private Button btnLogout;
     private String profileImageURL;
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
 
->>>>>>> Edit Profile Activity
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -86,17 +52,8 @@ public class ProfileFragment extends Fragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         btnEditProfile = (Button) view.findViewById(R.id.btnEditProfile);
         btnLogout = (Button) view.findViewById(R.id.btnLogout);
-=======
-<<<<<<< Updated upstream
-        btnProfileimage = view.findViewById(R.id.btnProfileimage);
-        btnMusicBio = view.findViewById(R.id.btnMusicBio);
-        btnLogout = view.findViewById(R.id.btnLogout);
->>>>>>> Edit Profile Activity
 
         tvUsername.setText(parseUser.getUsername());
         tvMusicBio.setText(parseUser.getString("musicbio"));
@@ -110,43 +67,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 goEditProfile();
-            }
-        });
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-<<<<<<< HEAD
-                if (ParseUser.getCurrentUser() == null) {
-                    goLoginActivity();
-                }
-=======
-=======
-=======
->>>>>>> Attempt 2: Edit Profile Activity
-        btnEditProfile = view.findViewById(R.id.btnEditProfile);
-=======
-        btnEditProfile = (Button) view.findViewById(R.id.btnEditProfile);
-        btnLogout = (Button) view.findViewById(R.id.btnLogout);
->>>>>>> Set up Profile Photo and update music bio
-
-        tvUsername.setText(parseUser.getUsername());
-        tvMusicBio.setText(parseUser.getString("musicbio"));
-        ParseFile parseFile = parseUser.getParseFile("profileimage");
-        profileImageURL = parseFile.getUrl();
-        if (parseFile != null) {
-            Glide.with(getContext()).load(profileImageURL).circleCrop().into(ivProfileImage);
-        }
-
-        btnEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goEditProfile();
-<<<<<<< HEAD
->>>>>>> Stashed changes
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Attempt 2: Edit Profile Activity
             }
         });
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +82,6 @@ public class ProfileFragment extends Fragment {
 
     private void goEditProfile() {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
-<<<<<<< HEAD
         i.putExtra(EXTRA_MUSICBIO, tvMusicBio.getText().toString());
         i.putExtra(EXTRA_PROFILEIMAGEURL, profileImageURL);
         startActivity(i);
@@ -171,19 +90,6 @@ public class ProfileFragment extends Fragment {
     private void goLoginActivity() {
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
-=======
-        i.putExtra("musicbio", tvMusicBio.getText().toString());
-        i.putExtra("profileimageurl", profileImageURL);
-<<<<<<< HEAD
->>>>>>> Edit Profile Activity
-=======
-        startActivity(i);
-    }
-
-    private void goLoginActivity() {
-        Intent i = new Intent(getContext(), LoginActivity.class);
-        startActivity(i);
->>>>>>> Set up Profile Photo and update music bio
     }
 
 
