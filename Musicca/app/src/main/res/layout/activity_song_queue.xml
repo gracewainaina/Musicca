@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.SongQueueActivity">
+
     <ImageView
         android:id="@+id/ivSongAlbum"
         android:layout_width="200dp"
@@ -73,7 +74,7 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_below="@+id/btnGoToPlaylist"
+        android:layout_below="@+id/btngotoPlaylist"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="#ffa4ab"
