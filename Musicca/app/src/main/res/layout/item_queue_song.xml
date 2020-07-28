@@ -5,15 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-    android:orientation="vertical">
-=======
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Attempt 2: Edit Profile Activity
     android:padding="5dp">
 
     <ImageView
@@ -21,11 +12,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:srcCompat="@drawable/albumicon"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Edit Profile Activity
 
     <TextView
         android:id="@+id/tvTitle"
@@ -44,26 +30,6 @@
         android:id="@+id/tvArtist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-=======
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="false"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/ivAlbum"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="14sp"
-        tools:text="Song Title" />
-
-    <TextView
-        android:id="@+id/tvArtist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
->>>>>>> Attempt 2: Edit Profile Activity
         android:layout_below="@+id/tvTitle"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"

@@ -7,12 +7,6 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -25,17 +19,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import com.example.musicca.R;
 import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
-import com.parse.ParseFile;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
@@ -120,19 +118,8 @@ public class CreateFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
                 savePlaylist(playlistName, playlistCode, parseUser, photoFile);
-=======
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
-                gotoPlaylist();
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-
-                savePlaylist(playlistName, playlistCode, parseUser, photoFile);
->>>>>>> Populate newly created playlist
             }
         });
 
@@ -200,23 +187,9 @@ public class CreateFragment extends Fragment {
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
-<<<<<<< HEAD
         newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
         newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
         newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-=======
-        newintent.putExtra("playlistname", playlistPublic.getName());
-        newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
-<<<<<<< HEAD
-<<<<<<< HEAD
-        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-        newintent.putExtra("playlistobjectid1", playlistObjectId);
->>>>>>> Populate newly created playlist
-=======
-        newintent.putExtra("playlistobjectid", playlistObjectId);
->>>>>>> Play song, login error handling, contant string extras for intents
         startActivity(newintent);
     }
 
@@ -265,14 +238,6 @@ public class CreateFragment extends Fragment {
             selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            playlistPublic.put(KEY_PLAYLISTICON, parsefile);
-            playlistPublic.saveInBackground();
->>>>>>> Attempt 2: Edit Profile Activity
-=======
->>>>>>> Set up playlist icon
             // Load the selected image into a preview
             ivPlaylistIcon.setImageBitmap(selectedImage);
 
