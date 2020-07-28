@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
 import android.content.Context;
@@ -21,14 +20,11 @@ import android.os.Bundle;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-import android.content.Intent;
-import android.os.Bundle;
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -40,6 +36,8 @@ import androidx.appcompat.app.AppCompatActivity;
 =======
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 <<<<<<< HEAD
+=======
+>>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 import android.widget.Toast;
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
@@ -50,18 +48,20 @@ import android.widget.Toast;
 import android.widget.Toast;
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Play song, login error handling, contant string extras for intents
 =======
 =======
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
+=======
+>>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseQuery;
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -109,13 +109,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "Play Song";
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-
-public class SongPlaylistActivity extends AppCompatActivity {
-
-    Playlist currentPlaylist;
-    Song currentSong;
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
     private ImageView ivSongAlbum;
     private TextView tvTitle;
@@ -131,7 +124,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
     private static final String CLIENT_ID = "22793b7728c54470b8d117506f9574c5";
@@ -145,8 +137,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +145,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivSongAlbum = findViewById(R.id.ivSongAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -188,20 +177,17 @@ public class SongPlaylistActivity extends AppCompatActivity {
         btnReturnPlaylist = findViewById(R.id.btngotoPlaylist);
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-        btnReturnPlaylist = findViewById(R.id.btngotoPlaylist);
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
-        songObjectId = getIntent().getStringExtra("songObjectid");
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+        Log.d("PLAYLIST SONGQUEUE", "playlistObjectId "+ playlistObjectId);
 
-        albumUrl = getIntent().getStringExtra("albumiconurl");
+        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivSongAlbum);
 
-        tvTitle.setText(getIntent().getStringExtra("songtitle"));
-        tvArtist.setText(getIntent().getStringExtra("songartist"));
+        tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
+        tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
 
-<<<<<<< HEAD
 <<<<<<< HEAD
         currentPlaylist = getCurrentPlaylist(playlistObjectId);
         currentSong = getCurrentSong(songObjectId);
@@ -215,10 +201,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
             }
         });
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-        currentPlaylist = getCurrentPlaylist(playlistObjectId);
-        currentSong = getCurrentSong(songObjectId);
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
         btnReturnPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,7 +210,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
         });
     }
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     private void gotoPlaylist() {
@@ -280,8 +261,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
         super.onStop();
         SpotifyAppRemote.disconnect(mSpotifyAppRemote);
 =======
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     private Playlist getCurrentPlaylist(String playlistobjectid) {
         final Playlist[] currentplaylist = new Playlist[1];
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
@@ -295,39 +274,57 @@ public class SongPlaylistActivity extends AppCompatActivity {
             }
         });
         return currentplaylist[0];
-<<<<<<< HEAD
 =======
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra("playlistobjectid", playlistObjectId);
         startActivity(i);
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
-    private Song getCurrentSong(String songobjectid) {
-        final Song[] currentsong = new Song[1];
+
+    private void playSong(String songObjectId) {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
         // Execute the query to find the object with ID
-        query.getInBackground(songobjectid, new GetCallback<Song>() {
+        query.getInBackground(songObjectId, new GetCallback<Song>() {
             @Override
-            public void done(Song song, ParseException e) {
-                currentsong[0] = song;
+            public void done(Song song, com.parse.ParseException e) {
+                if (e == null) {
+                    Log.d(TAG, "play song found" + song.getTitle());
+                    String spotifyID = song.getSpotifyId();
+                    Log.d(TAG, "play songspotifyid" + "spotifyid " + spotifyID);
+
+                    ConnectionParams connectionParams = new ConnectionParams.Builder(CLIENT_ID).setRedirectUri(REDIRECT_URI).showAuthView(true).build();
+                    SpotifyAppRemote.connect(SongPlaylistActivity.this, connectionParams,
+                            new Connector.ConnectionListener() {
+
+                                @Override
+                                public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                                    mSpotifyAppRemote = spotifyAppRemote;
+                                    Log.d(TAG, "Connected! Yay!");
+
+                                    // Now you can start interacting with App Remote
+                                    mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + spotifyID);
+                                }
+
+                                @Override
+                                public void onFailure(Throwable throwable) {
+                                    Log.e(TAG, throwable.getMessage(), throwable);
+
+                                    // Something went wrong when attempting to connect! Handle errors here
+                                }
+                            });
+                }
+                else{
+                    Log.d(TAG, "play song notfound!");
+                }
             }
         });
-        return currentsong[0];
     }
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra("playlistobjectid", playlistObjectId);
         startActivity(i);
-<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
     @Override
@@ -335,7 +332,5 @@ public class SongPlaylistActivity extends AppCompatActivity {
         super.onStop();
         SpotifyAppRemote.disconnect(mSpotifyAppRemote);
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 }

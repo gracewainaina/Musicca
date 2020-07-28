@@ -52,7 +52,6 @@
         android:layout_marginTop="50dp"
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         android:src="@drawable/previcon" />
 <<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/previcon" />-->
@@ -69,12 +68,15 @@
 <!--        tools:srcCompat="@drawable/previcon" />-->
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Play song, login error handling, contant string extras for intents
 =======
 =======
         tools:srcCompat="@drawable/previcon" />
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
+=======
+>>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -85,7 +87,6 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         android:src="@drawable/playicon" />
@@ -104,12 +105,15 @@
 <!--        tools:srcCompat="@drawable/playicon" />-->
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Play song, login error handling, contant string extras for intents
 =======
 =======
         tools:srcCompat="@drawable/playicon" />
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
+=======
+>>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 
     <ImageView
         android:id="@+id/ivNext"
@@ -119,7 +123,6 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         android:src="@drawable/nexticon"/>
@@ -138,12 +141,15 @@
 <!--        tools:srcCompat="@drawable/nexticon" />-->
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Play song, login error handling, contant string extras for intents
 =======
 =======
         tools:srcCompat="@drawable/nexticon" />
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 >>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
+=======
+>>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 
     <Button
         android:id="@+id/btnReturnPlaylist"

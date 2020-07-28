@@ -37,7 +37,6 @@ import java.util.List;
 <<<<<<< HEAD
 <<<<<<< HEAD
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
-<<<<<<< HEAD
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
@@ -45,8 +44,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
     private static final String EXTRA_SONGTITLE = "songtitle";
     private static final String EXTRA_SONGARTIST = "songartist";
 
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     private static final String TAG = "QueueAdapter";
 =======
 <<<<<<< Updated upstream
@@ -93,7 +90,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
 =======
 >>>>>>> Stashed changes
@@ -103,8 +99,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 =======
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
 >>>>>>> Populate newly created playlist
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
     @NonNull
@@ -327,13 +321,10 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra("playlistobjectid", playlistObjectId);
                 // show the activity
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
                 Log.d(TAG, "ssong selected");
 >>>>>>> Populate newly created playlist
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }
