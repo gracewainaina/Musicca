@@ -1,5 +1,8 @@
 package com.example.musicca.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,14 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
+import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;

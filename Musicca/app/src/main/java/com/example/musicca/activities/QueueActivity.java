@@ -1,6 +1,7 @@
 package com.example.musicca.activities;
 
 import android.content.Intent;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,10 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
+import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -92,6 +97,7 @@ public class QueueActivity extends AppCompatActivity {
 
                 return;
             }
+
             allSongs.addAll(songs);
 
             queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
@@ -99,7 +105,6 @@ public class QueueActivity extends AppCompatActivity {
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             rvLatestSongs.setLayoutManager(linearLayoutManager);
-
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
             queueAdapter.notifyDataSetChanged();
         });
