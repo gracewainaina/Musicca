@@ -4,21 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
-        <Button
-            android:id="@+id/btnGoToPlaylist"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="false"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="74dp"
-            android:layout_marginTop="5dp"
-            android:background="#ffa4ab"
-            android:gravity="center"
-            android:text="GO TO PLAYLIST"
-            android:textSize="14sp"
-            android:padding="5dp"/>
-=======
     <Button
         android:id="@+id/btnGoToPlaylist"
         android:layout_width="wrap_content"
@@ -32,18 +17,7 @@
         android:text="GO TO PLAYLIST"
         android:textSize="14sp"
         android:padding="5dp"/>
->>>>>>> Attempt 2: Edit Profile Activity
 
-<<<<<<< HEAD
-        <TextView
-            android:id="@+id/tvSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Latest Hits"
-            android:textSize="16sp"
-            android:layout_below="@+id/btnGoToPlaylist" />
-=======
     <TextView
         android:id="@+id/tvSection"
         android:layout_width="match_parent"
@@ -52,18 +26,14 @@
         android:text="Latest Hits"
         android:textSize="16sp"
         android:layout_below="@+id/btnGoToPlaylist" />
-<<<<<<< HEAD
->>>>>>> resolved conflict in modify-playlist branch
-=======
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvLatestSongs"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tvSection"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:padding="8dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLatestSongs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvSection"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:padding="8dp" />
 
 </RelativeLayout>

@@ -1,44 +1,28 @@
 package com.example.musicca.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import android.widget.ProgressBar;
-<<<<<<< HEAD
-=======
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
->>>>>>> Populate newly created playlist
->>>>>>> Populate newly created playlist
-=======
->>>>>>> resolved conflict in modify-playlist branch
-=======
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.models.Playlist;
+import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;

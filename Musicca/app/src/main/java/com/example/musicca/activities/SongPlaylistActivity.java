@@ -1,21 +1,8 @@
 package com.example.musicca.activities;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
 import android.content.Context;
->>>>>>> Attempt 2: Edit Profile Activity
-=======
->>>>>>> resolved conflict in modify-playlist branch
-=======
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,71 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import androidx.appcompat.app.AppCompatActivity;
-=======
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
-<<<<<<< HEAD
-=======
->>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 import android.widget.Toast;
-=======
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
-import android.widget.Toast;
->>>>>>> Play song, login error handling, contant string extras for intents
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
-=======
->>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
-=======
-
-import androidx.appcompat.app.AppCompatActivity;
->>>>>>> resolved conflict in modify-playlist branch
-=======
-
-import androidx.appcompat.app.AppCompatActivity;
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
+import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
->>>>>>> Play song, login error handling, contant string extras for intents
 import com.parse.SaveCallback;
->>>>>>> Attempt 2: Edit Profile Activity
-=======
->>>>>>> resolved conflict in modify-playlist branch
-=======
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;

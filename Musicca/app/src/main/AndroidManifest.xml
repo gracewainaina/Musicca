@@ -14,37 +14,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-=======
-        android:theme="@style/AppTheme">
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        <activity android:name=".activities.LoginSpotifyActivity"></activity>
-        <activity android:name=".activities.PartyActivity" />
-=======
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">>
->>>>>>> Set up Profile Photo and update music bio
         <activity android:name=".activities.EditProfileActivity"></activity>
         <activity android:name=".activities.CurrentPlaylistActivity" />
         <activity android:name=".activities.SongPlaylistActivity" />
         <activity android:name=".activities.SongQueueActivity" />
         <activity android:name=".activities.LoginSpotifyActivity" />
         <activity android:name=".activities.QueueActivity" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Edit Profile Activity
-=======
->>>>>>> Attempt 2: Edit Profile Activity
         <activity android:name=".activities.SignupActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.LoginActivity">

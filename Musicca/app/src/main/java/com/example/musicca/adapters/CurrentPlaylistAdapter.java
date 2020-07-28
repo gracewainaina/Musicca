@@ -16,44 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import com.example.musicca.activities.SongQueueActivity;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
 import com.example.musicca.models.Playlist;
->>>>>>> Attempt 2: Edit Profile Activity
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
-<<<<<<< HEAD
-=======
 import com.parse.SaveCallback;
-<<<<<<< HEAD
-=======
-import com.example.musicca.models.Song;
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
->>>>>>> Play song, login error handling, contant string extras for intents
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
-import com.example.musicca.models.Song;
-import com.parse.GetCallback;
-import com.parse.ParseQuery;
->>>>>>> resolved conflict in modify-playlist branch
-=======
-import com.example.musicca.models.Song;
-import com.parse.GetCallback;
-import com.parse.ParseQuery;
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder> {

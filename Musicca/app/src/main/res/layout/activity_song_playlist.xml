@@ -51,38 +51,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/previcon" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/previcon" />-->
-=======
-<!--        tools:srcCompat="@drawable/previcon" />-->
-=======
-        tools:srcCompat="@drawable/previcon" />
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
-        android:src="@drawable/previcon" />
-<!--        tools:srcCompat="@drawable/previcon" />-->
->>>>>>> Play song, login error handling, contant string extras for intents
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
-=======
-        tools:srcCompat="@drawable/previcon" />
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
-=======
->>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
-=======
-    <!--        tools:srcCompat="@drawable/previcon" />-->
->>>>>>> resolved conflict in modify-playlist branch
-=======
-    <!--        tools:srcCompat="@drawable/previcon" />-->
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -93,42 +62,8 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        android:src="@drawable/playicon" />
-<<<<<<< HEAD
-    <!--        tools:srcCompat="@drawable/playicon" />-->
-=======
-<!--        tools:srcCompat="@drawable/playicon" />-->
-=======
-        tools:srcCompat="@drawable/playicon" />
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
-        android:src="@drawable/playicon" />
-<<<<<<< HEAD
-<!--        tools:srcCompat="@drawable/playicon" />-->
->>>>>>> Play song, login error handling, contant string extras for intents
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
-=======
-        tools:srcCompat="@drawable/playicon" />
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
-=======
->>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
-=======
         android:src="@drawable/playicon" />
     <!--        tools:srcCompat="@drawable/playicon" />-->
->>>>>>> resolved conflict in modify-playlist branch
-=======
-    <!--        tools:srcCompat="@drawable/playicon" />-->
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <ImageView
         android:id="@+id/ivNext"
@@ -138,42 +73,8 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        android:src="@drawable/nexticon"/>
-<<<<<<< HEAD
-    <!--        tools:srcCompat="@drawable/nexticon" />-->
-=======
-<!--        tools:srcCompat="@drawable/nexticon" />-->
-=======
-        tools:srcCompat="@drawable/nexticon" />
->>>>>>> Attempt 2: Edit Profile Activity
-<<<<<<< HEAD
->>>>>>> Attempt 2: Edit Profile Activity
-=======
-=======
-        android:src="@drawable/nexticon"/>
-<<<<<<< HEAD
-<!--        tools:srcCompat="@drawable/nexticon" />-->
->>>>>>> Play song, login error handling, contant string extras for intents
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Play song, login error handling, contant string extras for intents
-=======
-=======
-        tools:srcCompat="@drawable/nexticon" />
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
-=======
->>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
-=======
         android:src="@drawable/nexticon"/>
     <!--        tools:srcCompat="@drawable/nexticon" />-->
->>>>>>> resolved conflict in modify-playlist branch
-=======
-    <!--        tools:srcCompat="@drawable/nexticon" />-->
->>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <Button
         android:id="@+id/btnReturnPlaylist"
