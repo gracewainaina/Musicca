@@ -79,9 +79,6 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     private void goEditProfile() {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
@@ -95,28 +92,5 @@ public class ProfileFragment extends Fragment {
         startActivity(i);
     }
 
-=======
-=======
->>>>>>> attempt to resolve conflict with master branch
 
-    private void goEditProfile() {
-        Intent i = new Intent(getContext(), EditProfileActivity.class);
-        i.putExtra(EXTRA_MUSICBIO, tvMusicBio.getText().toString());
-        i.putExtra(EXTRA_PROFILEIMAGEURL, profileImageURL);
-        startActivity(i);
-    }
-
-    private void goLoginActivity() {
-        Intent i = new Intent(getContext(), LoginActivity.class);
-        startActivity(i);
-    }
-
-<<<<<<< HEAD
->>>>>>> Search view functionality completed
-
-=======
->>>>>>> Log out
-=======
-
->>>>>>> attempt to resolve conflict with master branch
 }

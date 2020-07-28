@@ -1,7 +1,6 @@
 package com.example.musicca.activities;
 
 import android.content.Intent;
-import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,14 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
-import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -30,14 +25,7 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
-=======
->>>>>>> Search view functionality completed
-=======
-    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -52,15 +40,7 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-=======
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid1");
->>>>>>> Search view functionality completed
-=======
-        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
@@ -74,18 +54,6 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        queryAllSongs();
-
-        queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
-        rvLatestSongs.setAdapter(queueAdapter);
-=======
-        Log.d(TAG, "length of songsAll1 " + allSongs.size());
->>>>>>> Search view functionality completed
-=======
->>>>>>> Camel case
 
         queryAllSongs();
 
@@ -121,21 +89,6 @@ public class QueueActivity extends AppCompatActivity {
     }
 
     private void queryAllSongs() {
-<<<<<<< HEAD
-        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-
-        query.findInBackground((songs, e) -> {
-            if (e != null) {
-                Log.e(TAG, "Issue retrieving songs", e);
-                Toast.makeText(QueueActivity.this, "Error retrieving songs!", Toast.LENGTH_SHORT).show();
-
-                return;
-            }
-            allSongs.addAll(songs);
-            Log.d(TAG, "length of songsAll3 " + allSongs.size());
-    private void queryAllSongs(int page) {
-=======
->>>>>>> Search view functionality completed
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 
         query.findInBackground((songs, e) -> {

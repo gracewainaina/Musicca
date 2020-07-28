@@ -50,17 +50,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:src="@drawable/previcon" />
-<!--        tools:srcCompat="@drawable/previcon" />-->
-=======
-        tools:srcCompat="@drawable/previcon" />
->>>>>>> Searchbar onquery listener text
-=======
-        android:src="@drawable/previcon" />
-<!--        tools:srcCompat="@drawable/previcon" />-->
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
+    <!--        tools:srcCompat="@drawable/previcon" />-->
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -71,17 +62,8 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:src="@drawable/playicon" />
-<!--        tools:srcCompat="@drawable/playicon" />-->
-=======
-        tools:srcCompat="@drawable/playicon" />
->>>>>>> Searchbar onquery listener text
-=======
-        android:src="@drawable/playicon" />
-<!--        tools:srcCompat="@drawable/playicon" />-->
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
+    <!--        tools:srcCompat="@drawable/playicon" />-->
 
     <ImageView
         android:id="@+id/ivNext"
@@ -91,17 +73,8 @@
         android:layout_marginStart="65dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:src="@drawable/nexticon"/>
-<!--        tools:srcCompat="@drawable/nexticon" />-->
-=======
-        tools:srcCompat="@drawable/nexticon" />
->>>>>>> Searchbar onquery listener text
-=======
-        android:src="@drawable/nexticon"/>
-<!--        tools:srcCompat="@drawable/nexticon" />-->
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
+    <!--        tools:srcCompat="@drawable/nexticon" />-->
 
     <Button
         android:id="@+id/btnReturnPlaylist"

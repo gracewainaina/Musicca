@@ -1,29 +1,8 @@
 package com.example.musicca.adapters;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-=======
-=======
-
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
-import android.content.Context;
-import android.content.Intent;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Searchbar onquery listener text
-=======
-=======
-=======
->>>>>>> Building search adapter and queue adapter
->>>>>>> Building search adapter and queue adapter
-=======
->>>>>>> attempt to resolve conflict with master branch
-import android.util.Log;
->>>>>>> Search view functionality completed
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,15 +21,9 @@ import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String EXTRA_SONGOBJECTID = "songObjectid";
@@ -60,14 +33,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
     private static final String TAG = "QueueAdapter";
 
-<<<<<<< HEAD
-=======
->>>>>>> Searchbar onquery listener text
-=======
-    private static final String TAG = "QueueAdapter";
->>>>>>> Search view functionality completed
-=======
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
     private Context context;
     private List<Song> songs;
     private List<Song> songsAll;
@@ -79,62 +44,10 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         this.songs = songs;
         this.songsAll = new ArrayList<>(songs);
         this.playlistObjectId = playlistObjectId;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Search view functionality completed
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
         Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Searchbar onquery listener text
-=======
->>>>>>> Search view functionality completed
-=======
-=======
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.musicca.activities.PartyActivity;
-import com.example.musicca.models.Playlist;
-import com.example.musicca.models.Song;
-import com.parse.SaveCallback;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> {
-    private Context mContext;
-    private PartyActivity mPartyActivity;
-    private Playlist mPlaylist;
-    private List<Song> mSongs;
-
-    // Creates the adapter for holding playlist
-    public QueueAdapter(Context context, List<Song> songs, PartyActivity partyActivity, Playlist playlist) {
-        mContext = context;
-        mPartyActivity = partyActivity;
-        mSongs = new ArrayList<>(songs);
-        mPlaylist = playlist;
->>>>>>> Building search adapter and queue adapter
->>>>>>> Building search adapter and queue adapter
-=======
->>>>>>> attempt to resolve conflict with master branch
     }
 
     @NonNull
@@ -164,123 +77,42 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             protected FilterResults performFiltering(CharSequence charSequence) {
                 List<Song> filteredList = new ArrayList<>();
                 // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (charSequence == null || charSequence.length() == 0) {
                     Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
                 } else {
-<<<<<<< HEAD
                     Log.d(TAG, "check if song found");
                     String filterPattern = charSequence.toString().toLowerCase().trim();
                     Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
                     for (Song song : songsAll) {
                         if (song.getTitle().toLowerCase().contains(filterPattern)) {
                             Log.d(TAG, "song found");
-=======
-                if (charSequence.toString().isEmpty()) {
-=======
-                if (charSequence == null || charSequence.length() == 0) {
-                    Log.d(TAG, "nothing typed yet");
->>>>>>> Search view functionality completed
-                    filteredList.addAll(songsAll);
-                }
-                else {
-=======
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
-                    Log.d(TAG, "check if song found");
-                    String filterPattern = charSequence.toString().toLowerCase().trim();
-                    Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
-                    for (Song song : songsAll) {
-<<<<<<< HEAD
-                        if (song.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())) {
->>>>>>> Searchbar onquery listener text
-=======
-                        if (song.getTitle().toLowerCase().contains(filterPattern)) {
-                            Log.d(TAG, "song found");
->>>>>>> Search view functionality completed
                             filteredList.add(song);
                         }
                     }
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
                 Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
                 for (Song song : filteredList) {
                     Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
                 }
-=======
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredList;
->>>>>>> Searchbar onquery listener text
-=======
-                Log.d(TAG, "search results");
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredList;
-                for (Song song : filteredList) {
-                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
-                }
->>>>>>> Search view functionality completed
                 return filterResults;
             }
 
             // run on UI thread
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 //songs.clear();
                 //songs.addAll((Collection<? extends Song>) filterResults.values);
                 songs = (List<Song>) filterResults.values;
-=======
-                songs.clear();
-                songs.addAll((Collection<? extends Song>) filterResults.values);
->>>>>>> Searchbar onquery listener text
-=======
-                //songs.clear();
-                //songs.addAll((Collection<? extends Song>) filterResults.values);
-                songs = (List<Song>) filterResults.values;
-<<<<<<< HEAD
-                for (Song song: songs){
-                    Log.d(TAG, "filtered song: " + song.getTitle());
-                    Log.d(TAG, "filtered song: " + song.getTitle());
-                }
->>>>>>> Search view functionality completed
-=======
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
                 notifyDataSetChanged();
             }
         };
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-=======
-//    // Clean all elements of the recycler
-//    public void clear() {
-//        songs.clear();
-//        notifyDataSetChanged();
-//    }
-//
-//    // Add a list of items -- change to type used
-//    public void addAll(List<Song> list) {
-//        songs.addAll(list);
-//        notifyDataSetChanged();
-//    }
-
-=======
->>>>>>> Search view functionality completed
-    // Internal ViewHolder model for each item.
-<<<<<<< HEAD
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
->>>>>>> Searchbar onquery listener text
-=======
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
         ImageView ivAlbum;
         TextView tvTitle;
         TextView tvArtist;
@@ -310,34 +142,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongQueueActivity.class);
                 // serialize the post using parceler, use its short name as a key
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
                 intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
                 intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
                 intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
                 intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-<<<<<<< HEAD
                 // show the activity
                 Log.d(TAG, "ssong selected");
-=======
-                intent.putExtra("albumiconurl", song.getURL());
-                intent.putExtra("songtitle", song.getTitle());
-                intent.putExtra("songartist", song.getArtist());
-                intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid2", playlistObjectId);
-                // show the activity
-<<<<<<< HEAD
->>>>>>> Searchbar onquery listener text
-=======
-                Log.d(TAG, "song selected");
->>>>>>> Search view functionality completed
-=======
-                // show the activity
-                Log.d(TAG, "ssong selected");
->>>>>>> Resolving git comments on camel case, logs, constant, unused code
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

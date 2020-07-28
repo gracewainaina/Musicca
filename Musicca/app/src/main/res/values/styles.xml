@@ -1,18 +1,6 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        <!-- Customize your theme here. -->
-=======
-
-    !-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
->>>>>>> Stashed changes
->>>>>>> Searchbar onquery listener text
-=======
->>>>>>> Attempt 2 [lost files] Searchbar onquery listener text
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
