@@ -53,6 +53,7 @@
         android:src="@drawable/previcon" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!--        tools:srcCompat="@drawable/previcon" />-->
 =======
 <!--        tools:srcCompat="@drawable/previcon" />-->
@@ -79,6 +80,9 @@
 =======
     <!--        tools:srcCompat="@drawable/previcon" />-->
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+    <!--        tools:srcCompat="@drawable/previcon" />-->
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -105,6 +109,7 @@
 =======
 =======
         android:src="@drawable/playicon" />
+<<<<<<< HEAD
 <!--        tools:srcCompat="@drawable/playicon" />-->
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
@@ -121,6 +126,9 @@
         android:src="@drawable/playicon" />
     <!--        tools:srcCompat="@drawable/playicon" />-->
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+    <!--        tools:srcCompat="@drawable/playicon" />-->
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <ImageView
         android:id="@+id/ivNext"
@@ -146,6 +154,7 @@
 =======
 =======
         android:src="@drawable/nexticon"/>
+<<<<<<< HEAD
 <!--        tools:srcCompat="@drawable/nexticon" />-->
 >>>>>>> Play song, login error handling, contant string extras for intents
 <<<<<<< HEAD
@@ -162,6 +171,9 @@
         android:src="@drawable/nexticon"/>
     <!--        tools:srcCompat="@drawable/nexticon" />-->
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+    <!--        tools:srcCompat="@drawable/nexticon" />-->
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
     <Button
         android:id="@+id/btnReturnPlaylist"

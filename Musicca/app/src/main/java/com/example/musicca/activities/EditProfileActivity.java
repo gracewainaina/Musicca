@@ -2,6 +2,7 @@ package com.example.musicca.activities;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -15,6 +16,8 @@ import androidx.core.content.FileProvider;
 >>>>>>> Edit Profile Activity
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,10 +38,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+<<<<<<< HEAD
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.parse.ParseFile;

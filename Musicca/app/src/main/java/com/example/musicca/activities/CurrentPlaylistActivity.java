@@ -11,13 +11,17 @@ import android.widget.TextView;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> Populate newly created playlist
@@ -46,11 +50,14 @@ import android.widget.Toast;
 >>>>>>> Revert "Revert "Merge pull request #20 from gracewainaina/modify-playlist""
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.CurrentPlaylistAdapter;
 import com.example.musicca.models.Playlist;
 import com.parse.GetCallback;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -87,6 +94,10 @@ import org.w3c.dom.Text;
 import com.parse.ParseQuery;
 
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+import com.parse.ParseQuery;
+
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import java.util.List;
 
 public class CurrentPlaylistActivity extends AppCompatActivity {

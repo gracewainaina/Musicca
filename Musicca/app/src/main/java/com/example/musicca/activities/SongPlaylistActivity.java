@@ -2,6 +2,7 @@ package com.example.musicca.activities;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,8 @@ import android.content.Context;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +28,7 @@ import android.widget.TextView;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import androidx.appcompat.app.AppCompatActivity;
 =======
@@ -57,12 +61,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+
+import androidx.appcompat.app.AppCompatActivity;
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseQuery;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -77,6 +86,8 @@ import com.parse.SaveCallback;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;

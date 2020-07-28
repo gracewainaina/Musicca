@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import android.widget.ProgressBar;
 <<<<<<< HEAD
@@ -24,6 +25,8 @@ import android.widget.ImageView;
 >>>>>>> Populate newly created playlist
 =======
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 import android.widget.TextView;
 import android.widget.Toast;
 

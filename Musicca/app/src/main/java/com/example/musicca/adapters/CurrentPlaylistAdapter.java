@@ -18,6 +18,7 @@ import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.example.musicca.activities.SongQueueActivity;
 <<<<<<< HEAD
@@ -47,6 +48,11 @@ import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseQuery;
 >>>>>>> resolved conflict in modify-playlist branch
+=======
+import com.example.musicca.models.Song;
+import com.parse.GetCallback;
+import com.parse.ParseQuery;
+>>>>>>> 4302c40a9d6fb615fc2dacc4f1b801f1fdb34b4d
 
 import java.util.List;
 
