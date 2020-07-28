@@ -2,6 +2,11 @@ package com.example.musicca.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.example.musicca.R;
 import com.example.musicca.activities.CurrentPlaylistActivity;
+import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -25,6 +27,7 @@ import java.util.List;
 
 public class JoinFragment extends Fragment {
 
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     public static final String KEY_PLAYLISTNAME = "name";
     public static final String KEY_PLAYLISTCODE = "inviteCode";
 
@@ -56,7 +59,6 @@ public class JoinFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 queryPlaylists();
-                gotoPlaylist();
             }
         });
     }
@@ -65,14 +67,16 @@ public class JoinFragment extends Fragment {
         // Define the class we would like to query
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // Define our query conditions
-        query.whereEqualTo(KEY_PLAYLISTCODE, etPlaylistcode_join.getText());
+        query.whereEqualTo(KEY_PLAYLISTCODE, etPlaylistcode_join.getText().toString());
         // Execute the find asynchronously
         query.findInBackground(new FindCallback<Playlist>() {
             public void done(List<Playlist> itemList, ParseException e) {
                 if (e == null) {
                     // Access the array of results here
+                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
                     playlistObjectId = itemList.get(0).getObjectId();
                     Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+                    gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
                 }
@@ -82,7 +86,7 @@ public class JoinFragment extends Fragment {
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), CurrentPlaylistActivity.class);
-        newintent.putExtra("playlistobjectid", playlistObjectId);
+        newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(newintent);
 
     }

@@ -21,10 +21,19 @@ import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {
+
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+    private static final String EXTRA_SONGOBJECTID = "songObjectid";
+    private static final String EXTRA_ALBUMICONURL = "albumiconurl";
+    private static final String EXTRA_SONGTITLE = "songtitle";
+    private static final String EXTRA_SONGARTIST = "songartist";
+
     private static final String TAG = "QueueAdapter";
+
     private Context context;
     private List<Song> songs;
     private List<Song> songsAll;
@@ -39,6 +48,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
         Log.d(TAG, "length of this.songs " + this.songs.size());
         Log.d(TAG, "length of songs " + songs.size());
+        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
     }
 
     @NonNull
@@ -71,8 +81,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 if (charSequence == null || charSequence.length() == 0) {
                     Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
-                }
-                else {
+                } else {
                     Log.d(TAG, "check if song found");
                     String filterPattern = charSequence.toString().toLowerCase().trim();
                     Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
@@ -86,8 +95,7 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
-                for (Song song: filteredList){
-                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
+                for (Song song : filteredList) {
                     Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
                 }
                 return filterResults;
@@ -99,17 +107,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 //songs.clear();
                 //songs.addAll((Collection<? extends Song>) filterResults.values);
                 songs = (List<Song>) filterResults.values;
-                for (Song song: songs){
-                    Log.d(TAG, "filtered song: " + song.getTitle());
-                    Log.d(TAG, "filtered song: " + song.getTitle());
-                }
                 notifyDataSetChanged();
             }
         };
     }
 
     // Internal ViewHolder model for each item.
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivAlbum;
         TextView tvTitle;
         TextView tvArtist;
@@ -139,12 +143,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongQueueActivity.class);
                 // serialize the post using parceler, use its short name as a key
-                intent.putExtra("albumiconurl", song.getURL());
-                intent.putExtra("songtitle", song.getTitle());
-                intent.putExtra("songartist", song.getArtist());
-                intent.putExtra("songObjectid", song.getObjectId());
-                intent.putExtra("playlistobjectid", playlistObjectId);
+                intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
+                intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
+                intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
+                intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
+                intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                 // show the activity
+                Log.d(TAG, "ssong selected");
                 context.startActivity(intent);
                 Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
             }

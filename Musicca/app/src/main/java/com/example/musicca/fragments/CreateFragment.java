@@ -7,6 +7,12 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -19,28 +25,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-
 import com.example.musicca.R;
 import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
-import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
 public class CreateFragment extends Fragment {
 
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+    private static final String EXTRA_PLAYLISTCODE = "playlistcode";
+    private static final String EXTRA_PLAYLISTNAME = "playlistname";
+
     public static final String TAG = "CreateFragment";
+    public static final int WIDTH = 300;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private ImageView ivPlaylistIcon;
@@ -51,10 +58,14 @@ public class CreateFragment extends Fragment {
     private Button btnCreatePlaylist;
     private TextView tvSetPlaylistIcon;
 
+    private String playlistObjectId;
     private File photoFile;
     private String photoFileName = "photo.jpg";
     public final static int PICK_PHOTO_CODE = 1046;
     public static final String KEY_PLAYLISTICON = "playlistIcon";
+    public static final String KEY_PLAYLISTNAME = "name";
+    public static final String KEY_PLAYLISTCODE = "inviteCode";
+
 
     private ParseUser parseUser = ParseUser.getCurrentUser();
     public Playlist playlistPublic = new Playlist();
@@ -109,9 +120,8 @@ public class CreateFragment extends Fragment {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePlaylist(playlistName, playlistCode, currentUser, photoFile);
-                gotoPlaylist();
+
+                savePlaylist(playlistName, playlistCode, parseUser, photoFile);
             }
         });
 
@@ -169,15 +179,19 @@ public class CreateFragment extends Fragment {
                 etPlaylistname_create.setText("");
                 etPlaylistcode_create.setText("");
                 ivPlaylistIcon.setImageResource(0);
+
             }
         });
+        playlistObjectId = playlistPublic.getObjectId();
+        Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
+        gotoPlaylist();
     }
 
     private void gotoPlaylist() {
         Intent newintent = new Intent(getContext(), QueueActivity.class);
-        newintent.putExtra("playlistname", playlistPublic.getName());
-        newintent.putExtra("playlistcode", playlistPublic.getInvitecode());
-        newintent.putExtra("playlistobjectid", playlistPublic.getObjectId());
+        newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
+        newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
+        newintent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(newintent);
     }
 

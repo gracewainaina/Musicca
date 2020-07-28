@@ -1,6 +1,7 @@
 package com.example.musicca.activities;
 
 import android.content.Intent;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,15 +9,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
+import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -24,6 +30,7 @@ import java.util.List;
 
 public class QueueActivity extends AppCompatActivity {
 
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -31,19 +38,20 @@ public class QueueActivity extends AppCompatActivity {
     private QueueAdapter queueAdapter;
     protected List<Song> allSongs;
     private TextView tvSection;
-    private Button btngotoPlaylist;
+    private Button btnGoToPlaylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+        Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
-        btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
+        btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
 
-        btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
+        btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gotoPlaylist();
@@ -51,11 +59,8 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
-        Log.d(TAG, "length of songsAll1 " + allSongs.size());
 
         queryAllSongs();
-
-        Log.d(TAG, "length of songsAll2 " + allSongs.size());
 
         queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
         rvLatestSongs.setAdapter(queueAdapter);
@@ -90,37 +95,23 @@ public class QueueActivity extends AppCompatActivity {
 
     private void queryAllSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-//        query.setLimit(5);
-//        query.setSkip(5 * page);
 
         query.findInBackground((songs, e) -> {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
+                Toast.makeText(QueueActivity.this, "Error retrieving songs!", Toast.LENGTH_SHORT).show();
+
                 return;
-            }
-            for (Song song : songs) {
-                Log.i(TAG, "Song: " + song.getTitle() + ", spotifyId: " + song.getSpotifyId());
             }
             allSongs.addAll(songs);
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
-
             queueAdapter.notifyDataSetChanged();
         });
-
-//        try {
-//            allSongs.addAll(query.find());
-//            Log.d(TAG, "length of songsAll3 " + allSongs.size());
-//            queueAdapter.notifyDataSetChanged();
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
-        i.putExtra("playlistobjectid", playlistObjectId);
+        i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
 }

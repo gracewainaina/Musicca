@@ -1,14 +1,16 @@
 package com.example.musicca.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
@@ -16,21 +18,32 @@ import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongQueueActivity extends AppCompatActivity {
 
-    Playlist currentPlaylist;
-    Song currentSong;
+    private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
+    private static final String EXTRA_SONGOBJECTID = "songObjectid";
+    private static final String EXTRA_ALBUMICONURL = "albumiconurl";
+    private static final String EXTRA_SONGTITLE = "songtitle";
+    private static final String EXTRA_SONGARTIST = "songartist";
+
+    private static final String TAG = "Queue";
+    private List<String> currentPlaylistSongs = new ArrayList<>();
 
     private ImageView ivSongAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
     private Button btnAddSong;
     private Button btnBack;
-    private Button btngotoPlaylist;
+    private Button btnGoToPlaylist;
     private String albumUrl;
     private String playlistObjectId;
     private String songObjectId;
@@ -39,32 +52,31 @@ public class SongQueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_queue);
+        Log.d(TAG, "song activity set up");
 
         ivSongAlbum = findViewById(R.id.ivSongAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnAddSong = findViewById(R.id.btnAddSong);
         btnBack = findViewById(R.id.btnBack);
-        btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
+        btnGoToPlaylist = findViewById(R.id.btnGoToPlaylist);
 
-        songObjectId = getIntent().getStringExtra("songObjectid");
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+        Log.d("PLAYLIST SONGQUEUE", playlistObjectId != null ? playlistObjectId : null);
 
-        albumUrl = getIntent().getStringExtra("albumiconurl");
+        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivSongAlbum);
-        tvTitle.setText(getIntent().getStringExtra("songtitle"));
-        tvArtist.setText(getIntent().getStringExtra("songartist"));
-
-        currentPlaylist = getCurrentPlaylist(playlistObjectId);
-        currentSong = getCurrentSong(songObjectId);
+        tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
+        tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
 
         btnAddSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addSong(currentSong);
+                getCurrentPlaylistSongs(playlistObjectId);
             }
         });
-        btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
+        btnGoToPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gotoPlaylist();
@@ -80,53 +92,48 @@ public class SongQueueActivity extends AppCompatActivity {
 
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
-        i.putExtra("playlistobjectid", playlistObjectId);
+        i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
 
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
+        i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
     }
 
-    private Playlist getCurrentPlaylist(String playlistobjectid) {
-        final Playlist[] currentplaylist = new Playlist[1];
+    private void getCurrentPlaylistSongs(String playlistObjectId) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
-        // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        query.include("songs");
         // Execute the query to find the object with ID
-        query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
+        query.getInBackground(playlistObjectId, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
-                currentplaylist[0] = playlist;
-            }
-        });
-        return currentplaylist[0];
-    }
-    private Song getCurrentSong(String songobjectid) {
-        final Song[] currentsong = new Song[1];
-        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-        // Execute the query to find the object with ID
-        query.getInBackground(songobjectid, new GetCallback<Song>() {
-            @Override
-            public void done(Song song, ParseException e) {
-                currentsong[0] = song;
-            }
-        });
-        return currentsong[0];
-    }
+                if (e == null) {
+                    Log.d(TAG, "playlist found " + playlist.getName());
+                    Log.d(TAG, "playlist found123 " + playlist.getSongList());
+                    if (playlist.getSongList() != null) {
+                        currentPlaylistSongs = playlist.getSongList();
+                    }
+                    currentPlaylistSongs.add(songObjectId);
+                    playlist.setSongList(currentPlaylistSongs);
+                    Log.d(TAG, "playlist found2" + currentPlaylistSongs.size());
+                    playlist.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "Error occurred when adding song", e);
+                                Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.i(TAG, "Post saved successfully!");
+                            Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-    private void addSong(Song currentsong) {
-        List<Song> availableSongs = currentPlaylist.getSongs();
-        for (Song song : availableSongs){
-            if(songObjectId == song.getObjectId()){
-                Toast.makeText(SongQueueActivity.this, "Song already exists in " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
-                return;
+                } else {
+                    Log.d(TAG, "playlist not found!");
+                }
             }
-        }
-        currentPlaylist.setSong(currentsong);
-        Toast.makeText(SongQueueActivity.this, "Song has been added to " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
+        });
     }
 }
