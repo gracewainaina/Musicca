@@ -54,14 +54,8 @@ public class QueueActivity extends AppCompatActivity {
         });
 
         allSongs = new ArrayList<>();
-
         queryAllSongs();
 
-        queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
-        rvLatestSongs.setAdapter(queueAdapter);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rvLatestSongs.setLayoutManager(linearLayoutManager);
     }
 
     @Override
@@ -99,6 +93,13 @@ public class QueueActivity extends AppCompatActivity {
                 return;
             }
             allSongs.addAll(songs);
+
+            queueAdapter = new QueueAdapter(this, allSongs, playlistObjectId);
+            rvLatestSongs.setAdapter(queueAdapter);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            rvLatestSongs.setLayoutManager(linearLayoutManager);
+
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
             queueAdapter.notifyDataSetChanged();
         });
