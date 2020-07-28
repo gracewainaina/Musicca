@@ -12,15 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 import android.widget.Toast;
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 import android.widget.Toast;
 >>>>>>> Populate newly created playlist
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.CurrentPlaylistAdapter;
@@ -30,15 +27,12 @@ import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> Populate newly created playlist
 import com.parse.ParseException;
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
-<<<<<<< HEAD
 import org.json.JSONException;
 <<<<<<< HEAD
 =======
@@ -47,8 +41,6 @@ import com.parse.ParseQuery;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -59,15 +51,12 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private static final String TAG = "CurrentPlaylistActivity";
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
     private TextView tvPlaylistTitle;
     private RecyclerView rvPlaylistSongs;
@@ -77,16 +66,12 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
     private List<String> currentPlaylistSongs;
 =======
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     protected List<Song> songsInPlaylist;
     private Playlist currentPlaylist;
 
 
-<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
     ArrayList<Song> currentPlaylistSongs = new ArrayList<>();
@@ -94,8 +79,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 =======
     private List<String> currentPlaylistSongs;
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +90,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
@@ -124,10 +106,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 =======
         getCurrentPlaylistSongs(playlistObjectId);
 >>>>>>> Populate newly created playlist
-=======
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
-
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         btnAddMoreSongs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,10 +114,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         });
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
         currentPlaylist = getCurrentPlaylist(playlistObjectId);
         songsInPlaylist = currentPlaylist.getSongs();
@@ -149,12 +124,9 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             rvPlaylistSongs.setLayoutManager(linearLayoutManager);
         }
-<<<<<<< HEAD
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Populate newly created playlist
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
     private void gotoQueueActivity() {
@@ -173,25 +145,19 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private Playlist getCurrentPlaylist(String playlistobjectid) {
-        final Playlist[] currentplaylist = new Playlist[1];
+    private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
-<<<<<<< HEAD
 <<<<<<< HEAD
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
         // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 if (e == null) {
@@ -246,11 +212,5 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
 >>>>>>> Populate newly created playlist
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-                currentplaylist[0] = playlist;
-            }
-        });
-        return currentplaylist[0];
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 }

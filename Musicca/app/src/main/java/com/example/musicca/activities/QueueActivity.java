@@ -35,15 +35,12 @@ public class QueueActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 =======
 >>>>>>> Edit Profile Activity
 =======
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     private static final String TAG = "QueueAdapter";
 
     private String playlistObjectId;
@@ -65,7 +62,6 @@ public class QueueActivity extends AppCompatActivity {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
         tvSection = findViewById(R.id.tvSection);
@@ -82,9 +78,6 @@ public class QueueActivity extends AppCompatActivity {
 >>>>>>> Play song, login error handling, contant string extras for intents
         Log.d("PLAYLIST OBJ ID", "object id" + playlistObjectId);
 >>>>>>> Populate newly created playlist
-=======
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         tvSection = findViewById(R.id.tvSection);
         rvLatestSongs = findViewById(R.id.rvLatestSongs);
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
@@ -173,9 +166,6 @@ public class QueueActivity extends AppCompatActivity {
             queueAdapter.notifyDataSetChanged();
         });
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
 //        try {
 //            allSongs.addAll(query.find());
@@ -186,12 +176,9 @@ public class QueueActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
-<<<<<<< HEAD
 >>>>>>> Edit Profile Activity
 =======
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
     private void gotoPlaylist() {

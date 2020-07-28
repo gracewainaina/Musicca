@@ -59,41 +59,4 @@ public class MainActivity extends AppCompatActivity {
         // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_join);
     }
-
-    //    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        // Set the connection parameters
-//        ConnectionParams connectionParams = new ConnectionParams.Builder(CLIENT_ID).setRedirectUri(REDIRECT_URI).showAuthView(true).build();
-//        SpotifyAppRemote.connect(MainActivity.this, connectionParams,
-//                new Connector.ConnectionListener() {
-//
-//                    @Override
-//                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
-//                        mSpotifyAppRemote = spotifyAppRemote;
-//                        Log.d("MainActivity", "Connected! Yay!");
-//
-//                        // Now you can start interacting with App Remote
-//                        connected();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Throwable throwable) {
-//                        Log.e("MainActivity", throwable.getMessage(), throwable);
-//
-//                        // Something went wrong when attempting to connect! Handle errors here
-//                    }
-//                });
-//    }
-//
-//    private void connected() {
-//        // Play a playlist
-//        mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        SpotifyAppRemote.disconnect(mSpotifyAppRemote);
-//    }
 }

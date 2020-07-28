@@ -9,7 +9,9 @@ import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +34,7 @@ public class Playlist extends ParseObject {
     }
 
     public String getName() {
-        return KEY_NAME;
+        return (String) get(KEY_NAME);
     }
 
     public void setName(String name) {
@@ -40,7 +42,7 @@ public class Playlist extends ParseObject {
     }
 
     public String getInvitecode() {
-        return KEY_INVITECODE;
+        return (String) get(KEY_INVITECODE);
     }
 
     public void setInvitecode(String name) {
@@ -55,7 +57,6 @@ public class Playlist extends ParseObject {
         put(KEY_PLAYLISTICON, parseFile);
     }
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public List<String> getSongList() {
@@ -101,18 +102,9 @@ public class Playlist extends ParseObject {
     public void setSongList(List<String> objectIDs) {
         JSONArray jsonArray = new JSONArray(objectIDs);
         put(KEY_SONGS, jsonArray);
-=======
-
-    public ArrayList<Song> getSongs() {
-        return (ArrayList<Song>) get(KEY_SONGS);
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
     }
 
-    public void setSongs(ArrayList<Song> songs) {
-        put(KEY_SONGS, songs);
-    }
     public void setSong(Song song) {
-<<<<<<< HEAD
         put(KEY_SONGS, song);
 >>>>>>> Populate newly created playlist
     }
@@ -142,19 +134,5 @@ public class Playlist extends ParseObject {
 //        return false;
 //    }
 >>>>>>> Populate newly created playlist
-=======
-        add(KEY_SONGS, song);
-    }
-
-    public boolean contains(Song song){
-        ArrayList<Song> songs = getSongs();
-        for(Song eachsong : songs){
-            if (song.equals(song)){
-                return true;
-            }
-        }
-        return false;
-    }
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
 }

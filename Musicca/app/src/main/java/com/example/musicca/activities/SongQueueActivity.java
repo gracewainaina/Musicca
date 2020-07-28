@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> Populate newly created playlist
 import android.util.Log;
@@ -22,11 +21,6 @@ import android.widget.ImageView;
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
 >>>>>>> Populate newly created playlist
-=======
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +32,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 import com.parse.SaveCallback;
@@ -56,14 +49,10 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 >>>>>>> Populate newly created playlist
-=======
-
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 import java.util.List;
 
 public class SongQueueActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -92,10 +81,6 @@ public class SongQueueActivity extends AppCompatActivity {
     private static final String TAG = "Queue";
     private List<String> currentPlaylistSongs = new ArrayList<>();
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
-    Playlist currentPlaylist;
-    Song currentSong;
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
     private ImageView ivSongAlbum;
     private TextView tvTitle;
@@ -117,15 +102,12 @@ public class SongQueueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_queue);
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         Log.d(TAG, "song activity set up");
 =======
 >>>>>>> Attempt 2: Edit Profile Activity
 =======
         Log.d(TAG, "song activity set up");
 >>>>>>> Populate newly created playlist
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
         ivSongAlbum = findViewById(R.id.ivSongAlbum);
         tvTitle = findViewById(R.id.tvTitle);
@@ -146,12 +128,12 @@ public class SongQueueActivity extends AppCompatActivity {
 =======
         btngotoPlaylist = findViewById(R.id.btngotoPlaylist);
 
-        songObjectId = getIntent().getStringExtra("songObjectid");
-        playlistObjectId = getIntent().getStringExtra("playlistobjectid");
+        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+        Log.d("PLAYLIST SONGQUEUE", playlistObjectId != null ? playlistObjectId : null);
 
-        albumUrl = getIntent().getStringExtra("albumiconurl");
+        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivSongAlbum);
-<<<<<<< HEAD
 <<<<<<< HEAD
         tvTitle.setText(getIntent().getStringExtra("songtitle"));
         tvArtist.setText(getIntent().getStringExtra("songartist"));
@@ -168,18 +150,10 @@ public class SongQueueActivity extends AppCompatActivity {
         //currentSong = getCurrentSong(songObjectId);
 //        Log.d("CURRENT PLAYLIST", currentPlaylist.getName());
 >>>>>>> Populate newly created playlist
-=======
-        tvTitle.setText(getIntent().getStringExtra("songtitle"));
-        tvArtist.setText(getIntent().getStringExtra("songartist"));
-
-        currentPlaylist = getCurrentPlaylist(playlistObjectId);
-        currentSong = getCurrentSong(songObjectId);
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
 
         btnAddSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 getCurrentPlaylistSongs(playlistObjectId);
@@ -191,9 +165,6 @@ public class SongQueueActivity extends AppCompatActivity {
 =======
                 getCurrentPlaylistSongs(playlistObjectId);
 >>>>>>> Populate newly created playlist
-=======
-                addSong(currentSong);
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
             }
         });
         btngotoPlaylist.setOnClickListener(new View.OnClickListener() {
@@ -223,7 +194,6 @@ public class SongQueueActivity extends AppCompatActivity {
 
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
@@ -267,50 +237,45 @@ public class SongQueueActivity extends AppCompatActivity {
 =======
         i.putExtra("playlistobjectid", playlistObjectId);
 >>>>>>> Play song, login error handling, contant string extras for intents
-=======
->>>>>>> Revert "Merge pull request #20 from gracewainaina/modify-playlist"
         startActivity(i);
     }
 
-    private Playlist getCurrentPlaylist(String playlistobjectid) {
-        final Playlist[] currentplaylist = new Playlist[1];
+    private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
+        query.include("songs");
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
-                currentplaylist[0] = playlist;
-            }
-        });
-        return currentplaylist[0];
-    }
-    private Song getCurrentSong(String songobjectid) {
-        final Song[] currentsong = new Song[1];
-        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        // First try to find from the cache and only then go to network
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-        // Execute the query to find the object with ID
-        query.getInBackground(songobjectid, new GetCallback<Song>() {
-            @Override
-            public void done(Song song, ParseException e) {
-                currentsong[0] = song;
-            }
-        });
-        return currentsong[0];
-    }
+                if (e == null) {
+                    Log.d(TAG, "playlist found " + playlist.getName());
+                    Log.d(TAG, "playlist found123 " + playlist.getSongList());
+                    if (playlist.getSongList() != null){
+                        currentPlaylistSongs = playlist.getSongList();
+                    }
+                    currentPlaylistSongs.add(songObjectId);
+                    playlist.setSongList(currentPlaylistSongs);
+                    Log.d(TAG, "playlist found2" + currentPlaylistSongs.size());
+                    playlist.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "Error occurred when adding song", e);
+                                Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.i(TAG, "Post saved successfully!");
+                            Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-    private void addSong(Song currentsong) {
-        List<Song> availableSongs = currentPlaylist.getSongs();
-        for (Song song : availableSongs){
-            if(songObjectId == song.getObjectId()){
-                Toast.makeText(SongQueueActivity.this, "Song already exists in " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
-                return;
+                }
+                else{
+                    Log.d(TAG, "playlist not found!");
+                }
             }
-        }
-        currentPlaylist.setSong(currentsong);
-        Toast.makeText(SongQueueActivity.this, "Song has been added to " + currentPlaylist.getName(), Toast.LENGTH_SHORT).show();
+        });
     }
 <<<<<<< HEAD
     private Song getCurrentSong(String songobjectid) {
