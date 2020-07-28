@@ -1,4 +1,5 @@
 package com.example.musicca.adapters;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -20,7 +21,6 @@ import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> implements Filterable {

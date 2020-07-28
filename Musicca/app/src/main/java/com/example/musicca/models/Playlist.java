@@ -1,18 +1,11 @@
 package com.example.musicca.models;
 
-import android.util.Log;
-
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @ParseClassName("Playlist")
 public class Playlist extends ParseObject {

@@ -15,10 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
-import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder>{
