@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Like;
 import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
+import com.example.musicca.models.SongOnTouchListener;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -72,7 +74,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         return songObjectIds.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivAlbum;
         public TextView tvTitle;
         public TextView tvArtist;
@@ -86,39 +88,28 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             tvArtist = itemView.findViewById(R.id.tvArtist);
             ivLike = itemView.findViewById(R.id.ivLike);
             tvLikes = itemView.findViewById(R.id.tvLikes);
-            itemView.setOnClickListener(this);
-        }
 
-        @Override
-        public void onClick(View view) {
-            // gets item position
-            int position = getAdapterPosition();
-            // make sure the position is valid, i.e. actually exists in the view
-            if (position != RecyclerView.NO_POSITION) {
-                String songObjectId = songObjectIds.get(position);
-                // create intent for the new activity
-                Intent intent = new Intent(context, SongPlaylistActivity.class);
-                ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-                // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
-                query.getInBackground(songObjectId, new GetCallback<Song>() {
-                    @Override
-                    public void done(Song song, com.parse.ParseException e) {
-                        if (e == null) {
-                            Log.d(TAG, "song found22" + song.getTitle());
-                            intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
-                            intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
-                            intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
-                            intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
-                            intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-                            // show the activity
-                            context.startActivity(intent);
-                            Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Log.d(TAG, "song not found22!");
-                        }
-                    }
-                });
-            }
+            // Usage: override double tap, single tap and long press
+            itemView.setOnTouchListener(new SongOnTouchListener(context) {
+                // single tap to select song
+                @Override
+                public void onSingleTapConfirmed(MotionEvent e) {
+                    Toast.makeText(context, "Single Tap!", Toast.LENGTH_SHORT).show();
+                }
+
+                // double tap to like song
+                @Override
+                public void onDoubleTap(MotionEvent e) {
+                    Toast.makeText(context, "Double Tap!", Toast.LENGTH_SHORT).show();
+                }
+
+                // long press to unlike a song
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    Toast.makeText(context, "Long Press!", Toast.LENGTH_SHORT).show();
+
+                }
+            });
         }
 
         // this function finds the number of likes of a specific song in a specific playlist
