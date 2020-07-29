@@ -17,11 +17,13 @@ import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
 import com.example.musicca.activities.SongQueueActivity;
+import com.example.musicca.models.Like;
 import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -34,6 +36,10 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     private static final String EXTRA_ALBUMICONURL = "albumiconurl";
     private static final String EXTRA_SONGTITLE = "songtitle";
     private static final String EXTRA_SONGARTIST = "songartist";
+
+    public static final String KEY_PLAYLIST = "likedplaylist";
+    public static final String KEY_SONG = "likedsong";
+    public static final String KEY_USER = "likeduser";
 
     private static final String TAG = "Queue";
 
@@ -58,7 +64,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
         String songObjectId = songObjectIds.get(position);
         //Song song = songs.get(position);
-        holder.bind(songObjectId);
+        holder.bind(songObjectId, position);
     }
 
     @Override
@@ -67,15 +73,19 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ivAlbum;
-        TextView tvTitle;
-        TextView tvArtist;
+        public ImageView ivAlbum;
+        public TextView tvTitle;
+        public TextView tvArtist;
+        public ImageView ivLike;
+        public TextView tvLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivAlbum = itemView.findViewById(R.id.ivAlbum);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+            ivLike = itemView.findViewById(R.id.ivLike);
+            tvLikes = itemView.findViewById(R.id.tvLikes);
             itemView.setOnClickListener(this);
         }
 
@@ -111,22 +121,64 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             }
         }
 
-        public void bind(String songObjectId) {
-            ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        // this function finds the number of likes of a specific song in a specific playlist
+        private int findNumLikes(int position) throws ParseException {
+            ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+            query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
+            query.whereEqualTo(KEY_SONG, songObjectIds.get(position));
+            List<Like> numLikes = query.find();
+            return numLikes.size();
+        }
+
+        // this function finds a specific song liked by the current user
+        // the list can either be empty or have a size of 1, because user cannot like a song more than once
+        public List<Like> findLikedByCurrentUser(int position) throws ParseException {
+            ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+            query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
+            query.whereEqualTo(KEY_SONG, songObjectIds.get(position));
+            query.whereEqualTo(KEY_USER, ParseUser.getCurrentUser().getObjectId());
+            List<Like> likedByUser = query.find();
+            return likedByUser;
+        }
+
+        // bind each view of to the song object
+        public void bind(String songObjectId, int position) {
+            try {
+                int num = findNumLikes(position);
+                Log.d("SORT SONG", "numlikes " + num);
+                tvLikes.setText("" + num);
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+
+            try {
+                List<Like> likedByUser = findLikedByCurrentUser(position);
+                if (likedByUser.size() > 0){
+                    ivLike.setImageResource(R.drawable.likefilledicon);
+                }
+                else {
+                    ivLike.setImageResource(R.drawable.likeicon);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            ParseQuery<Song> querySong = ParseQuery.getQuery(Song.class);
             // Execute the query to find the object with ID
-            query.getInBackground(songObjectId, new GetCallback<Song>() {
+            querySong.getInBackground(songObjectId, new GetCallback<Song>() {
                 @Override
                 public void done(Song song, com.parse.ParseException e) {
                     if (e == null) {
-                        Log.d(TAG, "song found11" + song.getTitle());
                         tvTitle.setText(song.getTitle());
                         tvArtist.setText(song.getArtist());
                         Glide.with(context).load(song.getURL()).into(ivAlbum);
                     } else {
-                        Log.d(TAG, "song not found11!");
+                        Log.d(TAG, "song not found!");
+                        Toast.makeText(context, "Error retrieving song!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+
     }
 }
