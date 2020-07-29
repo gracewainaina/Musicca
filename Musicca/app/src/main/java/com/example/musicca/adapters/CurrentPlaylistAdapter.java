@@ -100,7 +100,11 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 // double tap to like song
                 @Override
                 public void onDoubleTap(MotionEvent e) {
-                    Toast.makeText(context, "Double Tap!", Toast.LENGTH_SHORT).show();
+                    try {
+                        addLike(getAdapterPosition());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
                 // long press to unlike a song
@@ -140,6 +144,39 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 });
             }
         }
+
+        // on double tap
+        // created a new row of like in the Like class on Parse and changes the like image to a filled icon
+        public void addLike(int position) throws ParseException {
+            List<Like> likedByUser = findLikedByCurrentUser(position);
+            if (likedByUser.size() > 0) {
+                Toast.makeText(context, "song already liked!", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Like like = new Like();
+                like.setKeySong(songObjectIds.get(position));
+                like.setKeyPlaylist(playlistObjectId);
+                like.setKeyUser(ParseUser.getCurrentUser().getObjectId());
+                like.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, "Error liking song", e);
+                            Toast.makeText(context, "Error liking song!", Toast.LENGTH_SHORT).show();
+                        }
+                        try {
+                            tvLikes.setText("" + findNumLikes(position));
+                            ivLike.setImageResource(R.drawable.likefilledicon);
+                            Log.e(TAG, "song liked", e);
+                            notifyDataSetChanged();
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+            }
+        }
+
 
         // this function finds the number of likes of a specific song in a specific playlist
         private int findNumLikes(int position) throws ParseException {
