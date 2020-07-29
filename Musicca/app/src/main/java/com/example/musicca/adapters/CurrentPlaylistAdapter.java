@@ -50,7 +50,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     @NonNull
     @Override
     public CurrentPlaylistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_queue_song, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_playlist_song, parent, false);
         return new ViewHolder(view);
     }
 
