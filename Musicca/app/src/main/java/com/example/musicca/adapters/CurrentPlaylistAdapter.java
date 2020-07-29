@@ -110,8 +110,11 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 // long press to unlike a song
                 @Override
                 public void onLongPress(MotionEvent e) {
-                    Toast.makeText(context, "Long Press!", Toast.LENGTH_SHORT).show();
-
+                    try {
+                        removeLike(getAdapterPosition());
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             });
         }
@@ -177,6 +180,22 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             }
         }
 
+        // on long press
+        // removes a like once the user unlikes a song by deleting the row of like on parse
+        // and changes the like image to a outline icon
+        private void removeLike(int position) throws ParseException {
+            List<Like> likedByUser = findLikedByCurrentUser(position);
+            if (likedByUser.size() > 0) {
+                likedByUser.get(0).delete();
+                //tvLikes.setText("" + findNumLikes(position));
+                ivLike.setImageResource(R.drawable.likeicon);
+                Toast.makeText(context, "Song unliked!", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
+            }
+            else{
+                Toast.makeText(context, "song is currently not liked!", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         // this function finds the number of likes of a specific song in a specific playlist
         private int findNumLikes(int position) throws ParseException {
