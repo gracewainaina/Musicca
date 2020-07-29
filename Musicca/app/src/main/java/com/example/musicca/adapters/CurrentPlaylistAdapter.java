@@ -94,7 +94,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 // single tap to select song
                 @Override
                 public void onSingleTapConfirmed(MotionEvent e) {
-                    Toast.makeText(context, "Single Tap!", Toast.LENGTH_SHORT).show();
+                    songSelect(getAdapterPosition());
                 }
 
                 // double tap to like song
@@ -110,6 +110,35 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
                 }
             });
+        }
+
+        // on single touch
+        // creates a new activity with the selected song, to allow user to play the song
+        private void songSelect(int position) {
+            // make sure the position is valid, i.e. actually exists in the view
+            if (position != RecyclerView.NO_POSITION) {
+                String songObjectId = songObjectIds.get(position);
+                // create intent for the new activity
+                Intent intent = new Intent(context, SongPlaylistActivity.class);
+                ParseQuery<Song> querySong = ParseQuery.getQuery(Song.class);
+                querySong.getInBackground(songObjectId, new GetCallback<Song>() {
+                    @Override
+                    public void done(Song song, com.parse.ParseException e) {
+                        if (e == null) {
+                            intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
+                            intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
+                            intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
+                            intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
+                            intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+                            // show the activity
+                            context.startActivity(intent);
+                            Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Error showing song!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
         }
 
         // this function finds the number of likes of a specific song in a specific playlist
