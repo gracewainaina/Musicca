@@ -52,8 +52,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Inflate animation from XML
-        Animation animFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
 
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
@@ -78,7 +76,6 @@ public class ProfileFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnLogout.startAnimation(animFadeOut);
                 ParseUser.logOut();
                 if (ParseUser.getCurrentUser() == null) {
                     goLoginActivity();

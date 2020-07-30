@@ -151,12 +151,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                 // show the activity
-
-                // options need to be passed when starting the activity
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");
                 context.startActivity(intent, options.toBundle());
-
-//                context.startActivity(intent);
                 Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
             }
         }

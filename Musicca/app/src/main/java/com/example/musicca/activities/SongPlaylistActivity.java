@@ -40,7 +40,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "Play Song";
 
-    private ImageView ivSongAlbum;
+    private ImageView ivAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
     private ImageView ivPrevious;
@@ -69,21 +69,21 @@ public class SongPlaylistActivity extends AppCompatActivity {
         Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
         getWindow().setExitTransition(transitionExit);
 
-        ivSongAlbum = findViewById(R.id.ivSongAlbum);
+        ivAlbum = findViewById(R.id.ivAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnReturnPlaylist = findViewById(R.id.btnReturnPlaylist);
 
-        ivPrevious = (ImageView) findViewById(R.id.ivPrevious);
-        ivPlayPause = (ImageView) findViewById(R.id.ivPlayPause);
-        ivNext = (ImageView) findViewById(R.id.ivNext);
+        ivPrevious = findViewById(R.id.ivPrevious);
+        ivPlayPause = findViewById(R.id.ivPlayPause);
+        ivNext = findViewById(R.id.ivNext);
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         Log.d("PLAYLIST SONGQUEUE", "playlistObjectId " + playlistObjectId);
 
         albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
-        Glide.with(this).load(albumUrl).into(ivSongAlbum);
+        Glide.with(this).load(albumUrl).into(ivAlbum);
 
         tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));

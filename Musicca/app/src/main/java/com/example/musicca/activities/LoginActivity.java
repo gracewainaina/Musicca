@@ -32,8 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Inflate animation from XML
-        Animation animFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
         // check if user is already logged in after opening the app again
         // if so, go to main activity
@@ -51,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnLogin.startAnimation(animFadeOut);
                 Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();

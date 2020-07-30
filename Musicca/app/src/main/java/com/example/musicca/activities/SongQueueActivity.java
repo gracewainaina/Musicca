@@ -43,7 +43,7 @@ public class SongQueueActivity extends AppCompatActivity {
     private static final String TAG = "Queue";
     private List<String> currentPlaylistSongs = new ArrayList<>();
 
-    private ImageView ivSongAlbum;
+    private ImageView ivAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
     private Button btnAddSong;
@@ -64,7 +64,7 @@ public class SongQueueActivity extends AppCompatActivity {
         Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
         getWindow().setExitTransition(transitionExit);
 
-        ivSongAlbum = findViewById(R.id.ivSongAlbum);
+        ivAlbum = findViewById(R.id.ivAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnAddSong = findViewById(R.id.btnAddSong);
@@ -75,7 +75,7 @@ public class SongQueueActivity extends AppCompatActivity {
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
 
         albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
-        Glide.with(this).load(albumUrl).into(ivSongAlbum);
+        Glide.with(this).load(albumUrl).into(ivAlbum);
         tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
 
