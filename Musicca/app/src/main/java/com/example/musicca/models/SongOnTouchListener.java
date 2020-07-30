@@ -36,11 +36,6 @@ public class SongOnTouchListener implements View.OnTouchListener {
             return super.onSingleTapConfirmed(e);
         }
 
-        @Override
-        public void onLongPress(MotionEvent e) {
-            SongOnTouchListener.this.onLongPress(e);
-            super.onLongPress(e);
-        }
     }
 
     public void onSingleTapConfirmed(MotionEvent e) {
@@ -51,7 +46,4 @@ public class SongOnTouchListener implements View.OnTouchListener {
         // To be overridden when implementing listener
     }
 
-    public void onLongPress(MotionEvent e) {
-        // To be overridden when implementing listener
-    }
 }

@@ -96,26 +96,24 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 public void onSingleTapConfirmed(MotionEvent e) {
                     songSelect(getAdapterPosition());
                 }
-
-                // double tap to like song
+                // double tap to like or unlike song depending on whether the user has liked the song or not
                 @Override
                 public void onDoubleTap(MotionEvent e) {
                     try {
-                        addLike(getAdapterPosition());
+                        int position = getAdapterPosition();
+                        List<Like> likedByUser = findLikedByCurrentUser(position);
+                        // if user has already liked the song, unlike the song
+                        // else user hasn't liked the song, so like the song
+                        if (likedByUser.size() > 0) {
+                            removeLike(likedByUser);
+                        } else {
+                            addLike(position);
+                        }
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
                 }
 
-                // long press to unlike a song
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    try {
-                        removeLike(getAdapterPosition());
-                    } catch (ParseException ex) {
-                        ex.printStackTrace();
-                    }
-                }
             });
         }
 
@@ -148,53 +146,40 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             }
         }
 
-        // on double tap
-        // created a new row of like in the Like class on Parse and changes the like image to a filled icon
+        // create a new row of like in the Like class on Parse and changes the like image to a filled icon
         public void addLike(int position) throws ParseException {
-            List<Like> likedByUser = findLikedByCurrentUser(position);
-            if (likedByUser.size() > 0) {
-                Toast.makeText(context, "song already liked!", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Like like = new Like();
-                like.setKeySong(songObjectIds.get(position));
-                like.setKeyPlaylist(playlistObjectId);
-                like.setKeyUser(ParseUser.getCurrentUser().getObjectId());
-                like.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e != null) {
-                            Log.e(TAG, "Error liking song", e);
-                            Toast.makeText(context, "Error liking song!", Toast.LENGTH_SHORT).show();
-                        }
-                        try {
-                            tvLikes.setText("" + findNumLikes(position));
-                            ivLike.setImageResource(R.drawable.likefilledicon);
-                            Log.e(TAG, "song liked", e);
-                            notifyDataSetChanged();
-                        } catch (ParseException ex) {
-                            ex.printStackTrace();
-                        }
+            Like like = new Like();
+            like.setKeySong(songObjectIds.get(position));
+            like.setKeyPlaylist(playlistObjectId);
+            like.setKeyUser(ParseUser.getCurrentUser().getObjectId());
+            like.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, "Error liking song", e);
+                        Toast.makeText(context, "Error liking song!", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
+                    try {
+                        tvLikes.setText("" + findNumLikes(position));
+                        ivLike.setImageResource(R.drawable.likefilledicon);
+                        Toast.makeText(context, "Song liked!", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "song liked", e);
+                        notifyDataSetChanged();
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
         }
 
-        // on long press
         // removes a like once the user unlikes a song by deleting the row of like on parse
         // and changes the like image to a outline icon
-        private void removeLike(int position) throws ParseException {
-            List<Like> likedByUser = findLikedByCurrentUser(position);
-            if (likedByUser.size() > 0) {
+        private void removeLike(List<Like> likedByUser) throws ParseException {
                 likedByUser.get(0).delete();
                 //tvLikes.setText("" + findNumLikes(position));
                 ivLike.setImageResource(R.drawable.likeicon);
                 Toast.makeText(context, "Song unliked!", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
-            }
-            else{
-                Toast.makeText(context, "song is currently not liked!", Toast.LENGTH_SHORT).show();
-            }
         }
 
         // this function finds the number of likes of a specific song in a specific playlist
@@ -231,8 +216,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 List<Like> likedByUser = findLikedByCurrentUser(position);
                 if (likedByUser.size() > 0){
                     ivLike.setImageResource(R.drawable.likefilledicon);
-                }
-                else {
+                } else {
                     ivLike.setImageResource(R.drawable.likeicon);
                 }
             } catch (ParseException e) {
