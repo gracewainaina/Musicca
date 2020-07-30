@@ -56,15 +56,31 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         this.context = context;
         this.songObjectIds = songObjectIds;
         this.playlistObjectId = playlistObjectId;
-        this.sortedSongObjectIds = sortSongObjectIds(songObjectIds);
+        try {
+            this.sortedSongObjectIds = sortSongObjectIds(songObjectIds);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    private List<String> sortSongObjectIds(List<String> songObjectIds) {
+    private List<String> sortSongObjectIds(List<String> songObjectIds) throws ParseException {
 
         ArrayList<ComparableSong> sortedComparableSongs = new ArrayList<>();
         List<String> sortedSongObjectIds = new ArrayList<>();
 
-        // TODO: implement this sort funciton
+        for (int i = 0; i < songObjectIds.size(); i++){
+            String songObjectId = songObjectIds.get(i);
+            ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+            query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
+            query.whereEqualTo(KEY_SONG, songObjectId);
+            List<Like> matchLikes = query.find();
+            sortedComparableSongs.add(new ComparableSong(songObjectId, matchLikes.size()));
+        }
+        Collections.sort(sortedComparableSongs);
+        for (ComparableSong comparableSong: sortedComparableSongs){
+            sortedSongObjectIds.add(comparableSong.getSongObjectId());
+        }
+        notifyDataSetChanged();
         return sortedSongObjectIds;
     }
 
