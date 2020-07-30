@@ -3,6 +3,7 @@ package com.example.musicca.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,11 +40,31 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private String playlistObjectId;
     private CurrentPlaylistAdapter currentPlaylistAdapter;
     private List<String> currentPlaylistSongs;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_playlist);
+
+        swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    currentPlaylistAdapter.updateSongs();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                swipeContainer.setRefreshing(false);
+                currentPlaylistAdapter.notifyDataSetChanged();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         tvPlaylistTitle = findViewById(R.id.tvPlaylistTitle);
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);

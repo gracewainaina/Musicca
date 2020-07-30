@@ -103,6 +103,16 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         return sortedSongObjectIds.size();
     }
 
+    // reuploads a list of items -- change to type used
+    public void updateSongs() throws ParseException {
+        sortedSongObjectIds.clear();
+        notifyDataSetChanged();
+
+        List<String> newSortedSongObjIds = sortSongObjectIds(songObjectIds);
+        sortedSongObjectIds.addAll(newSortedSongObjIds);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivAlbum;
         public TextView tvTitle;
