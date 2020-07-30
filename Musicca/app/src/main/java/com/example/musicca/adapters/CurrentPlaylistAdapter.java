@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
 import com.example.musicca.activities.SongQueueActivity;
+import com.example.musicca.models.ComparableSong;
 import com.example.musicca.models.Like;
 import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
@@ -29,6 +30,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder> {
@@ -45,6 +47,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     private static final String TAG = "Queue";
 
+    public List<String> sortedSongObjectIds;
     private Context context;
     private List<String> songObjectIds;
     private String playlistObjectId;
@@ -53,6 +56,16 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         this.context = context;
         this.songObjectIds = songObjectIds;
         this.playlistObjectId = playlistObjectId;
+        this.sortedSongObjectIds = sortSongObjectIds(songObjectIds);
+    }
+
+    private List<String> sortSongObjectIds(List<String> songObjectIds) {
+
+        ArrayList<ComparableSong> sortedComparableSongs = new ArrayList<>();
+        List<String> sortedSongObjectIds = new ArrayList<>();
+
+        // TODO: implement this sort funciton
+        return sortedSongObjectIds;
     }
 
     @NonNull
