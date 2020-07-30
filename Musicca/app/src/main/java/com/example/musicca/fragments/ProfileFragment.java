@@ -5,11 +5,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,6 +52,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Inflate animation from XML
+        Animation animFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
+
         tvUsername = view.findViewById(R.id.tvUsername);
         tvMusicBio = view.findViewById(R.id.tvMusicBio);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
@@ -72,6 +78,7 @@ public class ProfileFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnLogout.startAnimation(animFadeOut);
                 ParseUser.logOut();
                 if (ParseUser.getCurrentUser() == null) {
                     goLoginActivity();
@@ -84,7 +91,11 @@ public class ProfileFragment extends Fragment {
         Intent i = new Intent(getContext(), EditProfileActivity.class);
         i.putExtra(EXTRA_MUSICBIO, tvMusicBio.getText().toString());
         i.putExtra(EXTRA_PROFILEIMAGEURL, profileImageURL);
-        startActivity(i);
+
+        // options need to be passed when starting the activity
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity());
+        startActivity(i, options.toBundle());
+//        startActivity(i);
     }
 
     private void goLoginActivity() {

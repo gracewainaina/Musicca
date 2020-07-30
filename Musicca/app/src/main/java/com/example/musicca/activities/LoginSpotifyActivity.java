@@ -2,6 +2,7 @@ package com.example.musicca.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -98,7 +99,12 @@ public class LoginSpotifyActivity extends AppCompatActivity {
 
     private void goMainActivity() {
         Intent newintent = new Intent(LoginSpotifyActivity.this, MainActivity.class);
-        startActivity(newintent);
+
+        // options need to be passed when starting the activity
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginSpotifyActivity.this);
+        startActivity(newintent, options.toBundle());
+
+        //startActivity(newintent);
     }
 
 

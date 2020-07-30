@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Inflate animation from XML
+        Animation animFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
         // check if user is already logged in after opening the app again
         // if so, go to main activity
@@ -47,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnLogin.startAnimation(animFadeOut);
                 Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
@@ -54,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
         btnSU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 
     private void loginUser(String username, String password) {

@@ -1,6 +1,8 @@
 package com.example.musicca.activities;
 
 import android.os.Bundle;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        getWindow().setEnterTransition(transitionEnter);
+
+        Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
+        getWindow().setExitTransition(transitionExit);
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

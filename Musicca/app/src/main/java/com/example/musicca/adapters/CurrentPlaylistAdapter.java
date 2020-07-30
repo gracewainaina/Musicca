@@ -1,5 +1,6 @@
 package com.example.musicca.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -175,7 +177,12 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                             intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
                             intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                             // show the activity
-                            context.startActivity(intent);
+
+                            // options need to be passed when starting the activity
+                            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context);
+                            context.startActivity(intent, options.toBundle());
+
+//                            context.startActivity(intent);
                             Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(context, "Error showing song!", Toast.LENGTH_SHORT).show();

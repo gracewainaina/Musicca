@@ -1,9 +1,14 @@
 package com.example.musicca.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +57,12 @@ public class SongQueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_queue);
-        Log.d(TAG, "song activity set up");
+
+        Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        getWindow().setEnterTransition(transitionEnter);
+
+        Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
+        getWindow().setExitTransition(transitionExit);
 
         ivSongAlbum = findViewById(R.id.ivSongAlbum);
         tvTitle = findViewById(R.id.tvTitle);
@@ -98,7 +108,12 @@ public class SongQueueActivity extends AppCompatActivity {
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-        startActivity(i);
+
+        // options need to be passed when starting the activity
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(SongQueueActivity.this);
+        startActivity(i, options.toBundle());
+
+//        startActivity(i);
     }
 
     private void getCurrentPlaylistSongs(String playlistObjectId) {

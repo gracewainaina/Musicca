@@ -1,5 +1,6 @@
 package com.example.musicca.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -13,10 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.musicca.R;
+import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.activities.SongQueueActivity;
 import com.example.musicca.models.Song;
 
@@ -148,9 +151,13 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
                 // show the activity
-                Log.d(TAG, "ssong selected");
-                context.startActivity(intent);
-                Toast.makeText(context, "Song select", Toast.LENGTH_SHORT).show();
+
+                // options need to be passed when starting the activity
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context);
+                context.startActivity(intent, options.toBundle());
+
+//                context.startActivity(intent);
+                Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
             }
         }
     }
