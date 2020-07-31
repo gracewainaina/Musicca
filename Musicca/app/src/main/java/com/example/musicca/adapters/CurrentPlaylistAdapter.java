@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.musicca.R;
 import com.example.musicca.activities.SongPlaylistActivity;
 import com.example.musicca.activities.SongQueueActivity;
+import com.example.musicca.models.ComparableSong;
 import com.example.musicca.models.Like;
 import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
@@ -29,6 +30,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylistAdapter.ViewHolder> {
@@ -45,6 +47,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     private static final String TAG = "Queue";
 
+    private List<String> sortedSongObjectIds;
     private Context context;
     private List<String> songObjectIds;
     private String playlistObjectId;
@@ -53,6 +56,32 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         this.context = context;
         this.songObjectIds = songObjectIds;
         this.playlistObjectId = playlistObjectId;
+        try {
+            this.sortedSongObjectIds = sortSongObjectIds(songObjectIds);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private List<String> sortSongObjectIds(List<String> songObjectIds) throws ParseException {
+
+        ArrayList<ComparableSong> sortedComparableSongs = new ArrayList<>();
+        List<String> sortedSongObjectIds = new ArrayList<>();
+
+        for (int i = 0; i < songObjectIds.size(); i++){
+            String songObjectId = songObjectIds.get(i);
+            ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+            query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
+            query.whereEqualTo(KEY_SONG, songObjectId);
+            List<Like> matchLikes = query.find();
+            sortedComparableSongs.add(new ComparableSong(songObjectId, matchLikes.size()));
+        }
+        Collections.sort(sortedComparableSongs);
+        for (ComparableSong comparableSong: sortedComparableSongs){
+            sortedSongObjectIds.add(comparableSong.getSongObjectId());
+        }
+        notifyDataSetChanged();
+        return sortedSongObjectIds;
     }
 
     @NonNull
@@ -64,22 +93,32 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     @Override
     public void onBindViewHolder(@NonNull CurrentPlaylistAdapter.ViewHolder holder, int position) {
-        String songObjectId = songObjectIds.get(position);
+        String songObjectId = sortedSongObjectIds.get(position);
         //Song song = songs.get(position);
         holder.bind(songObjectId, position);
     }
 
     @Override
     public int getItemCount() {
-        return songObjectIds.size();
+        return sortedSongObjectIds.size();
+    }
+
+    // reuploads a list of items -- change to type used
+    public void updateSongs() throws ParseException {
+        sortedSongObjectIds.clear();
+        notifyDataSetChanged();
+
+        List<String> newSortedSongObjIds = sortSongObjectIds(songObjectIds);
+        sortedSongObjectIds.addAll(newSortedSongObjIds);
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivAlbum;
-        public TextView tvTitle;
-        public TextView tvArtist;
-        public ImageView ivLike;
-        public TextView tvLikes;
+        private ImageView ivAlbum;
+        private TextView tvTitle;
+        private TextView tvArtist;
+        private ImageView ivLike;
+        private TextView tvLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -123,7 +162,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         private void songSelect(int position) {
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {
-                String songObjectId = songObjectIds.get(position);
+                String songObjectId = sortedSongObjectIds.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
                 ParseQuery<Song> querySong = ParseQuery.getQuery(Song.class);
@@ -150,7 +189,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         // create a new row of like in the Like class on Parse and changes the like image to a filled icon
         public void addLike(int position) throws ParseException {
             Like like = new Like();
-            like.setKeySong(songObjectIds.get(position));
+            like.setKeySong(sortedSongObjectIds.get(position));
             like.setKeyPlaylist(playlistObjectId);
             like.setKeyUser(ParseUser.getCurrentUser().getObjectId());
             like.saveInBackground(new SaveCallback() {
@@ -188,7 +227,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         private int findNumLikes(int position) throws ParseException {
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
             query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
-            query.whereEqualTo(KEY_SONG, songObjectIds.get(position));
+            query.whereEqualTo(KEY_SONG, sortedSongObjectIds.get(position));
             List<Like> numLikes = query.find();
             return numLikes.size();
         }
@@ -198,7 +237,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         public List<Like> findLikedByCurrentUser(int position) throws ParseException {
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
             query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
-            query.whereEqualTo(KEY_SONG, songObjectIds.get(position));
+            query.whereEqualTo(KEY_SONG, sortedSongObjectIds.get(position));
             query.whereEqualTo(KEY_USER, ParseUser.getCurrentUser().getObjectId());
             List<Like> likedByUser = query.find();
             return likedByUser;
