@@ -47,7 +47,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     private static final String TAG = "Queue";
 
-    public List<String> sortedSongObjectIds;
+    private List<String> sortedSongObjectIds;
     private Context context;
     private List<String> songObjectIds;
     private String playlistObjectId;
@@ -114,11 +114,11 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivAlbum;
-        public TextView tvTitle;
-        public TextView tvArtist;
-        public ImageView ivLike;
-        public TextView tvLikes;
+        private ImageView ivAlbum;
+        private TextView tvTitle;
+        private TextView tvArtist;
+        private ImageView ivLike;
+        private TextView tvLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
