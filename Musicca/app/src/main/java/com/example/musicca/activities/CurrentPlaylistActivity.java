@@ -49,7 +49,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-        Log.d("PLAYLIST CURRENT objid ", playlistObjectId != null ? playlistObjectId : null);
 
         getCurrentPlaylistSongs(playlistObjectId);
         btnAddMoreSongs.setOnClickListener(new View.OnClickListener() {
@@ -75,17 +74,16 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "playlist found " + playlist.getName());
                     tvPlaylistTitle.setText(playlist.getName());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
-                        Log.d("playlist CURRENT size1", "SIZE OF" + currentPlaylistSongs.size());
                     }
                     currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
                     rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
                     rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+                    Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG, "playlist not found!");
                 }

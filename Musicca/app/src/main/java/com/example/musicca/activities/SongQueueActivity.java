@@ -63,7 +63,6 @@ public class SongQueueActivity extends AppCompatActivity {
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-        Log.d("PLAYLIST SONGQUEUE", playlistObjectId != null ? playlistObjectId : null);
 
         albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivSongAlbum);

@@ -24,6 +24,7 @@ public class ParseApplication extends Application {
         // Register your parse models
         ParseObject.registerSubclass(Playlist.class);
         ParseObject.registerSubclass(Song.class);
+        ParseObject.registerSubclass(Like.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured

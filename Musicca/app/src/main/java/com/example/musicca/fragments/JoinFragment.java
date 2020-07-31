@@ -70,9 +70,8 @@ public class JoinFragment extends Fragment {
             public void done(List<Playlist> itemList, ParseException e) {
                 if (e == null) {
                     // Access the array of results here
-                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
                     playlistObjectId = itemList.get(0).getObjectId();
-                    Toast.makeText(getContext(), "Playlist was found!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Playlist found!", Toast.LENGTH_SHORT).show();
                     gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
