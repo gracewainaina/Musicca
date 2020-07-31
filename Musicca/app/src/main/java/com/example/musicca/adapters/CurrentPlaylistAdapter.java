@@ -111,6 +111,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                         }
                     } catch (ParseException ex) {
                         ex.printStackTrace();
+                        Toast.makeText(context, "Error liking song!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -166,6 +167,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                         Log.e(TAG, "song liked", e);
                         notifyDataSetChanged();
                     } catch (ParseException ex) {
+                        Toast.makeText(context, "Error liking song!", Toast.LENGTH_SHORT).show();
                         ex.printStackTrace();
                     }
                 }
