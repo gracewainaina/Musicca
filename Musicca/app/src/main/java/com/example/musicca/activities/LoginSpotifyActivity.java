@@ -103,8 +103,6 @@ public class LoginSpotifyActivity extends AppCompatActivity {
         // options need to be passed when starting the activity
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginSpotifyActivity.this);
         startActivity(newintent, options.toBundle());
-
-        //startActivity(newintent);
     }
 
 

@@ -49,7 +49,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     private static final String TAG = "Queue";
 
-    public List<String> sortedSongObjectIds;
+    private List<String> sortedSongObjectIds;
     private Context context;
     private List<String> songObjectIds;
     private String playlistObjectId;
@@ -151,6 +151,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                             addLike(position);
                         }
                     } catch (ParseException ex) {
+                        Toast.makeText(context, "Song could not be liked!", Toast.LENGTH_SHORT).show();
                         ex.printStackTrace();
                     }
                 }
@@ -208,6 +209,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                         Log.e(TAG, "song liked", e);
                         notifyDataSetChanged();
                     } catch (ParseException ex) {
+                        Toast.makeText(context, "Song could not be liked!", Toast.LENGTH_SHORT).show();
                         ex.printStackTrace();
                     }
                 }

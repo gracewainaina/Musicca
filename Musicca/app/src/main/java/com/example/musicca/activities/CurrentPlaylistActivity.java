@@ -91,14 +91,10 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         // options need to be passed when starting the activity
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(CurrentPlaylistActivity.this);
         startActivity(i, options.toBundle());
-
-//        startActivity(i);
     }
 
     private void getCurrentPlaylistSongs(String playlistobjectid) {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
-        // First try to find from the cache and only then go to network
-        // query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or CACHE_ONLY
         // Execute the query to find the object with ID
         query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
             @Override

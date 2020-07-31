@@ -112,8 +112,6 @@ public class SongQueueActivity extends AppCompatActivity {
         // options need to be passed when starting the activity
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(SongQueueActivity.this);
         startActivity(i, options.toBundle());
-
-//        startActivity(i);
     }
 
     private void getCurrentPlaylistSongs(String playlistObjectId) {
