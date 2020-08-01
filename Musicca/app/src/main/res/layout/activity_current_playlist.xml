@@ -11,7 +11,7 @@
         android:id="@+id/tvPlaylistTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivSongAlbum"
+        android:layout_below="@+id/ivAlbum"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:gravity="center"
@@ -19,22 +19,35 @@
         android:textSize="24sp"
         tools:text="PLAYLIST TITLE" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPlaylistSongs"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="623dp"
         android:layout_below="@+id/tvPlaylistTitle"
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="false"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPlaylistSongs"
+            android:layout_width="match_parent"
+            android:layout_height="623dp"
+            android:layout_below="@+id/tvPlaylistTitle"
+            android:layout_alignParentStart="false"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     <Button
         android:id="@+id/btnAddMoreSongs"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_below="@+id/rvPlaylistSongs"
+        android:layout_below="@+id/swipeContainer"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"

@@ -1,8 +1,9 @@
 package com.example.musicca.activities;
 
 import android.content.Intent;
-import android.net.sip.SipSession;
 import android.os.Bundle;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,20 +14,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
-import com.example.musicca.models.Playlist;
 import com.example.musicca.models.Song;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 public class QueueActivity extends AppCompatActivity {
 
@@ -44,6 +44,12 @@ public class QueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
+
+        Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        getWindow().setEnterTransition(transitionEnter);
+
+        Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
+        getWindow().setExitTransition(transitionExit);
 
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
         tvSection = findViewById(R.id.tvSection);
@@ -104,6 +110,8 @@ public class QueueActivity extends AppCompatActivity {
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             rvLatestSongs.setLayoutManager(linearLayoutManager);
+            rvLatestSongs.setItemAnimator(new SlideInUpAnimator());
+
             Log.d(TAG, "length of songsAll3 " + allSongs.size());
             queueAdapter.notifyDataSetChanged();
         });
