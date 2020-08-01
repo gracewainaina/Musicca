@@ -1,9 +1,14 @@
 package com.example.musicca.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +43,7 @@ public class SongQueueActivity extends AppCompatActivity {
     private static final String TAG = "Queue";
     private List<String> currentPlaylistSongs = new ArrayList<>();
 
-    private ImageView ivSongAlbum;
+    private ImageView ivAlbum;
     private TextView tvTitle;
     private TextView tvArtist;
     private Button btnAddSong;
@@ -52,9 +57,14 @@ public class SongQueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_queue);
-        Log.d(TAG, "song activity set up");
 
-        ivSongAlbum = findViewById(R.id.ivSongAlbum);
+        Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        getWindow().setEnterTransition(transitionEnter);
+
+        Transition transitionExit = TransitionInflater.from(this).inflateTransition(R.transition.slide_left);
+        getWindow().setExitTransition(transitionExit);
+
+        ivAlbum = findViewById(R.id.ivAlbum);
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnAddSong = findViewById(R.id.btnAddSong);
@@ -65,7 +75,7 @@ public class SongQueueActivity extends AppCompatActivity {
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
 
         albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
-        Glide.with(this).load(albumUrl).into(ivSongAlbum);
+        Glide.with(this).load(albumUrl).into(ivAlbum);
         tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
         tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
 
@@ -98,7 +108,10 @@ public class SongQueueActivity extends AppCompatActivity {
     private void backToQueue() {
         Intent i = new Intent(this, QueueActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
-        startActivity(i);
+
+        // options need to be passed when starting the activity
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(SongQueueActivity.this);
+        startActivity(i, options.toBundle());
     }
 
     private void getCurrentPlaylistSongs(String playlistObjectId) {
