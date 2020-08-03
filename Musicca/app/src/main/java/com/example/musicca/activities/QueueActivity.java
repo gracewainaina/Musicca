@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
+import com.example.musicca.fragments.MultiFilterDialogFragment;
+import com.example.musicca.fragments.MultiFilterDialogFragment.onFilterActionListener;
 import com.example.musicca.models.Song;
 import com.parse.ParseQuery;
 
@@ -28,7 +30,7 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
-public class QueueActivity extends AppCompatActivity {
+public class QueueActivity extends AppCompatActivity implements onFilterActionListener {
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
@@ -117,5 +119,14 @@ public class QueueActivity extends AppCompatActivity {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
+    }
+
+    @Override
+    public void onFinishFilterDialog(String year, String songTitle, String songArtist) {
+        Log.d("FILTER QAC", "year: " + year);
+        Log.d("FILTER QAC", "song title: " + songTitle);
+        Log.d("FILTER QAC", "song artist: " + songArtist);
+
+        queueAdapter.performMultiFiltering(year, songTitle, songArtist);
     }
 }

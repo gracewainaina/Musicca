@@ -100,6 +100,12 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         };
     }
 
+    // Access the data result passed to the activity here
+    // perform filtering through the filter dialog fragment
+    public void performMultiFiltering(String year, String songTitle, String songArtist) {
+        Log.d(TAG, "multi filter function");
+    }
+
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView ivAlbum;
