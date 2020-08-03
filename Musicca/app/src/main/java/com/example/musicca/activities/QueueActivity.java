@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -91,6 +93,19 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
         });
         return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_filter) {
+            showFilterMenu();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showFilterMenu() {
+        FragmentManager fm = getSupportFragmentManager();
+        MultiFilterDialogFragment multiFilterDialogFragment = MultiFilterDialogFragment.newInstance("Add Search Filters Here");
+        multiFilterDialogFragment.show(fm, "fragment_multi_filter_dialog");
+    }
+
 
     private void queryAllSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
