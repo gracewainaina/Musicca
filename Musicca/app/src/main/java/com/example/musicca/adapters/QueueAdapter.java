@@ -102,21 +102,24 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ivAlbum;
-        TextView tvTitle;
-        TextView tvArtist;
+        private ImageView ivAlbum;
+        private TextView tvTitle;
+        private TextView tvArtist;
+        private TextView tvYear;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ivAlbum = itemView.findViewById(R.id.ivAlbum);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+            tvYear = itemView.findViewById(R.id.tvYear);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
+            tvYear.setText(song.getYear());
             Glide.with(context).load(song.getURL()).into(ivAlbum);
         }
 

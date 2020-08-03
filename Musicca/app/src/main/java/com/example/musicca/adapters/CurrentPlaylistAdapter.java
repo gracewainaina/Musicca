@@ -116,6 +116,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         private ImageView ivAlbum;
         private TextView tvTitle;
         private TextView tvArtist;
+        private TextView tvYear;
         private ImageView ivLike;
         private TextView tvLikes;
 
@@ -124,6 +125,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             ivAlbum = itemView.findViewById(R.id.ivAlbum);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+            tvYear = itemView.findViewById(R.id.tvYear);
             ivLike = itemView.findViewById(R.id.ivLike);
             tvLikes = itemView.findViewById(R.id.tvLikes);
 
@@ -275,6 +277,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                     if (e == null) {
                         tvTitle.setText(song.getTitle());
                         tvArtist.setText(song.getArtist());
+                        tvYear.setText(song.getYear());
                         Glide.with(context).load(song.getURL()).into(ivAlbum);
                     } else {
                         Log.d(TAG, "song not found!");

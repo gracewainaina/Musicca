@@ -22,6 +22,7 @@ public class Song extends ParseObject {
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_ALBUM = "album";
     public static final String KEY_URL = "artUrl";
+    public static final String KEY_YEAR = "year";
 
     public String getSpotifyId() {
         return getString(KEY_SPOTIFY_ID);
@@ -61,6 +62,14 @@ public class Song extends ParseObject {
 
     public void setURL(String url) {
         put(KEY_URL, url);
+    }
+
+    public String getYear() {
+        return getString(KEY_YEAR);
+    }
+
+    public void setYear(String year) {
+        put(KEY_YEAR, year);
     }
 
     // This class represents a executeSearch query that can be sent to the Parse server which will then
