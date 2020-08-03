@@ -24,6 +24,8 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
@@ -58,6 +60,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                 try {
                     currentPlaylistAdapter.updateSongs();
                 } catch (ParseException e) {
+                    Toast.makeText(CurrentPlaylistActivity.this, "Could not refresh songs!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 swipeContainer.setRefreshing(false);
@@ -75,7 +78,8 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
 
-        getCurrentPlaylistSongs(playlistObjectId);
+        getCurrentPlaylistSongs();
+
         btnAddMoreSongs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,10 +97,10 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
         startActivity(i, options.toBundle());
     }
 
-    private void getCurrentPlaylistSongs(String playlistobjectid) {
+    private void getCurrentPlaylistSongs() {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // Execute the query to find the object with ID
-        query.getInBackground(playlistobjectid, new GetCallback<Playlist>() {
+        query.getInBackground(playlistObjectId, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
@@ -113,10 +117,13 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                     rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
 
                 } else {
-                    Log.d(TAG, "playlist not found!");
+                    Toast.makeText(CurrentPlaylistActivity.this, "Playlist not found!", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
-
     }
+
+
+
 }

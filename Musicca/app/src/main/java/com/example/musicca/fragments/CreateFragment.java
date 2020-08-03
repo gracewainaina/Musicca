@@ -182,7 +182,6 @@ public class CreateFragment extends Fragment {
             }
         });
         playlistObjectId = playlistPublic.getObjectId();
-        Log.d("PLAYLIST OBJ ID", "gt " + playlistObjectId);
         gotoPlaylist();
     }
 

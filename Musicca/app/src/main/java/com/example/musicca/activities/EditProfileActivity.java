@@ -110,7 +110,6 @@ public class EditProfileActivity extends AppCompatActivity {
         tvEditMusicBio.setText("");
         Toast.makeText(EditProfileActivity.this, "Music Bio updated successfully!", Toast.LENGTH_SHORT).show();
 
-
     }
 
     private void onPickPhoto() {
@@ -207,7 +206,6 @@ public class EditProfileActivity extends AppCompatActivity {
             // Compress image to lower quality scale 1 - 100
             selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
             byte[] image = stream.toByteArray();
-
 
             // Load the selected image into a preview
             ivProfileImage.setImageBitmap(selectedImage);

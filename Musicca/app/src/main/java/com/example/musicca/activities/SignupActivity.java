@@ -34,12 +34,9 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick sign up button");
                 // Create the ParseUser
                 ParseUser user = new ParseUser();
-                Log.d(TAG, "user created 1");
                 signupUser(user);
-                Log.d(TAG, "user created 2");
             }
         });
     }
@@ -48,7 +45,6 @@ public class SignupActivity extends AppCompatActivity {
         // Set core properties
         parseUser.setUsername(etNewusername.getText().toString());
         parseUser.setPassword(etNewpassword.getText().toString());
-        Log.d(TAG, "user properties stored");
         // Invoke signUpInBackground
 
         parseUser.signUpInBackground(new SignUpCallback() {
@@ -67,7 +63,6 @@ public class SignupActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
-        Log.d(TAG, "going to main activity");
         finish();
     }
 }

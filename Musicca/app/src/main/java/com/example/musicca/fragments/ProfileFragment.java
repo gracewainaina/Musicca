@@ -28,6 +28,7 @@ public class ProfileFragment extends Fragment {
 
     private static final String EXTRA_MUSICBIO = "musicbio";
     private static final String EXTRA_PROFILEIMAGEURL = "profileimageurl";
+    private static final String EXTRA_PROFILEIMAGEFILE = "profileimage";
 
     private TextView tvUsername;
     private TextView tvMusicBio;
@@ -60,8 +61,8 @@ public class ProfileFragment extends Fragment {
         btnLogout = (Button) view.findViewById(R.id.btnLogout);
 
         tvUsername.setText(parseUser.getUsername());
-        tvMusicBio.setText(parseUser.getString("musicbio"));
-        ParseFile parseFile = parseUser.getParseFile("profileimage");
+        tvMusicBio.setText(parseUser.getString(EXTRA_MUSICBIO));
+        ParseFile parseFile = parseUser.getParseFile(EXTRA_PROFILEIMAGEFILE);
         profileImageURL = parseFile.getUrl();
         if (parseFile != null) {
             Glide.with(getContext()).load(profileImageURL).circleCrop().into(ivProfileImage);
@@ -92,7 +93,6 @@ public class ProfileFragment extends Fragment {
         // options need to be passed when starting the activity
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity());
         startActivity(i, options.toBundle());
-//        startActivity(i);
     }
 
     private void goLoginActivity() {

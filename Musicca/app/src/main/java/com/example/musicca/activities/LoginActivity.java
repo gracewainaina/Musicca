@@ -45,11 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         btnSU = findViewById(R.id.btnSU);
         ivLogo = findViewById(R.id.ivLogo);
 
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
@@ -57,20 +55,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btnSU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(TAG, "onClick to sign up button");
                 Intent i = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(i);
             }
         });
-
     }
 
     private void loginUser(String username, String password) {
-        Log.i(TAG, "attempt to log in user" + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {

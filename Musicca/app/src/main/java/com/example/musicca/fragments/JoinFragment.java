@@ -77,6 +77,7 @@ public class JoinFragment extends Fragment {
                     gotoPlaylist();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
+                    Toast.makeText(getContext(), "Error retrieving songs!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

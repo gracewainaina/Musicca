@@ -77,14 +77,12 @@ public class QueueActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d(TAG, "on query text submit");
                 queueAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.d(TAG, "on query text change");
                 queueAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -99,7 +97,6 @@ public class QueueActivity extends AppCompatActivity {
             if (e != null) {
                 Log.e(TAG, "Issue retrieving songs", e);
                 Toast.makeText(QueueActivity.this, "Error retrieving songs!", Toast.LENGTH_SHORT).show();
-
                 return;
             }
 
@@ -112,7 +109,6 @@ public class QueueActivity extends AppCompatActivity {
             rvLatestSongs.setLayoutManager(linearLayoutManager);
             rvLatestSongs.setItemAnimator(new SlideInUpAnimator());
 
-            Log.d(TAG, "length of songsAll3 " + allSongs.size());
             queueAdapter.notifyDataSetChanged();
         });
     }

@@ -47,10 +47,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         this.songs = songs;
         this.songsAll = new ArrayList<>(songs);
         this.playlistObjectId = playlistObjectId;
-        Log.d(TAG, "length of this.songsAll " + this.songsAll.size());
-        Log.d(TAG, "length of this.songs " + this.songs.size());
-        Log.d(TAG, "length of songs " + songs.size());
-        Log.d("PLAYLIST OBJECT ID", "playlistObjectId" + playlistObjectId);
     }
 
     @NonNull
@@ -81,33 +77,23 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
                 List<Song> filteredList = new ArrayList<>();
                 // if string is empty, return the entire list or 'charSequence.toString().isEmpty()'
                 if (charSequence == null || charSequence.length() == 0) {
-                    Log.d(TAG, "nothing typed yet");
                     filteredList.addAll(songsAll);
                 } else {
-                    Log.d(TAG, "check if song found");
                     String filterPattern = charSequence.toString().toLowerCase().trim();
-                    Log.d(TAG, "length of songsAll " + songsAll.size() + filterPattern);
                     for (Song song : songsAll) {
                         if (song.getTitle().toLowerCase().contains(filterPattern)) {
-                            Log.d(TAG, "song found");
                             filteredList.add(song);
                         }
                     }
                 }
-                Log.d(TAG, "search results");
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filteredList;
-                for (Song song : filteredList) {
-                    Log.d(TAG, "filtered song in filteredList: " + song.getTitle());
-                }
                 return filterResults;
             }
 
             // run on UI thread
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                //songs.clear();
-                //songs.addAll((Collection<? extends Song>) filterResults.values);
                 songs = (List<Song>) filterResults.values;
                 notifyDataSetChanged();
             }

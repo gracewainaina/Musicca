@@ -122,14 +122,11 @@ public class SongQueueActivity extends AppCompatActivity {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "playlist found " + playlist.getName());
-                    Log.d(TAG, "playlist found123 " + playlist.getSongList());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                     }
                     currentPlaylistSongs.add(songObjectId);
                     playlist.setSongList(currentPlaylistSongs);
-                    Log.d(TAG, "playlist found2" + currentPlaylistSongs.size());
                     playlist.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -144,6 +141,7 @@ public class SongQueueActivity extends AppCompatActivity {
 
                 } else {
                     Log.d(TAG, "playlist not found!");
+                    Toast.makeText(SongQueueActivity.this, "Error retrieving playlist!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

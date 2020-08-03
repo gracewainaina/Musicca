@@ -80,7 +80,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
         songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-        Log.d("PLAYLIST SONGQUEUE", "playlistObjectId " + playlistObjectId);
 
         albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
         Glide.with(this).load(albumUrl).into(ivAlbum);
@@ -117,9 +116,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
             @Override
             public void done(Song song, com.parse.ParseException e) {
                 if (e == null) {
-                    Log.d(TAG, "play song found" + song.getTitle());
                     String spotifyID = song.getSpotifyId();
-                    Log.d(TAG, "play songspotifyid" + "spotifyid " + spotifyID);
 
                     ConnectionParams connectionParams = new ConnectionParams.Builder(CLIENT_ID).setRedirectUri(REDIRECT_URI).showAuthView(true).build();
                     SpotifyAppRemote.connect(SongPlaylistActivity.this, connectionParams,
@@ -128,8 +125,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
                                 @Override
                                 public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                                     mSpotifyAppRemote = spotifyAppRemote;
-                                    Log.d(TAG, "Connected! Yay!");
-
+                                    Log.d(TAG, "Connected!");
                                     // Now you can start interacting with App Remote
                                     mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + spotifyID);
                                 }
@@ -137,12 +133,12 @@ public class SongPlaylistActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Throwable throwable) {
                                     Log.e(TAG, throwable.getMessage(), throwable);
-
-                                    // Something went wrong when attempting to connect! Handle errors here
+                                    Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 } else {
-                    Log.d(TAG, "play song notfound!");
+                    Log.d(TAG, "play song not found!");
+                    Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

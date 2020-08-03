@@ -51,12 +51,10 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     private List<String> sortedSongObjectIds;
     private Context context;
-    private List<String> songObjectIds;
     private String playlistObjectId;
 
     public CurrentPlaylistAdapter(Context context, List<String> songObjectIds, String playlistObjectId) {
         this.context = context;
-        this.songObjectIds = songObjectIds;
         this.playlistObjectId = playlistObjectId;
         try {
             this.sortedSongObjectIds = sortSongObjectIds(songObjectIds);
@@ -107,10 +105,9 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
     // reuploads a list of items -- change to type used
     public void updateSongs() throws ParseException {
+        List<String> newSortedSongObjIds = sortSongObjectIds(sortedSongObjectIds);
         sortedSongObjectIds.clear();
         notifyDataSetChanged();
-
-        List<String> newSortedSongObjIds = sortSongObjectIds(songObjectIds);
         sortedSongObjectIds.addAll(newSortedSongObjIds);
         notifyDataSetChanged();
     }
@@ -207,8 +204,8 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                         tvLikes.setText("" + findNumLikes(position));
                         ivLike.setImageResource(R.drawable.likefilledicon);
                         Toast.makeText(context, "Song liked!", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "song liked", e);
                         notifyDataSetChanged();
+                        updateSongs();
                     } catch (ParseException ex) {
                         Toast.makeText(context, "Song could not be liked!", Toast.LENGTH_SHORT).show();
                         ex.printStackTrace();
@@ -225,6 +222,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 ivLike.setImageResource(R.drawable.likeicon);
                 Toast.makeText(context, "Song unliked!", Toast.LENGTH_SHORT).show();
                 notifyDataSetChanged();
+                updateSongs();
         }
 
         // this function finds the number of likes of a specific song in a specific playlist
@@ -251,10 +249,10 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         public void bind(String songObjectId, int position) {
             try {
                 int num = findNumLikes(position);
-                Log.d("SORT SONG", "numlikes " + num);
                 tvLikes.setText("" + num);
             } catch (ParseException ex) {
                 ex.printStackTrace();
+                Toast.makeText(context, "Error retrieving song!", Toast.LENGTH_SHORT).show();
             }
 
             try {
@@ -266,6 +264,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
+                Toast.makeText(context, "Error retrieving song!", Toast.LENGTH_SHORT).show();
             }
 
             ParseQuery<Song> querySong = ParseQuery.getQuery(Song.class);

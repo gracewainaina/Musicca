@@ -65,7 +65,6 @@ public class LoginSpotifyActivity extends AppCompatActivity {
                 case TOKEN:
                     editor = getSharedPreferences("SPOTIFY", 0).edit();
                     editor.putString("token", response.getAccessToken());
-                    Log.d("STARTING", "GOT AUTH TOKEN");
                     editor.apply();
                     waitForUserInfo();
                     break;
@@ -73,12 +72,14 @@ public class LoginSpotifyActivity extends AppCompatActivity {
                 // Auth flow returned an error
                 case ERROR:
                     // Handle error response
+                    Toast.makeText(LoginSpotifyActivity.this, "issue with login", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "issue with login");
                     break;
 
                 // Most likely auth flow was cancelled
                 default:
                     // Handle other cases
+                    Toast.makeText(LoginSpotifyActivity.this, "Please try login again", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "Please try login again");
             }
         }
