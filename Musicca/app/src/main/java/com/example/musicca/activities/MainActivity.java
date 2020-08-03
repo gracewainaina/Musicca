@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.musicca.R;
 import com.example.musicca.fragments.CreateFragment;
 import com.example.musicca.fragments.JoinFragment;
+import com.example.musicca.fragments.PeopleFragment;
 import com.example.musicca.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new CreateFragment();
                         break;
                     case R.id.action_profile:
-                    default:
                         fragment = new ProfileFragment();
+                        break;
+                    case R.id.action_people:
+                    default:
+                        fragment = new PeopleFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
