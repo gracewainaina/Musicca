@@ -20,14 +20,14 @@ import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder> {
 
+    public static final String KEY_PROFILEIMAGE = "profileimage";
+    public static final String KEY_MUSICBIO = "musicbio";
     private Context context;
     private List<ParseUser> users;
 
     public PeopleAdapter(Context context, List<ParseUser> users) {
         this.context = context;
         this.users = users;
-        Log.i("PEOPLE ADAPTER", "ADAPTER created ");
-        Log.i("PEOPLE ADAPTER", "ADAPTER users: " + this.users.size());
     }
 
     @NonNull
@@ -70,8 +70,8 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
 
         public void bind(ParseUser parseUser) {
             tvUsername.setText(parseUser.getUsername());
-            tvMusicBio.setText(parseUser.getString("musicbio"));
-            ParseFile profileImage = parseUser.getParseFile("profileimage");
+            tvMusicBio.setText(parseUser.getString(KEY_MUSICBIO));
+            ParseFile profileImage = parseUser.getParseFile(KEY_PROFILEIMAGE);
             if (profileImage != null) {
                 Glide.with(context).load(profileImage.getUrl()).into(ivProfileImage);
             }

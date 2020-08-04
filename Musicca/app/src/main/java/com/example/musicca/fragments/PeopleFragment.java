@@ -56,7 +56,7 @@ public class PeopleFragment extends Fragment {
         rvPeople = view.findViewById(R.id.rvPeople);
         allUsers = new ArrayList<>();
 
-        queryUsers(0);
+        queryUsers();
 
         // Lookup the swipe container view
         swipeContainer = view.findViewById(R.id.swipeContainer);
@@ -70,20 +70,24 @@ public class PeopleFragment extends Fragment {
             public void onRefresh() {
                 // Remember to CLEAR OUT old items before appending in the new ones
                 peopleAdapter.clear();
-                queryUsers(0);
+                queryUsers();
                 peopleAdapter.notifyDataSetChanged();
             }
         });
     }
 
-    protected void queryUsers(int page) {
+    protected void queryUsers() {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> objects, ParseException e) {
+            public void done(List<ParseUser> parseUsers, ParseException e) {
                 if (e == null) {
                     // The query was successful.
-                    allUsers.addAll(objects);
-
+                    // removing current user from the list
+                    for (int i = 0; i < parseUsers.size(); i++) {
+                        if (parseUsers.get(i).getUsername() != ParseUser.getCurrentUser().getUsername()){
+                            allUsers.add(parseUsers.get(i));
+                        }
+                    }
                     // create adapter and create data source
                     peopleAdapter = new PeopleAdapter(getContext(), allUsers);
                     // set the adapter on the recycler view
