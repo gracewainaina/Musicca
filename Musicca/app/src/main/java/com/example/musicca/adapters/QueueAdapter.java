@@ -35,6 +35,9 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
     private static final String EXTRA_SONGTITLE = "songtitle";
     private static final String EXTRA_SONGARTIST = "songartist";
 
+    public static final String DEFAULT_STRING_AFTER = "After/During";
+    public static final String DEFAULT_STRING_BEFORE = "Before/During";
+
     private static final String TAG = "QueueAdapter";
 
     private Context context;
@@ -103,78 +106,37 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
     // Access the data result passed to the activity here
     // perform filtering through the filter dialog fragment
-    public void performMultiFiltering(String year, String songTitle, String songArtist) {
-        Log.d("FILTER QAD", "year: " + year);
-        Log.d("FILTER QAD", "song title: " + songTitle);
-        Log.d("FILTER QAD", "song artist: " + songArtist);
+    public void performMultiFiltering(String yearAfter, String yearBefore, String songTitle, String songArtist) {
 
         List<Song> filteredList = new ArrayList<>();
-        // if all the three fields are empty after applying filter, add all results
-        if (TextUtils.isEmpty(year) && TextUtils.isEmpty(songTitle) && TextUtils.isEmpty(songArtist)) {
-            filteredList.addAll(songsAll);
-            Log.d("FILTER", "all fields empty");
+
+        int searchYearAfter;
+        int searchYearBefore;
+
+        if (TextUtils.equals(yearAfter, DEFAULT_STRING_AFTER)) {
+            searchYearAfter = 0;
         } else {
-            for (Song song : songsAll) {
-                // if all three fields have been entered, search using all three fields
-                if (!TextUtils.isEmpty(year) && !TextUtils.isEmpty(songTitle) && !TextUtils.isEmpty(songArtist)) {
-                    if (song.getYear().toLowerCase().contains(year) &&
-                            song.getTitle().toLowerCase().contains(songTitle) &&
-                            song.getArtist().toLowerCase().contains(songArtist)) {
+            searchYearAfter = Integer.valueOf(yearAfter);
+        }
 
-                        Log.d("FILTER", "all fields not empty");
-                        filteredList.add(song);
-                    }
-                    // else if first two fields are filled, last one is empty
-                } else if (!TextUtils.isEmpty(year) && !TextUtils.isEmpty(songTitle) && TextUtils.isEmpty(songArtist)){
-                    if (song.getYear().toLowerCase().contains(year) &&
-                            song.getTitle().toLowerCase().contains(songTitle)) {
+        if (TextUtils.equals(yearBefore, DEFAULT_STRING_BEFORE)){
+            searchYearBefore= 3000;
+        } else {
+            searchYearBefore = Integer.valueOf(yearBefore);
+        }
 
-                        Log.d("FILTER", "two fields not empty");
-                        filteredList.add(song);
-                    }
-                    // else if first if filled, second empty, third filled
-                } else if (!TextUtils.isEmpty(year) && TextUtils.isEmpty(songTitle) && !TextUtils.isEmpty(songArtist)){
-                    if (song.getYear().toLowerCase().contains(year) &&
-                            song.getArtist().toLowerCase().contains(songArtist)) {
 
-                        Log.d("FILTER", "two fields not empty");
-                        filteredList.add(song);
-                    }
-                    // else if last two are filled, first one is empty
-                } else if (TextUtils.isEmpty(year) && !TextUtils.isEmpty(songTitle) && !TextUtils.isEmpty(songArtist)){
-                    if (song.getTitle().toLowerCase().contains(songTitle) &&
-                            song.getArtist().toLowerCase().contains(songArtist)) {
+        for (Song song : songsAll) {
+            if ((yearAfter == DEFAULT_STRING_AFTER || Integer.valueOf(song.getYear().toLowerCase()) >= searchYearAfter) &&
+                    (yearBefore == DEFAULT_STRING_BEFORE|| Integer.valueOf(song.getYear().toLowerCase()) <= searchYearBefore) &&
+                            (TextUtils.isEmpty(songTitle) || song.getTitle().toLowerCase().contains(songTitle)) &&
+                                    (TextUtils.isEmpty(songArtist) || song.getArtist().toLowerCase().contains(songArtist))) {
 
-                        Log.d("FILTER", "two fields not empty");
-                        filteredList.add(song);
-                    }
-                    // else if first one is filled, the rest are empty
-                } else if (!TextUtils.isEmpty(year) && TextUtils.isEmpty(songTitle) && TextUtils.isEmpty(songArtist)){
-                    if (song.getYear().toLowerCase().contains(year)) {
-
-                        Log.d("FILTER", "one field not empty");
-                        filteredList.add(song);
-                    }
-                    // else if second one is filled, the rest are empty
-                } else if (TextUtils.isEmpty(year) && !TextUtils.isEmpty(songTitle) && TextUtils.isEmpty(songArtist)){
-                    if (song.getTitle().toLowerCase().contains(songTitle)) {
-
-                        Log.d("FILTER", "one field not empty");
-                        filteredList.add(song);
-                    }
-                    // else if third one is filled , the rest are empty
-                } else if (TextUtils.isEmpty(year) && TextUtils.isEmpty(songTitle) && !TextUtils.isEmpty(songArtist)){
-                    Log.d("FILTER", "one field not empty1");
-                    if (song.getArtist().toLowerCase().contains(songArtist)) {
-
-                        Log.d("FILTER", "one field not empty2");
-                        filteredList.add(song);
-                    }
-                }
+                filteredList.add(song);
             }
         }
+
         // modify the list of songs to contain the search results from the filter dialog fragment
-        Log.d("FILTER", "list size: " + filteredList.size());
         if (filteredList.size() == 0){
             Toast.makeText(context, "Could not find the song!", Toast.LENGTH_SHORT).show();
         } else{

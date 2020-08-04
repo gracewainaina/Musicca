@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Musicca</string>
-    <string-array name="years">
-        <item>""</item>
+    <string-array name="yearAfter">
+        <item>After/During</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+    <string-array name="yearBefore">
+        <item>Before/During</item>
         <item>2015</item>
         <item>2016</item>
         <item>2017</item>

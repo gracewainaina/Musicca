@@ -137,11 +137,7 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
     }
 
     @Override
-    public void onFinishFilterDialog(String year, String songTitle, String songArtist) {
-        Log.d("FILTER QAC", "year: " + year);
-        Log.d("FILTER QAC", "song title: " + songTitle);
-        Log.d("FILTER QAC", "song artist: " + songArtist);
-
-        queueAdapter.performMultiFiltering(year, songTitle, songArtist);
+    public void onFinishFilterDialog(String yearAfter, String yearBefore, String songTitle, String songArtist) {
+        queueAdapter.performMultiFiltering(yearAfter, yearBefore, songTitle, songArtist);
     }
 }
