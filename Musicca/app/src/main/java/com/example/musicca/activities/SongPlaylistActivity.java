@@ -85,6 +85,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivNext = findViewById(R.id.ivNext);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         songPosition = getIntent().getIntExtra(EXTRA_CURRENT_SONG_POSITION, 0);
         sortedSongObjectIds = getIntent().getStringArrayListExtra(EXTRA_SONG_LIST);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -110,6 +111,17 @@ public class SongPlaylistActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 <<<<<<< HEAD
+=======
+        songPosition = getIntent().getIntExtra(EXTRA_CURRENT_SONG_POSITION, 0);
+        sortedSongObjectIds = getIntent().getStringArrayListExtra(EXTRA_SONG_LIST);
+        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+
+        setSongView();
+
+        ivPlayPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
 
                 // play for the first time
                 if (!isPaused && !isPlay) {
@@ -131,6 +143,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
                     isPaused = false;
                     isPlay = true;
                 }
+<<<<<<< HEAD
             }
         });
 
@@ -160,6 +173,8 @@ public class SongPlaylistActivity extends AppCompatActivity {
                 playSong();
                 ivPlayPause.setImageResource(R.drawable.pauseicon);
 >>>>>>> set up play previous and play next
+=======
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
             }
         });
 
@@ -167,10 +182,8 @@ public class SongPlaylistActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (songPosition == 0) {
-                    Toast toast= Toast.makeText(SongPlaylistActivity.this, "This is the first song!", Toast.LENGTH_SHORT);
-                    ivPrevious.setVisibility(View.GONE);
-                }
-                else{
+                    Toast.makeText(SongPlaylistActivity.this, "This is the first song!", Toast.LENGTH_SHORT).show();
+                } else{
                     songPosition--;
                     setSongView();
                 }
@@ -180,11 +193,10 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(SongPlaylistActivity.this, "Clicked!", Toast.LENGTH_SHORT);
                 if (songPosition == sortedSongObjectIds.size()-1) {
-                    Toast toast= Toast.makeText(SongPlaylistActivity.this, "This is the last song!", Toast.LENGTH_SHORT);
-                    ivNext.setVisibility(View.GONE);
-                }
-                else{
+                    Toast.makeText(SongPlaylistActivity.this, "This is the last song!", Toast.LENGTH_SHORT).show();
+                } else{
                     songPosition++;
                     setSongView();
                 }
@@ -214,6 +226,9 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         songSpotifyId = song.getSpotifyId();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
                         // grey out previous icon if it is the first item in the list
                         if (songPosition == 0) {
                             ivPrevious.setImageResource(R.drawable.previcon_grey);
@@ -239,8 +254,11 @@ public class SongPlaylistActivity extends AppCompatActivity {
                             ivPlayPause.setImageResource(R.drawable.playicon);
                         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> set up play previous and play next
+=======
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
                     } else {
                         Toast.makeText(SongPlaylistActivity.this, "Error showing song!", Toast.LENGTH_SHORT).show();
                     }
@@ -248,9 +266,12 @@ public class SongPlaylistActivity extends AppCompatActivity {
             });
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> set up play previous and play next
+=======
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
     }
 
     private void gotoPlaylist() {
@@ -273,15 +294,19 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + songSpotifyId);
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> set up play previous and play next
+=======
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e(TAG, throwable.getMessage(), throwable);
                         Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
                     }
                 });
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
 
@@ -292,8 +317,15 @@ public class SongPlaylistActivity extends AppCompatActivity {
     private void pauseSong() {
         mSpotifyAppRemote.getPlayerApi().pause();
 =======
+=======
+    }
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
 
+    private void resumeSong() {
+        mSpotifyAppRemote.getPlayerApi().resume();
+    }
 
+<<<<<<< HEAD
 
 //        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 //        // Execute the query to find the object with ID
@@ -311,6 +343,10 @@ public class SongPlaylistActivity extends AppCompatActivity {
 //            }
 //        });
 >>>>>>> set up play previous and play next
+=======
+    private void pauseSong() {
+        mSpotifyAppRemote.getPlayerApi().pause();
+>>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
     }
 
     @Override
