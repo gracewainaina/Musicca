@@ -166,12 +166,40 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 String songObjectId = sortedSongObjectIds.get(position);
                 // create intent for the new activity
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
+<<<<<<< HEAD
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID , playlistObjectId);
                 intent.putExtra(EXTRA_CURRENT_SONG_POSITION, position);
                 intent.putStringArrayListExtra(EXTRA_SONG_LIST, (ArrayList<String>) sortedSongObjectIds);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");
                 context.startActivity(intent, options.toBundle());
 
+=======
+                intent.putExtra("currentSongPosition", position);
+                intent.putStringArrayListExtra("songList", (ArrayList<String>) sortedSongObjectIds);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");
+                context.startActivity(intent, options.toBundle());
+                Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
+
+//                ParseQuery<Song> querySong = ParseQuery.getQuery(Song.class);
+//                querySong.getInBackground(songObjectId, new GetCallback<Song>() {
+//                    @Override
+//                    public void done(Song song, com.parse.ParseException e) {
+//                        if (e == null) {
+//                            intent.putExtra(EXTRA_ALBUMICONURL, song.getURL());
+//                            intent.putExtra(EXTRA_SONGTITLE, song.getTitle());
+//                            intent.putExtra(EXTRA_SONGARTIST, song.getArtist());
+//                            intent.putExtra(EXTRA_SONGOBJECTID, song.getObjectId());
+//                            intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+//                            // show the activity
+//                            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");
+//                            context.startActivity(intent, options.toBundle());
+//                            Toast.makeText(context, "Song selected", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(context, "Error showing song!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+>>>>>>> set up play previous and play next
             }
         }
 

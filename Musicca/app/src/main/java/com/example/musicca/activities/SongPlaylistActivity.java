@@ -84,15 +84,32 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivPlayPause = findViewById(R.id.ivPlayPause);
         ivNext = findViewById(R.id.ivNext);
 
+<<<<<<< HEAD
         songPosition = getIntent().getIntExtra(EXTRA_CURRENT_SONG_POSITION, 0);
         sortedSongObjectIds = getIntent().getStringArrayListExtra(EXTRA_SONG_LIST);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
 
         setSongView();
+=======
+        sortedSongObjectIds = getIntent().getStringArrayListExtra("songList");
+        songPosition = getIntent().getIntExtra("currentSongPosition", 0);
+
+        setSongView();
+
+//        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
+//        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
+//
+//        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
+//        Glide.with(this).load(albumUrl).into(ivAlbum);
+//
+//        tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
+//        tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
+>>>>>>> set up play previous and play next
 
         ivPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
 
                 // play for the first time
                 if (!isPaused && !isPlay) {
@@ -139,6 +156,38 @@ public class SongPlaylistActivity extends AppCompatActivity {
                     songPosition++;
                     setSongView();
                 }
+=======
+                playSong();
+                ivPlayPause.setImageResource(R.drawable.pauseicon);
+>>>>>>> set up play previous and play next
+            }
+        });
+
+        ivPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (songPosition == 0) {
+                    Toast toast= Toast.makeText(SongPlaylistActivity.this, "This is the first song!", Toast.LENGTH_SHORT);
+                    ivPrevious.setVisibility(View.GONE);
+                }
+                else{
+                    songPosition--;
+                    setSongView();
+                }
+            }
+        });
+
+        ivNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (songPosition == sortedSongObjectIds.size()-1) {
+                    Toast toast= Toast.makeText(SongPlaylistActivity.this, "This is the last song!", Toast.LENGTH_SHORT);
+                    ivNext.setVisibility(View.GONE);
+                }
+                else{
+                    songPosition++;
+                    setSongView();
+                }
             }
         });
 
@@ -164,6 +213,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         tvArtist.setText(song.getArtist());
                         songSpotifyId = song.getSpotifyId();
 
+<<<<<<< HEAD
                         // grey out previous icon if it is the first item in the list
                         if (songPosition == 0) {
                             ivPrevious.setImageResource(R.drawable.previcon_grey);
@@ -189,12 +239,18 @@ public class SongPlaylistActivity extends AppCompatActivity {
                             ivPlayPause.setImageResource(R.drawable.playicon);
                         }
 
+=======
+>>>>>>> set up play previous and play next
                     } else {
                         Toast.makeText(SongPlaylistActivity.this, "Error showing song!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> set up play previous and play next
     }
 
     private void gotoPlaylist() {
@@ -216,12 +272,17 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         // Now you can start interacting with App Remote
                         mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + songSpotifyId);
                     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> set up play previous and play next
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e(TAG, throwable.getMessage(), throwable);
                         Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
                     }
                 });
+<<<<<<< HEAD
     }
 
     private void resumeSong() {
@@ -230,6 +291,26 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
     private void pauseSong() {
         mSpotifyAppRemote.getPlayerApi().pause();
+=======
+
+
+
+//        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+//        // Execute the query to find the object with ID
+//        query.getInBackground(songObjectId, new GetCallback<Song>() {
+//            @Override
+//            public void done(Song song, com.parse.ParseException e) {
+//                if (e == null) {
+//                    String spotifyID = song.getSpotifyId();
+//
+//
+//                } else {
+//                    Log.d(TAG, "play song not found!");
+//                    Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+>>>>>>> set up play previous and play next
     }
 
     @Override
