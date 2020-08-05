@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rvLatestSongs"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="GO TO PLAYLIST"/>
 
 </RelativeLayout>

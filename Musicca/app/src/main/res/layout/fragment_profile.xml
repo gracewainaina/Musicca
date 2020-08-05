@@ -47,7 +47,7 @@
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="EDIT PROFILE" />
 
     <Button
@@ -58,7 +58,7 @@
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="LOG OUT" />
 
 </RelativeLayout>
