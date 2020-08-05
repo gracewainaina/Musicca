@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".activities.SongQueueActivity">
 
     <ImageView
@@ -52,7 +53,6 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/previcon" />
-    <!--        tools:srcCompat="@drawable/previcon" />-->
 
     <ImageView
         android:id="@+id/ivPlayPause"
@@ -64,7 +64,6 @@
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPrevious"
         android:src="@drawable/playicon" />
-    <!--        tools:srcCompat="@drawable/playicon" />-->
 
     <ImageView
         android:id="@+id/ivNext"
@@ -75,21 +74,15 @@
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/ivPlayPause"
         android:src="@drawable/nexticon"/>
-    <!--        tools:srcCompat="@drawable/nexticon" />-->
 
     <Button
         android:id="@+id/btnReturnPlaylist"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ivNext"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="#ffa4ab"
-        android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="GO BACK TO PLAYLIST"
-        android:textSize="16sp" />
+        android:background="@drawable/rounded_corners_filled"
+        android:text="GO BACK TO PLAYLIST"/>
 
 
 </RelativeLayout>
