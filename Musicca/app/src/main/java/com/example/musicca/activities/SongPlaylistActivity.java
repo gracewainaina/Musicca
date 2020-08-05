@@ -122,7 +122,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (songPosition == 0) {
                     Toast.makeText(SongPlaylistActivity.this, "This is the first song!", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     songPosition--;
                     setSongView();
                 }
@@ -133,9 +133,9 @@ public class SongPlaylistActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(SongPlaylistActivity.this, "Clicked!", Toast.LENGTH_SHORT);
-                if (songPosition == sortedSongObjectIds.size()-1) {
+                if (songPosition == sortedSongObjectIds.size() - 1) {
                     Toast.makeText(SongPlaylistActivity.this, "This is the last song!", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     songPosition++;
                     setSongView();
                 }
@@ -171,7 +171,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
                             ivPrevious.setImageResource(R.drawable.previcon);
                         }
                         // grey out next icon if it is the last item in the list
-                        if (songPosition == sortedSongObjectIds.size()-1) {
+                        if (songPosition == sortedSongObjectIds.size() - 1) {
                             ivNext.setImageResource(R.drawable.nexticon_grey);
                         } else {
                             ivNext.setImageResource(R.drawable.nexticon);
@@ -216,6 +216,7 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         // Now you can start interacting with App Remote
                         mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + songSpotifyId);
                     }
+
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e(TAG, throwable.getMessage(), throwable);
