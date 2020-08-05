@@ -45,8 +45,7 @@ public class MultiFilterDialogFragment extends DialogFragment implements Adapter
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if (adapterView.getId() == R.id.yearSpinnerAfter) {
             yearSelectedAfter = adapterView.getSelectedItem().toString();
-        }
-        else if (adapterView.getId() == R.id.yearSpinnerBefore) {
+        } else if (adapterView.getId() == R.id.yearSpinnerBefore) {
             yearSelectedBefore = adapterView.getSelectedItem().toString();
         }
     }
@@ -57,7 +56,7 @@ public class MultiFilterDialogFragment extends DialogFragment implements Adapter
     }
 
     // Defines the listener interface with a method passing back data result.
-    public interface onFilterActionListener{
+    public interface onFilterActionListener {
         void onFinishFilterDialog(String yearAfter, String yearBefore, String songTitle, String songArtist);
     }
 

@@ -1,6 +1,6 @@
 package com.example.musicca.models;
 
-public class ComparableSong implements Comparable<ComparableSong>{
+public class ComparableSong implements Comparable<ComparableSong> {
 
     public String songObjectId;
     public int numLikes;
