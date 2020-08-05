@@ -83,5 +83,8 @@ dependencies {
 
     // Recyclerview-animator
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
+    // Toolbar
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     
 }
