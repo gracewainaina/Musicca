@@ -2,38 +2,32 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/btnGoToPlaylist"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentStart="false"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="5dp"
-        android:background="#ffa4ab"
-        android:gravity="center"
-        android:text="GO TO PLAYLIST"
-        android:textSize="14sp"
-        android:padding="5dp"/>
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tvSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Latest Hits"
-        android:textSize="16sp"
-        android:layout_below="@+id/btnGoToPlaylist" />
+        android:text="All Time Hits"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLatestSongs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="580dp"
         android:layout_below="@+id/tvSection"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="5dp"
-        android:padding="8dp" />
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btnGoToPlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvLatestSongs"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_filled"
+        android:text="GO TO PLAYLIST"/>
 
 </RelativeLayout>
