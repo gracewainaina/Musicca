@@ -168,7 +168,11 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 Intent intent = new Intent(context, SongPlaylistActivity.class);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID , playlistObjectId);
+=======
+                intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+>>>>>>> improve styling
                 intent.putExtra(EXTRA_CURRENT_SONG_POSITION, position);
                 intent.putStringArrayListExtra(EXTRA_SONG_LIST, (ArrayList<String>) sortedSongObjectIds);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");

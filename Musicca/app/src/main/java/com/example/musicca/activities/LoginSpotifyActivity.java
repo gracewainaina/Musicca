@@ -84,6 +84,7 @@ public class LoginSpotifyActivity extends AppCompatActivity {
             }
         }
     }
+
     private void waitForUserInfo() {
         UserService userService = new UserService(queue, msharedPreferences);
         userService.get(() -> {
