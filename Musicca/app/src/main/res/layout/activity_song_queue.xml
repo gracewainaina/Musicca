@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
         android:layout_marginTop="150dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="ADD SONG TO PLAYLIST"/>
 
     <Button
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToPlaylist"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="BACK TO LATEST HITS"/>
 
 </RelativeLayout>
