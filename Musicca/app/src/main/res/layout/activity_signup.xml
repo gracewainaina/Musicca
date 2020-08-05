@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".activities.SignupActivity">
 
     <EditText
         android:id="@+id/etNewusername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingStart="20dp"
         android:background="@drawable/rounded_corners_outline"
-        android:layout_weight="1"
         android:ems="10"
         android:hint="set username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:paddingStart="20dp" />
 
     <EditText
         android:id="@+id/etNewpassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingStart="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_corners_outline"
-        android:layout_weight="1"
         android:ems="10"
         android:hint="set new password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingStart="20dp" />
 
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="SIGN UP" />
 
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     android:padding="10dp"
     tools:context=".fragments.CreateFragment">
 
@@ -37,7 +37,7 @@
             android:id="@+id/btnTakePhoto"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners_filled"
+            android:background="@drawable/rounded_corners_filled_middle"
             android:text="TAKE PHOTO" />
 
         <Button
@@ -45,7 +45,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:background="@drawable/rounded_corners_filled"
+            android:background="@drawable/rounded_corners_filled_middle"
             android:text="CHOOSE PHOTO" />
 
 
@@ -56,28 +56,28 @@
         android:id="@+id/etPlaylistname_create"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingLeft="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_corners_outline"
         android:ems="10"
-        android:hint="Set name of playlist" />
+        android:hint="Set name of playlist"
+        android:paddingLeft="20dp" />
 
     <EditText
         android:id="@+id/etPlaylistcode_create"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:paddingLeft="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_corners_outline"
         android:ems="10"
-        android:hint="Set 4 digit playlist code" />
+        android:hint="Set 4 digit playlist code"
+        android:paddingLeft="20dp" />
 
     <Button
         android:id="@+id/btnCreatePlaylist"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="CREATE" />
 
 </LinearLayout>

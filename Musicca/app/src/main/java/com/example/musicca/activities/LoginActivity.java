@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.musicca.R;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnSU;
     private ImageView ivLogo;
+    private TextView tvPromptSU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnSU = findViewById(R.id.btnSU);
         ivLogo = findViewById(R.id.ivLogo);
+        tvPromptSU = findViewById(R.id.tvPromptSU);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

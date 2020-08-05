@@ -21,14 +21,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="600dp"
         android:layout_below="@+id/tvPlaylistTitle"
         android:layout_marginTop="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPlaylistSongs"
             android:layout_width="match_parent"
-            android:layout_height="580dp"
+            android:layout_height="600dp"
             android:layout_below="@+id/tvPlaylistTitle"
             android:layout_marginTop="10dp" />
 
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/swipeContainer"
-        android:background="@drawable/rounded_corners_filled"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:layout_marginTop="10dp"
         android:text="ADD MORE SONGS"/>
 
