@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".fragments.CreateFragment">
 
     <ImageView
@@ -12,8 +13,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@drawable/musicalnotes" />
 
@@ -29,23 +28,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnTakePhoto"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:background="#ffa4ab"
-            android:layout_marginStart="40dp"
+            android:background="@drawable/rounded_corners_filled"
             android:text="TAKE PHOTO" />
 
         <Button
             android:id="@+id/btnChoosePhoto"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:background="#ffa4ab"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/rounded_corners_filled"
             android:text="CHOOSE PHOTO" />
 
 
@@ -55,22 +55,29 @@
     <EditText
         android:id="@+id/etPlaylistname_create"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_outline"
         android:ems="10"
         android:hint="Set name of playlist" />
 
     <EditText
         android:id="@+id/etPlaylistcode_create"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_outline"
         android:ems="10"
         android:hint="Set 4 digit playlist code" />
 
     <Button
         android:id="@+id/btnCreatePlaylist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffa4ab"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_filled"
         android:text="CREATE" />
 
 </LinearLayout>

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".activities.SongQueueActivity">
 
     <ImageView
@@ -45,44 +46,29 @@
 
     <Button
         android:id="@+id/btnAddSong"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:background="#ffa4ab"
-        android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="ADD SONG TO PLAYLIST"
-        android:textSize="16sp" />
+        android:layout_marginTop="150dp"
+        android:background="@drawable/rounded_corners_filled"
+        android:text="ADD SONG TO PLAYLIST"/>
 
     <Button
         android:id="@+id/btnGoToPlaylist"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnAddSong"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="#ffa4ab"
-        android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="GO TO PLAYLIST"
-        android:textSize="16sp" />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corners_outline"
+        android:text="GO TO PLAYLIST"/>
 
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToPlaylist"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="#ffa4ab"
-        android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:text="BACK TO LATEST HITS"
-        android:textSize="16sp" />
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corners_filled"
+        android:text="BACK TO LATEST HITS"/>
 
 </RelativeLayout>
