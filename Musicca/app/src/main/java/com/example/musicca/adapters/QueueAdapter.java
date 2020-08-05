@@ -119,8 +119,8 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             searchYearAfter = Integer.valueOf(yearAfter);
         }
 
-        if (TextUtils.equals(yearBefore, DEFAULT_STRING_BEFORE)){
-            searchYearBefore= 3000;
+        if (TextUtils.equals(yearBefore, DEFAULT_STRING_BEFORE)) {
+            searchYearBefore = 3000;
         } else {
             searchYearBefore = Integer.valueOf(yearBefore);
         }
@@ -128,18 +128,18 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
         for (Song song : songsAll) {
             if ((yearAfter == DEFAULT_STRING_AFTER || Integer.valueOf(song.getYear().toLowerCase()) >= searchYearAfter) &&
-                    (yearBefore == DEFAULT_STRING_BEFORE|| Integer.valueOf(song.getYear().toLowerCase()) <= searchYearBefore) &&
-                            (TextUtils.isEmpty(songTitle) || song.getTitle().toLowerCase().contains(songTitle)) &&
-                                    (TextUtils.isEmpty(songArtist) || song.getArtist().toLowerCase().contains(songArtist))) {
+                    (yearBefore == DEFAULT_STRING_BEFORE || Integer.valueOf(song.getYear().toLowerCase()) <= searchYearBefore) &&
+                    (TextUtils.isEmpty(songTitle) || song.getTitle().toLowerCase().contains(songTitle)) &&
+                    (TextUtils.isEmpty(songArtist) || song.getArtist().toLowerCase().contains(songArtist))) {
 
                 filteredList.add(song);
             }
         }
 
         // modify the list of songs to contain the search results from the filter dialog fragment
-        if (filteredList.size() == 0){
+        if (filteredList.size() == 0) {
             Toast.makeText(context, "Could not find the song!", Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             songs = filteredList;
             notifyDataSetChanged();
         }

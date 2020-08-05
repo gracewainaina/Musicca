@@ -93,6 +93,7 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
         });
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
@@ -100,6 +101,7 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void showFilterMenu() {
         FragmentManager fm = getSupportFragmentManager();
         MultiFilterDialogFragment multiFilterDialogFragment = MultiFilterDialogFragment.newInstance("Add Search Filters Here");

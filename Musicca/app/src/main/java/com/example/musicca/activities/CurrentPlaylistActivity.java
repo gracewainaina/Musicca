@@ -125,5 +125,4 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     }
 
 
-
 }
