@@ -169,15 +169,20 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID , playlistObjectId);
 =======
                 intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
 >>>>>>> improve styling
+=======
+                intent.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
+>>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
                 intent.putExtra(EXTRA_CURRENT_SONG_POSITION, position);
                 intent.putStringArrayListExtra(EXTRA_SONG_LIST, (ArrayList<String>) sortedSongObjectIds);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View) ivAlbum, "album");
                 context.startActivity(intent, options.toBundle());
 
+<<<<<<< HEAD
 =======
                 intent.putExtra("currentSongPosition", position);
                 intent.putStringArrayListExtra("songList", (ArrayList<String>) sortedSongObjectIds);
@@ -213,6 +218,8 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 context.startActivity(intent, options.toBundle());
 
 >>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
+=======
+>>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
             }
         }
 
