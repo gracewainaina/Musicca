@@ -40,5 +40,17 @@
         android:textSize="10sp"
         tools:text="Song Artist" />
 
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvArtist"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivAlbum"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="8sp"
+        tools:text="2020" />
 
 </RelativeLayout>

@@ -12,14 +12,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicca.R;
 import com.example.musicca.adapters.QueueAdapter;
+import com.example.musicca.fragments.MultiFilterDialogFragment;
+import com.example.musicca.fragments.MultiFilterDialogFragment.onFilterActionListener;
 import com.example.musicca.models.Song;
 import com.parse.ParseQuery;
 
@@ -28,7 +32,7 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
-public class QueueActivity extends AppCompatActivity {
+public class QueueActivity extends AppCompatActivity implements onFilterActionListener {
 
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
     private static final String TAG = "QueueAdapter";
@@ -90,6 +94,21 @@ public class QueueActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_filter) {
+            showFilterMenu();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showFilterMenu() {
+        FragmentManager fm = getSupportFragmentManager();
+        MultiFilterDialogFragment multiFilterDialogFragment = MultiFilterDialogFragment.newInstance("Add Search Filters Here");
+        multiFilterDialogFragment.show(fm, "fragment_multi_filter_dialog");
+    }
+
+
     private void queryAllSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 
@@ -117,5 +136,10 @@ public class QueueActivity extends AppCompatActivity {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
+    }
+
+    @Override
+    public void onFinishFilterDialog(String yearAfter, String yearBefore, String songTitle, String songArtist) {
+        queueAdapter.performMultiFiltering(yearAfter, yearBefore, songTitle, songArtist);
     }
 }

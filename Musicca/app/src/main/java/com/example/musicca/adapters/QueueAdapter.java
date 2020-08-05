@@ -3,6 +3,7 @@ package com.example.musicca.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,12 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
     private static final String EXTRA_ALBUMICONURL = "albumiconurl";
     private static final String EXTRA_SONGTITLE = "songtitle";
     private static final String EXTRA_SONGARTIST = "songartist";
+
+    public static final String DEFAULT_STRING_AFTER = "After/During";
+    public static final String DEFAULT_STRING_BEFORE = "Before/During";
+
+    public static final int DEFAULT_INT_AFTER = 0;
+    public static final int DEFAULT_INT_BEFORE = 3000;
 
     private static final String TAG = "QueueAdapter";
 
@@ -100,23 +107,68 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
         };
     }
 
+    // Access the data result passed to the activity here
+    // perform filtering through the filter dialog fragment
+    public void performMultiFiltering(String yearAfter, String yearBefore, String songTitle, String songArtist) {
+
+        List<Song> filteredList = new ArrayList<>();
+
+        int searchYearAfter;
+        int searchYearBefore;
+
+        if (TextUtils.equals(yearAfter, DEFAULT_STRING_AFTER)) {
+            searchYearAfter = DEFAULT_INT_AFTER;
+        } else {
+            searchYearAfter = Integer.valueOf(yearAfter);
+        }
+
+        if (TextUtils.equals(yearBefore, DEFAULT_STRING_BEFORE)) {
+            searchYearBefore = DEFAULT_INT_BEFORE;
+        } else {
+            searchYearBefore = Integer.valueOf(yearBefore);
+        }
+
+
+        for (Song song : songsAll) {
+            int songYear = Integer.valueOf(song.getYear().toLowerCase());
+            if ((yearAfter == DEFAULT_STRING_AFTER || songYear >= searchYearAfter) &&
+                    (yearBefore == DEFAULT_STRING_BEFORE || songYear <= searchYearBefore) &&
+                    (TextUtils.isEmpty(songTitle) || song.getTitle().toLowerCase().contains(songTitle)) &&
+                    (TextUtils.isEmpty(songArtist) || song.getArtist().toLowerCase().contains(songArtist))) {
+
+                filteredList.add(song);
+            }
+        }
+
+        // modify the list of songs to contain the search results from the filter dialog fragment
+        if (filteredList.size() == 0) {
+            Toast.makeText(context, "Could not find the song!", Toast.LENGTH_SHORT).show();
+        } else {
+            songs = filteredList;
+            notifyDataSetChanged();
+        }
+    }
+
     // Internal ViewHolder model for each item.
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ivAlbum;
-        TextView tvTitle;
-        TextView tvArtist;
+        private ImageView ivAlbum;
+        private TextView tvTitle;
+        private TextView tvArtist;
+        private TextView tvYear;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ivAlbum = itemView.findViewById(R.id.ivAlbum);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+            tvYear = itemView.findViewById(R.id.tvYear);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
+            tvYear.setText(song.getYear());
             Glide.with(context).load(song.getURL()).into(ivAlbum);
         }
 
