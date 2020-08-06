@@ -142,21 +142,27 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private void getCurrentPlaylistSongs() {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // Execute the query to find the object with ID
+        Log.e("PLAYLIST 2", "playlistObjectId" + playlistObjectId);
         query.getInBackground(playlistObjectId, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
+                Log.e("PLAYLIST 3", "playlistObjectId" + playlistObjectId);
                 if (e == null) {
                     tvPlaylistTitle.setText(playlist.getName());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
-                    }
-                    currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
-                    rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
-                    rvPlaylistSongs.setLayoutManager(linearLayoutManager);
-                    Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
-                    rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+                        currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
+                        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
+                        rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+                        Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
+                        rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+
+                    } else {
+                        Toast.makeText(CurrentPlaylistActivity.this, "Playlist is currently empty!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(CurrentPlaylistActivity.this, "Playlist not found!", Toast.LENGTH_SHORT).show();

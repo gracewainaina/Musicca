@@ -161,6 +161,7 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
     }
 
     private void gotoPlaylist() {
+        Log.e("PLAYLIST 1", "playlistObjectId" + playlistObjectId);
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);
