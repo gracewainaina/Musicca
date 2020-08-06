@@ -6,6 +6,7 @@ import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);

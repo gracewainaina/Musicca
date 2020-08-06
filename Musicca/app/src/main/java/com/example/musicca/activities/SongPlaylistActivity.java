@@ -76,6 +76,8 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);
@@ -92,41 +94,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivPlayPause = findViewById(R.id.ivPlayPause);
         ivNext = findViewById(R.id.ivNext);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
-        songPosition = getIntent().getIntExtra(EXTRA_CURRENT_SONG_POSITION, 0);
-        sortedSongObjectIds = getIntent().getStringArrayListExtra(EXTRA_SONG_LIST);
-        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-
-        setSongView();
-<<<<<<< HEAD
-=======
-        sortedSongObjectIds = getIntent().getStringArrayListExtra("songList");
-        songPosition = getIntent().getIntExtra("currentSongPosition", 0);
-
-        setSongView();
-
-//        songObjectId = getIntent().getStringExtra(EXTRA_SONGOBJECTID);
-//        playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
-//
-//        albumUrl = getIntent().getStringExtra(EXTRA_ALBUMICONURL);
-//        Glide.with(this).load(albumUrl).into(ivAlbum);
-//
-//        tvTitle.setText(getIntent().getStringExtra(EXTRA_SONGTITLE));
-//        tvArtist.setText(getIntent().getStringExtra(EXTRA_SONGARTIST));
->>>>>>> set up play previous and play next
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
-
-        ivPlayPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         songPosition = getIntent().getIntExtra(EXTRA_CURRENT_SONG_POSITION, 0);
         sortedSongObjectIds = getIntent().getStringArrayListExtra(EXTRA_SONG_LIST);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -136,10 +103,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
-
                 // play for the first time
                 if (!isPaused && !isPlay) {
                     playSong();
@@ -160,8 +123,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
                     isPaused = false;
                     isPlay = true;
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
             }
         });
 
@@ -187,14 +148,8 @@ public class SongPlaylistActivity extends AppCompatActivity {
                     songPosition++;
                     setSongView();
                 }
-=======
                 playSong();
                 ivPlayPause.setImageResource(R.drawable.pauseicon);
->>>>>>> set up play previous and play next
-=======
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
             }
         });
 
@@ -279,13 +234,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         tvArtist.setText(song.getArtist());
                         songSpotifyId = song.getSpotifyId();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
                         // grey out previous icon if it is the first item in the list
                         if (songPosition == 0) {
                             ivPrevious.setImageResource(R.drawable.previcon_grey);
@@ -311,30 +259,12 @@ public class SongPlaylistActivity extends AppCompatActivity {
                             ivPlayPause.setImageResource(R.drawable.playicon);
                         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> set up play previous and play next
-=======
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
                     } else {
                         Toast.makeText(SongPlaylistActivity.this, "Error showing song!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> set up play previous and play next
-=======
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
     }
 
     private void gotoPlaylist() {
@@ -356,30 +286,12 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         // Now you can start interacting with App Remote
                         mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + songSpotifyId);
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> set up play previous and play next
-=======
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
-
->>>>>>> improve styling
-=======
-
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e(TAG, throwable.getMessage(), throwable);
                         Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
                     }
                 });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     }
 
     private void resumeSong() {
@@ -388,46 +300,6 @@ public class SongPlaylistActivity extends AppCompatActivity {
 
     private void pauseSong() {
         mSpotifyAppRemote.getPlayerApi().pause();
-=======
-=======
-    }
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-
-=======
-    }
-
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
-    private void resumeSong() {
-        mSpotifyAppRemote.getPlayerApi().resume();
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-//        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-//        // Execute the query to find the object with ID
-//        query.getInBackground(songObjectId, new GetCallback<Song>() {
-//            @Override
-//            public void done(Song song, com.parse.ParseException e) {
-//                if (e == null) {
-//                    String spotifyID = song.getSpotifyId();
-//
-//
-//                } else {
-//                    Log.d(TAG, "play song not found!");
-//                    Toast.makeText(SongPlaylistActivity.this, "Error playing song!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
->>>>>>> set up play previous and play next
-=======
-    private void pauseSong() {
-        mSpotifyAppRemote.getPlayerApi().pause();
->>>>>>> user can now play/pause each song and resume playing, even after clicking next/ previous song
-=======
-    private void pauseSong() {
-        mSpotifyAppRemote.getPlayerApi().pause();
->>>>>>> d632048cbc776aadb255fa324e3b537c1c8edd96
     }
 
     @Override

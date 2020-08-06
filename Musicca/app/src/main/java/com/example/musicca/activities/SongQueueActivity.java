@@ -65,6 +65,8 @@ public class SongQueueActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);

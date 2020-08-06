@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSU;
     private ImageView ivLogo;
     private TextView tvPromptSU;
+    private TextView tvSpotify;
+    private ImageView ivSpotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         btnSU = findViewById(R.id.btnSU);
         ivLogo = findViewById(R.id.ivLogo);
         tvPromptSU = findViewById(R.id.tvPromptSU);
+        tvSpotify = findViewById(R.id.tvSpotify);
+        ivSpotify = findViewById(R.id.ivSpotify);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = etUsername.getText().toString();
+                String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
 

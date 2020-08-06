@@ -50,8 +50,6 @@ public class PeopleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toast.makeText(getContext(), "View Created!", Toast.LENGTH_SHORT).show();
-
         // using recycler view in a fragment, create a view for on row in the list
         rvPeople = view.findViewById(R.id.rvPeople);
         allUsers = new ArrayList<>();

@@ -66,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnAddSong"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:background="@drawable/rounded_corners_outline"
         android:text="GO TO PLAYLIST"/>
 
@@ -75,7 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToPlaylist"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:background="@drawable/rounded_corners_filled_bottom"
-        android:text="BACK TO LATEST HITS"/>
+        android:text="BACK TO ALL TIME HITS"/>
 
 </RelativeLayout>
