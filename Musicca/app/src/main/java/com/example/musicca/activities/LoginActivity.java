@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.musicca.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -57,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
+                YoYo.with(Techniques.SlideOutRight).duration(700).playOn(findViewById(R.id.btnLogin));
                 loginUser(username, password);
 
             }
