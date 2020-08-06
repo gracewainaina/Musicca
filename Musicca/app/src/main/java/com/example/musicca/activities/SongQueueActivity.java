@@ -169,20 +169,23 @@ public class SongQueueActivity extends AppCompatActivity {
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                     }
-                    currentPlaylistSongs.add(songObjectId);
-                    playlist.setSongList(currentPlaylistSongs);
-                    playlist.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Log.e(TAG, "Error occurred when adding song", e);
-                                Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                    if (currentPlaylistSongs.contains(songObjectId)){
+                        Toast.makeText(SongQueueActivity.this, "Song already exists in playlist!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        currentPlaylistSongs.add(songObjectId);
+                        playlist.setSongList(currentPlaylistSongs);
+                        playlist.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, "Error occurred when adding song", e);
+                                    Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                                }
+                                Log.i(TAG, "Post saved successfully!");
+                                Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
                             }
-                            Log.i(TAG, "Post saved successfully!");
-                            Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                        });
+                    }
                 } else {
                     Log.d(TAG, "playlist not found!");
                     Toast.makeText(SongQueueActivity.this, "Error retrieving playlist!", Toast.LENGTH_SHORT).show();
