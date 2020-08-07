@@ -68,7 +68,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         ArrayList<ComparableSong> sortedComparableSongs = new ArrayList<>();
         List<String> sortedSongObjectIds = new ArrayList<>();
 
-        for (int i = 0; i < songObjectIds.size(); i++){
+        for (int i = 0; i < songObjectIds.size(); i++) {
             String songObjectId = songObjectIds.get(i);
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
             query.whereEqualTo(KEY_PLAYLIST, playlistObjectId);
@@ -77,7 +77,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             sortedComparableSongs.add(new ComparableSong(songObjectId, matchLikes.size()));
         }
         Collections.sort(sortedComparableSongs);
-        for (ComparableSong comparableSong: sortedComparableSongs){
+        for (ComparableSong comparableSong : sortedComparableSongs) {
             sortedSongObjectIds.add(comparableSong.getSongObjectId());
         }
         notifyDataSetChanged();
@@ -116,6 +116,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         private ImageView ivAlbum;
         private TextView tvTitle;
         private TextView tvArtist;
+        private TextView tvYear;
         private ImageView ivLike;
         private TextView tvLikes;
 
@@ -124,6 +125,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
             ivAlbum = itemView.findViewById(R.id.ivAlbum);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+            tvYear = itemView.findViewById(R.id.tvYear);
             ivLike = itemView.findViewById(R.id.ivLike);
             tvLikes = itemView.findViewById(R.id.tvLikes);
 
@@ -134,6 +136,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                 public void onSingleTapConfirmed(MotionEvent e) {
                     songSelect(getAdapterPosition());
                 }
+
                 // double tap to like or unlike song depending on whether the user has liked the song or not
                 @Override
                 public void onDoubleTap(MotionEvent e) {
@@ -217,12 +220,12 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
         // removes a like once the user unlikes a song by deleting the row of like on parse
         // and changes the like image to a outline icon
         private void removeLike(List<Like> likedByUser) throws ParseException {
-                likedByUser.get(0).delete();
-                //tvLikes.setText("" + findNumLikes(position));
-                ivLike.setImageResource(R.drawable.likeicon);
-                Toast.makeText(context, "Song unliked!", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();
-                updateSongs();
+            likedByUser.get(0).delete();
+            //tvLikes.setText("" + findNumLikes(position));
+            ivLike.setImageResource(R.drawable.likeicon);
+            Toast.makeText(context, "Song unliked!", Toast.LENGTH_SHORT).show();
+            notifyDataSetChanged();
+            updateSongs();
         }
 
         // this function finds the number of likes of a specific song in a specific playlist
@@ -257,7 +260,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
 
             try {
                 List<Like> likedByUser = findLikedByCurrentUser(position);
-                if (likedByUser.size() > 0){
+                if (likedByUser.size() > 0) {
                     ivLike.setImageResource(R.drawable.likefilledicon);
                 } else {
                     ivLike.setImageResource(R.drawable.likeicon);
@@ -275,6 +278,7 @@ public class CurrentPlaylistAdapter extends RecyclerView.Adapter<CurrentPlaylist
                     if (e == null) {
                         tvTitle.setText(song.getTitle());
                         tvArtist.setText(song.getArtist());
+                        tvYear.setText(song.getYear());
                         Glide.with(context).load(song.getURL()).into(ivAlbum);
                     } else {
                         Log.d(TAG, "song not found!");
