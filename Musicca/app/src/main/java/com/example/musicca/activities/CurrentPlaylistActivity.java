@@ -38,6 +38,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 
     private TextView tvPlaylistTitle;
+    private TextView tvPlaylistCode;
     private RecyclerView rvPlaylistSongs;
     private Button btnAddMoreSongs;
     private String playlistObjectId;
@@ -82,6 +83,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         tvPlaylistTitle = findViewById(R.id.tvPlaylistTitle);
+        tvPlaylistCode = findViewById(R.id.tvPlaylistCode);
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -142,13 +144,12 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private void getCurrentPlaylistSongs() {
         ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
         // Execute the query to find the object with ID
-        Log.e("PLAYLIST 2", "playlistObjectId" + playlistObjectId);
         query.getInBackground(playlistObjectId, new GetCallback<Playlist>() {
             @Override
             public void done(Playlist playlist, com.parse.ParseException e) {
-                Log.e("PLAYLIST 3", "playlistObjectId" + playlistObjectId);
                 if (e == null) {
                     tvPlaylistTitle.setText(playlist.getName());
+                    tvPlaylistCode.setText(playlist.getInvitecode());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
 
