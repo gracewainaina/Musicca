@@ -38,6 +38,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 
     private TextView tvPlaylistTitle;
+    private TextView tvPlaylistCode;
     private RecyclerView rvPlaylistSongs;
     private Button btnAddMoreSongs;
     private String playlistObjectId;
@@ -82,6 +83,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         tvPlaylistTitle = findViewById(R.id.tvPlaylistTitle);
+        tvPlaylistCode = findViewById(R.id.tvPlaylistCode);
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -147,16 +149,21 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
                     tvPlaylistTitle.setText(playlist.getName());
+                    tvPlaylistCode.setText(playlist.getInvitecode());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
-                    }
-                    currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
-                    rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
-                    rvPlaylistSongs.setLayoutManager(linearLayoutManager);
-                    Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
-                    rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+                        currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
+                        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
+                        rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+                        Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
+                        rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+
+                    } else {
+                        Toast.makeText(CurrentPlaylistActivity.this, "Playlist is currently empty!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(CurrentPlaylistActivity.this, "Playlist not found!", Toast.LENGTH_SHORT).show();

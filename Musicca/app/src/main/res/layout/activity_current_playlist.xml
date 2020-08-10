@@ -16,10 +16,10 @@
 
     <TextView
         android:id="@+id/tvPlaylistTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/toolbar"
+        android:paddingStart="10dp"
         android:gravity="center"
         android:textSize="20sp"
         tools:text="Playlist Title" />
@@ -49,5 +49,17 @@
         android:background="@drawable/rounded_corners_filled_bottom"
         android:layout_marginTop="10dp"
         android:text="ADD MORE SONGS"/>
+
+    <TextView
+        android:id="@+id/tvPlaylistCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/tvPlaylistTitle"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        tools:text="####" />
 
 </RelativeLayout>

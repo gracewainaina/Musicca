@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,14 +30,19 @@ import androidx.fragment.app.Fragment;
 import com.example.musicca.R;
 import com.example.musicca.activities.QueueActivity;
 import com.example.musicca.models.Playlist;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -51,16 +57,21 @@ public class CreateFragment extends Fragment {
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private ImageView ivPlaylistIcon;
+    private TextView tvSetPlaylistIcon;
     private Button btnTakePhoto;
     private Button btnChoosePhoto;
     private EditText etPlaylistname_create;
-    private EditText etPlaylistcode_create;
     private Button btnCreatePlaylist;
-    private TextView tvSetPlaylistIcon;
+    private Button btnGenCode;
+    private TextView tvGenCode;
+
 
     private String playlistObjectId;
     private File photoFile;
     private String photoFileName = "photo.jpg";
+
+    private String generatedCode;
+
     public final static int PICK_PHOTO_CODE = 1046;
     public static final String KEY_PLAYLISTICON = "playlistIcon";
     public static final String KEY_PLAYLISTNAME = "name";
@@ -88,9 +99,10 @@ public class CreateFragment extends Fragment {
         btnChoosePhoto = view.findViewById(R.id.btnChoosePhoto);
         btnTakePhoto = view.findViewById(R.id.btnTakePhoto);
         etPlaylistname_create = view.findViewById(R.id.etPlaylistname_create);
-        etPlaylistcode_create = view.findViewById(R.id.etPlaylistcode_create);
         btnCreatePlaylist = view.findViewById(R.id.btnCreatePlaylist);
         tvSetPlaylistIcon = view.findViewById(R.id.tvSetPlaylistIcon);
+        btnGenCode = view.findViewById(R.id.btnGenCode);
+        tvGenCode = view.findViewById(R.id.tvGenCode);
 
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,27 +116,74 @@ public class CreateFragment extends Fragment {
                 onPickPhoto();
             }
         });
+        btnGenCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseQuery<Playlist> query = ParseQuery.getQuery(Playlist.class);
+                List<Playlist> allPlaylists = new ArrayList<>();
+
+                try {
+                    allPlaylists = query.find();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Error generating code1!", Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    generatedCode = generateUniqueCode(allPlaylists);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Error generating code2!", Toast.LENGTH_SHORT).show();
+                }
+
+                tvGenCode.setText(generatedCode);
+            }
+        });
         btnCreatePlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // upon clicking we want to collect all information and create a post out of it
                 // we will need description, user and image
                 String playlistName = etPlaylistname_create.getText().toString();
-                String playlistCode = etPlaylistcode_create.getText().toString();
 
-                if (playlistName.isEmpty() && playlistCode.isEmpty()) {
-                    Toast.makeText(getContext(), "Name and code cannot be empty", Toast.LENGTH_SHORT).show();
+                if (playlistName.isEmpty()) {
+                    Toast.makeText(getContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (ivPlaylistIcon.getDrawable() == null) {
                     Toast.makeText(getContext(), "There is no image", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                savePlaylist(playlistName, playlistCode, parseUser, photoFile);
+                savePlaylist(playlistName, generatedCode, parseUser, photoFile);
             }
         });
 
     }
+
+    private String generateUniqueCode(List<Playlist> allPlaylists) throws ParseException {
+        String generatedCode = String.format("%04d", new Random().nextInt(10000));
+
+        if (isCodeUnique(generatedCode, allPlaylists) == true) {
+            return generatedCode;
+        } else {
+            return generateUniqueCode(allPlaylists);
+        }
+    }
+
+    private boolean isCodeUnique(String code, List<Playlist> playlists) {
+
+        if (playlists.size() == 0) {
+            return true;
+        } else {
+            for (int i = 0; i < playlists.size(); i++) {
+                if (TextUtils.equals(code, playlists.get(i).getInvitecode())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
 
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
@@ -165,6 +224,7 @@ public class CreateFragment extends Fragment {
         playlistPublic.setName(playlistName);
         playlistPublic.setInvitecode(playlistCode);
         playlistPublic.setOwner(owner);
+
         playlistPublic.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -172,20 +232,24 @@ public class CreateFragment extends Fragment {
                     Log.e(TAG, "Error while saving", e);
                     Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
+
                 Log.i(TAG, "Playlist created successfully!");
                 Toast.makeText(getContext(), "Playlist created successfully!", Toast.LENGTH_SHORT).show();
                 // if we saved successfully, clear the text from the description and not save text more than once
                 etPlaylistname_create.setText("");
-                etPlaylistcode_create.setText("");
+                tvGenCode.setText("");
                 ivPlaylistIcon.setImageResource(0);
+
+                playlistObjectId = playlistPublic.getObjectId();
+                gotoPlaylist();
 
             }
         });
-        playlistObjectId = playlistPublic.getObjectId();
-        gotoPlaylist();
+
     }
 
     private void gotoPlaylist() {
+        Log.e("PLAYLIST 0", "playlistObjectId" + playlistObjectId);
         Intent newintent = new Intent(getContext(), QueueActivity.class);
         newintent.putExtra(EXTRA_PLAYLISTNAME, playlistPublic.getName());
         newintent.putExtra(EXTRA_PLAYLISTCODE, playlistPublic.getInvitecode());
