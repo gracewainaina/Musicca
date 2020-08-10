@@ -24,8 +24,6 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
@@ -123,7 +121,6 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
 }
