@@ -1,6 +1,8 @@
 package com.example.musicca.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
@@ -10,6 +12,8 @@ import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +29,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import org.json.JSONException;
@@ -57,6 +62,11 @@ public class SongQueueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_queue);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);
@@ -99,6 +109,40 @@ public class SongQueueActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.action_home) {
+            goMainActivity();
+        } else if (item.getItemId() == R.id.action_logout) {
+            performLogOut();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void performLogOut() {
+        ParseUser.logOut();
+        if (ParseUser.getCurrentUser() == null) {
+            goLoginActivity();
+        }
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
     private void gotoPlaylist() {
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
@@ -125,20 +169,23 @@ public class SongQueueActivity extends AppCompatActivity {
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
                     }
-                    currentPlaylistSongs.add(songObjectId);
-                    playlist.setSongList(currentPlaylistSongs);
-                    playlist.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Log.e(TAG, "Error occurred when adding song", e);
-                                Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                    if (currentPlaylistSongs.contains(songObjectId)){
+                        Toast.makeText(SongQueueActivity.this, "Song already exists in playlist!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        currentPlaylistSongs.add(songObjectId);
+                        playlist.setSongList(currentPlaylistSongs);
+                        playlist.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, "Error occurred when adding song", e);
+                                    Toast.makeText(SongQueueActivity.this, "Error occurred when adding song!", Toast.LENGTH_SHORT).show();
+                                }
+                                Log.i(TAG, "Post saved successfully!");
+                                Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
                             }
-                            Log.i(TAG, "Post saved successfully!");
-                            Toast.makeText(SongQueueActivity.this, "Song has been added to " + playlist.getName(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                        });
+                    }
                 } else {
                     Log.d(TAG, "playlist not found!");
                     Toast.makeText(SongQueueActivity.this, "Error retrieving playlist!", Toast.LENGTH_SHORT).show();

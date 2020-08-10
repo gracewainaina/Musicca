@@ -11,8 +11,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.musicca.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -27,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnSU;
     private ImageView ivLogo;
+    private TextView tvPromptSU;
+    private TextView tvSpotify;
+    private ImageView ivSpotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +41,25 @@ public class LoginActivity extends AppCompatActivity {
 
         // check if user is already logged in after opening the app again
         // if so, go to main activity
-//        if (ParseUser.getCurrentUser() != null) {
-//            goLoginspotifyActivity();
-//        }
+        if (ParseUser.getCurrentUser() != null) {
+            goLoginspotifyActivity();
+        }
 
         etPassword = findViewById(R.id.etPassword);
         etUsername = findViewById(R.id.etUsername);
         btnLogin = findViewById(R.id.btnLogin);
         btnSU = findViewById(R.id.btnSU);
         ivLogo = findViewById(R.id.ivLogo);
+        tvPromptSU = findViewById(R.id.tvPromptSU);
+        tvSpotify = findViewById(R.id.tvSpotify);
+        ivSpotify = findViewById(R.id.ivSpotify);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = etUsername.getText().toString();
+                String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
+                YoYo.with(Techniques.SlideOutRight).duration(700).playOn(findViewById(R.id.btnLogin));
                 loginUser(username, password);
 
             }

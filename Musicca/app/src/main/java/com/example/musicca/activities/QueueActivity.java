@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.example.musicca.fragments.MultiFilterDialogFragment;
 import com.example.musicca.fragments.MultiFilterDialogFragment.onFilterActionListener;
 import com.example.musicca.models.Song;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,11 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);
@@ -98,8 +105,29 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
             showFilterMenu();
+        } else if (item.getItemId() == R.id.action_home) {
+            goMainActivity();
+        } else if (item.getItemId() == R.id.action_logout) {
+            performLogOut();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void performLogOut() {
+        ParseUser.logOut();
+        if (ParseUser.getCurrentUser() == null) {
+            goLoginActivity();
+        }
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     private void showFilterMenu() {
@@ -133,6 +161,7 @@ public class QueueActivity extends AppCompatActivity implements onFilterActionLi
     }
 
     private void gotoPlaylist() {
+        Log.e("PLAYLIST 1", "playlistObjectId" + playlistObjectId);
         Intent i = new Intent(this, CurrentPlaylistActivity.class);
         i.putExtra(EXTRA_PLAYLISTOBJECTID, playlistObjectId);
         startActivity(i);

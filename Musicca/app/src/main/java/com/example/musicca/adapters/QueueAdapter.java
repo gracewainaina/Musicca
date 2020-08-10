@@ -124,7 +124,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
 
         if (TextUtils.equals(yearBefore, DEFAULT_STRING_BEFORE)) {
             searchYearBefore = DEFAULT_INT_BEFORE;
-
         } else {
             searchYearBefore = Integer.valueOf(yearBefore);
         }
@@ -134,7 +133,6 @@ public class QueueAdapter extends RecyclerView.Adapter<QueueAdapter.ViewHolder> 
             int songYear = Integer.valueOf(song.getYear().toLowerCase());
             if ((yearAfter == DEFAULT_STRING_AFTER || songYear >= searchYearAfter) &&
                     (yearBefore == DEFAULT_STRING_BEFORE || songYear <= searchYearBefore) &&
-
                     (TextUtils.isEmpty(songTitle) || song.getTitle().toLowerCase().contains(songTitle)) &&
                     (TextUtils.isEmpty(songArtist) || song.getArtist().toLowerCase().contains(songArtist))) {
 

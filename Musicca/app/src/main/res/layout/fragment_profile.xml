@@ -41,26 +41,24 @@
 
     <Button
         android:id="@+id/btnEditProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMusicBio"
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:background="#ffa4ab"
-        android:padding="5dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="EDIT PROFILE" />
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnEditProfile"
         android:layout_alignParentStart="false"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="#ffa4ab"
-        android:padding="5dp"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="LOG OUT" />
 
 </RelativeLayout>

@@ -5,12 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".activities.EditProfileActivity">
+
+        <include
+            layout="@layout/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <ImageView
             android:id="@+id/ivProfileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_below="@+id/toolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:foregroundGravity="center"
@@ -19,50 +26,49 @@
 
         <Button
             android:id="@+id/btnTakePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners_filled_top"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/ivProfileImage"
             android:layout_alignParentStart="false"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:background="#ffa4ab"
-            android:padding="5dp"
             android:text="TAKE PHOTO" />
 
         <Button
             android:id="@+id/btnChoosePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/btnTakePhoto"
             android:layout_alignParentStart="false"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:background="#ffa4ab"
-            android:padding="5dp"
+            android:background="@drawable/rounded_corners_filled_top"
             android:text="CHOOSE PHOTO" />
 
         <EditText
             android:id="@+id/tvEditMusicBio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/btnChoosePhoto"
             android:layout_alignParentStart="false"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:foregroundGravity="center"
-            android:hint="Edit Music Bio"
+            android:paddingStart="20dp"
+            android:background="@drawable/rounded_corners_outline"
+            android:hint="Change Music Bio"
+            android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Button
             android:id="@+id/btnChangeMusicBio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/tvEditMusicBio"
             android:layout_alignParentStart="false"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:background="#ffa4ab"
-            android:padding="5dp"
+            android:background="@drawable/rounded_corners_filled_bottom"
             android:text="UPDATE MUSIC BIO" />
 
 </RelativeLayout>

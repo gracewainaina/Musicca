@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_join"
+        android:icon="@drawable/joinparty"
+        android:title="Join Party"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_create"
+        android:icon="@drawable/createparty"
+        android:title="Create Party"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/home"
+        android:title="Profile"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_people"
+        android:icon="@drawable/people"
+        android:title="People"
+        app:showAsAction="always" />
+</menu>

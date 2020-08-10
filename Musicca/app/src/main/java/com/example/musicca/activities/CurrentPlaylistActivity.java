@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,7 @@ import com.example.musicca.models.Playlist;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -33,6 +38,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     private static final String EXTRA_PLAYLISTOBJECTID = "playlistobjectid";
 
     private TextView tvPlaylistTitle;
+    private TextView tvPlaylistCode;
     private RecyclerView rvPlaylistSongs;
     private Button btnAddMoreSongs;
     private String playlistObjectId;
@@ -44,6 +50,11 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_playlist);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
 
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);
@@ -72,6 +83,7 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
         tvPlaylistTitle = findViewById(R.id.tvPlaylistTitle);
+        tvPlaylistCode = findViewById(R.id.tvPlaylistCode);
         rvPlaylistSongs = findViewById(R.id.rvPlaylistSongs);
         btnAddMoreSongs = findViewById(R.id.btnAddMoreSongs);
         playlistObjectId = getIntent().getStringExtra(EXTRA_PLAYLISTOBJECTID);
@@ -84,6 +96,40 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
                 gotoQueueActivity();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.action_home) {
+            goMainActivity();
+        } else if (item.getItemId() == R.id.action_logout) {
+            performLogOut();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void performLogOut() {
+        ParseUser.logOut();
+        if (ParseUser.getCurrentUser() == null) {
+            goLoginActivity();
+        }
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     private void gotoQueueActivity() {
@@ -103,16 +149,21 @@ public class CurrentPlaylistActivity extends AppCompatActivity {
             public void done(Playlist playlist, com.parse.ParseException e) {
                 if (e == null) {
                     tvPlaylistTitle.setText(playlist.getName());
+                    tvPlaylistCode.setText(playlist.getInvitecode());
                     if (playlist.getSongList() != null) {
                         currentPlaylistSongs = playlist.getSongList();
-                    }
-                    currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
-                    rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
-                    rvPlaylistSongs.setLayoutManager(linearLayoutManager);
-                    Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
-                    rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+                        currentPlaylistAdapter = new CurrentPlaylistAdapter(CurrentPlaylistActivity.this, currentPlaylistSongs, playlistObjectId);
+                        rvPlaylistSongs.setAdapter(currentPlaylistAdapter);
+
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CurrentPlaylistActivity.this);
+                        rvPlaylistSongs.setLayoutManager(linearLayoutManager);
+                        Toast.makeText(CurrentPlaylistActivity.this, "Double tap song like or unlike it!", Toast.LENGTH_SHORT).show();
+                        rvPlaylistSongs.setItemAnimator(new SlideInUpAnimator());
+
+                    } else {
+                        Toast.makeText(CurrentPlaylistActivity.this, "Playlist is currently empty!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(CurrentPlaylistActivity.this, "Playlist not found!", Toast.LENGTH_SHORT).show();

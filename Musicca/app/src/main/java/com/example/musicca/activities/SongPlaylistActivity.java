@@ -1,6 +1,8 @@
 package com.example.musicca.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.app.Activity;
@@ -12,6 +14,8 @@ import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +29,7 @@ import com.example.musicca.models.Song;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -69,6 +74,11 @@ public class SongPlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_playlist);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = toolbar.findViewById(R.id.toolbar_title);
+
         Transition transitionEnter = TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
         getWindow().setEnterTransition(transitionEnter);
 
@@ -93,7 +103,10 @@ public class SongPlaylistActivity extends AppCompatActivity {
         ivPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> visual-polish
                 // play for the first time
                 if (!isSongPaused && !isSongPlaying) {
                     playSong();
@@ -175,6 +188,40 @@ public class SongPlaylistActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_top, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.action_home) {
+            goMainActivity();
+        } else if (item.getItemId() == R.id.action_logout) {
+            performLogOut();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void performLogOut() {
+        ParseUser.logOut();
+        if (ParseUser.getCurrentUser() == null) {
+            goLoginActivity();
+        }
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+    }
+
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
     private void setSongView() {
         if (sortedSongObjectIds != null && sortedSongObjectIds.size() > songPosition) {
             String songObjectId = sortedSongObjectIds.get(songPosition);
@@ -213,6 +260,10 @@ public class SongPlaylistActivity extends AppCompatActivity {
                             isSongPlaying = false;
                             ivPlayPause.setImageResource(R.drawable.playicon);
                         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> visual-polish
                     } else {
                         Toast.makeText(SongPlaylistActivity.this, "Error showing song!", Toast.LENGTH_SHORT).show();
                     }
@@ -240,7 +291,10 @@ public class SongPlaylistActivity extends AppCompatActivity {
                         // Now you can start interacting with App Remote
                         mSpotifyAppRemote.getPlayerApi().play("spotify:track:" + songSpotifyId);
                     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> visual-polish
                     @Override
                     public void onFailure(Throwable throwable) {
                         Log.e(TAG, throwable.getMessage(), throwable);

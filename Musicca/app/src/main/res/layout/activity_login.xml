@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_height="match_parent"
     android:background="#0FFFFFFF"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".activities.LoginActivity">
 
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="75dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon">
+        android:src="@drawable/music_logo">
 
     </ImageView>
 
@@ -23,39 +23,69 @@
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="50dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corners_outline"
         android:ems="10"
         android:hint="username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:paddingStart="20dp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="50dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corners_outline"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:paddingStart="20dp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:background="#ffa4ab"
+        android:background="@drawable/rounded_corners_filled_middle"
         android:text="LOGIN" />
+
+    <TextView
+        android:id="@+id/tvPromptSU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:text="Don't have an account yet?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <Button
         android:id="@+id/btnSU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#ffa4ab"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corners_filled_bottom"
         android:text="SIGN UP" />
+
+    <TextView
+        android:id="@+id/tvSpotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Powered by Spotify"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <ImageView
+        android:id="@+id/ivSpotify"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="75dp"
+        android:src="@drawable/spotify">
+
+    </ImageView>
 
 
 </LinearLayout>

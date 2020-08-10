@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +51,6 @@ public class PeopleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toast.makeText(getContext(), "View Created!", Toast.LENGTH_SHORT).show();
-
         // using recycler view in a fragment, create a view for on row in the list
         rvPeople = view.findViewById(R.id.rvPeople);
         allUsers = new ArrayList<>();
@@ -84,7 +83,7 @@ public class PeopleFragment extends Fragment {
                     // The query was successful.
                     // removing current user from the list
                     for (int i = 0; i < parseUsers.size(); i++) {
-                        if (parseUsers.get(i).getUsername() != ParseUser.getCurrentUser().getUsername()){
+                        if (!TextUtils.equals(parseUsers.get(i).getUsername(), ParseUser.getCurrentUser().getUsername())) {
                             allUsers.add(parseUsers.get(i));
                         }
                     }
